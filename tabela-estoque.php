@@ -1,0 +1,42 @@
+<?php
+session_start();
+include('conexao.php');
+include('funcoes.php');
+$sql = mysql_query("SELECT * FROM produtos") or die (mysql_error());
+echo'
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Código barra</th>
+            <th>Nome</th>
+            <th>Unidade</th>
+            <th>Preço compra</th>
+            <th>Preço venda</th>
+            <th>Est.Mínimo</th>
+            <th>Est.Atual</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>';
+    while($dados_p = mysql_fetch_array($sql)){
+        echo'
+        <tr onclick="alterarProduto('.$dados_p['id'].')">
+            <td>'.$dados_p['codigobarra'].'</td>
+            <td>'.$dados_p['nome'].'</td>
+            <td>'.$dados_p['unidade'].'</td>
+            <td>R$ '.Real($dados_p['precocompra']).'</td>
+            <td>R$ '.Real($dados_p['precovenda']).'</td>
+            <td>'.$dados_p['estoqueminimo'].'</td>
+            <td>'.$dados_p['estoqueatual'].'</td>
+            <td>';if($dados_p['status'] == 0){echo 'Bloqueado';}else{echo'Liberado';}echo'</td>
+        </tr>';}
+        echo'
+    </tbody>
+</table>';
+?>
+<!-- jQuery dataTable-->
+<script type="text/javascript" src="dataTable/jquery.dataTables.min.js"></script>
+<!--meus scripts-->
+<script src="dataTable/confi-dataTable.js"></script>
+<!-- style -->
+<link rel="stylesheet" href="dataTable/jquery.dataTables.min.css"/>
