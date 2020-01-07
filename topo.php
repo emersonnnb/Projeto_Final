@@ -1,12 +1,12 @@
 <?php
-ob_start();//inicia a gravação do buffer quando conlcuir o processamento do php ai a página é mostrada
+ob_start();//inicia a gravaï¿½ï¿½o do buffer quando conlcuir o processamento do php ai a pï¿½gina ï¿½ mostrada
 session_start();
 include('conexao.php'); 
 include('funcoes.php');
 if(isset($_SESSION['iduser'])!=true){echo '<script>location.href="sair.php";</script>'; }
 
-$sql_empresa = mysql_query("SELECT * FROM empresa WHERE id_empresa=1") or die (mysql_error());
-@$dados_emp = mysql_fetch_array($sql_empresa);
+$sql_empresa = mysqli_query($conexao,"SELECT * FROM empresa WHERE id_empresa=1") or die (mysql_error());
+@$dados_emp = mysqli_fetch_array($sql_empresa);
 echo'
 <!DOCTYPE html>
 <html lang="pt">
@@ -64,7 +64,7 @@ echo'
               <div class="row">
                 <label class="col-lg-6"><input type="text" class="form-control" name="nome_empresa" value="'.@$dados_emp['nome_empresa'].'" placeholder="Nome empresa"/></label>
                 <label class="col-lg-4"><input type="number" class="form-control" name="cpf_cnpj" value="'.@$dados_emp['cpf_cnpj'].'" placeholder="CPF ou CNPJ"/></label>
-                <label class="col-lg-6"><input type="text" class="form-control" name="endereco_empresa" value="'.@$dados_emp['endereco_empresa'].'" placeholder="Rua e número"/></label>
+                <label class="col-lg-6"><input type="text" class="form-control" name="endereco_empresa" value="'.@$dados_emp['endereco_empresa'].'" placeholder="Rua e nï¿½mero"/></label>
                 <label class="col-lg-4"><input type="text" class="form-control" name="bairro_empresa" value="'.@$dados_emp['bairro_empresa'].'"placeholder="Bairro"/></label>
                 <label class="col-lg-4"><input type="text" class="form-control" name="cidade_empresa" value="'.@$dados_emp['cidade_empresa'].'" placeholder="Cidade"/></label>
                 <label class="col-lg-2"><input type="text" class="form-control" name="uf_empresa" value="'.@$dados_emp['uf_empresa'].'" placeholder="UF"/></label>

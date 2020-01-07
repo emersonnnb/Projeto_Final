@@ -1,19 +1,19 @@
 <?php
-
-//permissao atualziação //recebe informações vindas do array de permissão
+include('conexao.php'); 
+//permissao atualziaï¿½ï¿½o //recebe informaï¿½ï¿½es vindas do array de permissï¿½o
 function Permissao($item,$id){
 $sql=mysql_query("select * from permissoes where id_usuario='".$id."' and item='".$item."' ");	
 if(mysql_num_rows($sql)>=1){mysql_query("update permissoes set valor='ativo' where id_usuario='".$id."' and item='".$item."' ");}
 else{mysql_query("insert into permissoes (id_usuario,item,valor) VALUES ('$id','$item','ativo') ");}
 };
 
-//função verifica se existem liberação apra acesso ao menu
+//funï¿½ï¿½o verifica se existem liberaï¿½ï¿½o apra acesso ao menu
 function PermissaoCheck($item,$id){
-$sql=mysql_query("select * from permissoes where id_usuario='".$id."' and item='".$item."' and valor='ativo' ");	
-if(mysql_num_rows($sql)>=1){ return 'checked';}
+$sql=mysqli_query($conexao,"select * from permissoes where id_usuario='".$id."' and item='".$item."' and valor='ativo' ");	
+if(mysqli_num_rows($sql)>=1){ return 'checked';}
 };
 
-//função limpa ponto e traço
+//funï¿½ï¿½o limpa ponto e traï¿½o
 function limpaCPF_CNPJ($valor){
 $valor = trim($valor);
 $valor = str_replace(".", "", $valor);
@@ -41,13 +41,13 @@ return $valor;
 function Real($valor){ if($valor==true){ return number_format($valor,2,',','.');} else { return '0,00';}};
 
 //array de de estado civil
-$estadocivil = array('Casado(a)','Divorciado(a)','Separdo Judicialmente','Solteiro(a)','Viúvo(a)','União estavel');
+$estadocivil = array('Casado(a)','Divorciado(a)','Separdo Judicialmente','Solteiro(a)','Viï¿½vo(a)','Uniï¿½o estavel');
 
 //case de meses por valor
 switch (date("m")) {
     case "01":    @$mes = Janeiro;     break;
     case "02":    @$mes = Fevereiro;   break;
-    case "03":    @$mes = Março;       break;
+    case "03":    @$mes = Marï¿½o;       break;
     case "04":    @$mes = Abril;       break;
     case "05":    @$mes = Maio;        break;
     case "06":    @$mes = Junho;       break;
@@ -63,13 +63,13 @@ switch (date("m")) {
 function idadeCerta($nascimento){
     // Declara a data! :P
     $data = $nascimento;
-    // Separa em dia, mês e ano
+    // Separa em dia, mï¿½s e ano
     list($dia, $mes, $ano) = explode('-', $data);
-    // Descobre que dia é hoje e retorna a unix timestamp
+    // Descobre que dia ï¿½ hoje e retorna a unix timestamp
     $hoje = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
     // Descobre a unix timestamp da data de nascimento do fulano
     $nascimento = mktime( 0, 0, 0, $mes, $dia, $ano);
-    // Depois apenas fazemos o cálculo já citado :)
+    // Depois apenas fazemos o cï¿½lculo jï¿½ citado :)
     $idade = floor((((($hoje - $nascimento) / 60) / 60) / 24) / 365.25);
     return $idade;
 };
@@ -88,30 +88,30 @@ function AspasBanco($string){
 
 function url_amigavel($string){
     $table = array(
-        'Š'=>'S', 'š'=>'s', 'Ð'=>'D', 'd'=>'d', 'Ž'=>'Z',
-        'ž'=>'z', 'C'=>'C', 'c'=>'c', 'C'=>'C', 'c'=>'c',
-        'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A',
-        'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
-        'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I',
-        'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O',
-        'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U', 'Ú'=>'U',
-        'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss',
-        'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a',
-        'å'=>'a', 'æ'=>'a', 'ç'=>'c', 'è'=>'e', 'é'=>'e',
-        'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i',
-        'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o',
-        'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ø'=>'o', 'ù'=>'u',
-        'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b',
-        'ÿ'=>'y', 'R'=>'R', 'r'=>'r',  );
+        'ï¿½'=>'S', 'ï¿½'=>'s', 'ï¿½'=>'D', 'd'=>'d', 'ï¿½'=>'Z',
+        'ï¿½'=>'z', 'C'=>'C', 'c'=>'c', 'C'=>'C', 'c'=>'c',
+        'ï¿½'=>'A', 'ï¿½'=>'A', 'ï¿½'=>'A', 'ï¿½'=>'A', 'ï¿½'=>'A',
+        'ï¿½'=>'A', 'ï¿½'=>'A', 'ï¿½'=>'C', 'ï¿½'=>'E', 'ï¿½'=>'E',
+        'ï¿½'=>'E', 'ï¿½'=>'E', 'ï¿½'=>'I', 'ï¿½'=>'I', 'ï¿½'=>'I',
+        'ï¿½'=>'I', 'ï¿½'=>'N', 'ï¿½'=>'O', 'ï¿½'=>'O', 'ï¿½'=>'O',
+        'ï¿½'=>'O', 'ï¿½'=>'O', 'ï¿½'=>'O', 'ï¿½'=>'U', 'ï¿½'=>'U',
+        'ï¿½'=>'U', 'ï¿½'=>'U', 'ï¿½'=>'Y', 'ï¿½'=>'B', 'ï¿½'=>'Ss',
+        'ï¿½'=>'a', 'ï¿½'=>'a', 'ï¿½'=>'a', 'ï¿½'=>'a', 'ï¿½'=>'a',
+        'ï¿½'=>'a', 'ï¿½'=>'a', 'ï¿½'=>'c', 'ï¿½'=>'e', 'ï¿½'=>'e',
+        'ï¿½'=>'e', 'ï¿½'=>'e', 'ï¿½'=>'i', 'ï¿½'=>'i', 'ï¿½'=>'i',
+        'ï¿½'=>'i', 'ï¿½'=>'o', 'ï¿½'=>'n', 'ï¿½'=>'o', 'ï¿½'=>'o',
+        'ï¿½'=>'o', 'ï¿½'=>'o', 'ï¿½'=>'o', 'ï¿½'=>'o', 'ï¿½'=>'u',
+        'ï¿½'=>'u', 'ï¿½'=>'u', 'ï¿½'=>'y', 'ï¿½'=>'y', 'ï¿½'=>'b',
+        'ï¿½'=>'y', 'R'=>'R', 'r'=>'r',  );
     // Traduz os caracteres em $string, baseado no vetor $table
     $string = strtr($string, $table);
-    // converte para minúsculo
+    // converte para minï¿½sculo
     $string = strtolower($string);
-    // remove caracteres indesejáveis (que não estão no padrão)
+    // remove caracteres indesejï¿½veis (que nï¿½o estï¿½o no padrï¿½o)
     $string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
-    // Remove múltiplas ocorrências de hífens ou espaços
+    // Remove mï¿½ltiplas ocorrï¿½ncias de hï¿½fens ou espaï¿½os
     $string = preg_replace("/[\s-]+/", " ", $string);
-    // Transforma espaços e underscores em hífens
+    // Transforma espaï¿½os e underscores em hï¿½fens
     $string = preg_replace("/[\s_]/", "_", $string);
     // retorna a string
     return $string;
@@ -136,15 +136,15 @@ function alertatualizacao(){
     </div>';
 };
 
-//diferença entre datas o tipo deve ser '99-99-9999';
+//diferenï¿½a entre datas o tipo deve ser '99-99-9999';
 function mesesPassados($dataInicial,$dataFinal){
-    //cácular juros se completou um mês ou mais
+    //cï¿½cular juros se completou um mï¿½s ou mais
     $data1 = new DateTime($dataInicial);
     $data2 = new DateTime($dataFinal);
     $intervalo = $data1->diff($data2);
     // dias passados {$intervalo->d} dias";
     //anos {$intervalo->y} anos";
-    //retora os mês passados
+    //retora os mï¿½s passados
     return "{$intervalo->m}";
 };
 ?>

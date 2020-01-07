@@ -64,7 +64,8 @@ jQuery('#form-login').submit(function(){
     url:'proc_login.php',
     data:jQuery('#form-login').serialize(),
     success:function(data){
-      jQuery('#retorno').show().fadeOut(3000).html(data);
+      jQuery('#retorno').show().html(data);
+      //jQuery('#retorno').show().fadeOut(3000).html(data);
       jQuery('#form-login').each(function(){this.reset();});
     }
   });
