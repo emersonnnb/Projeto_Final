@@ -57,6 +57,26 @@ drop DATABASE if EXISTS bd_pdv2;
   --
   INSERT INTO `produtos` (`id`,`descricao`,`fornecedor`,`unidade`,`em_Uso`,`em_Reparo`,`observacao`,`datacad`,`usuariocad`,`status_prod`) VALUES
   (1,'Mesa','C&C','Barra',5,15,'teste de observacao','2019-11-17','emerson',1  );
+  -- --------------------------------------------------------
+  --
+  -- Estrutura da tabela `unidade`
+  --
+  CREATE TABLE IF NOT EXISTS `unidade` (
+  `id_u` int(255) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `descricao_u` varchar(50) NOT NULL,
+  `id_usuario` int,
+  `datacad` date NOT NULL,  
+  `status_uni` int(2) NOT NULL    
+  ); 
+  -- --------------------------------------------------------
+  --
+  -- Inserindo dados da tabela `unidade`
+  --
+  INSERT INTO `unidade` (`id_u`, `descricao_u`,`datacad`,`id_usuario`,`status_uni`) VALUES
+  (1, 'Botafogo','2019-01-03', 1, 1),
+  (2, 'Barra','2019-01-03', 1, 1),
+  (3, 'Duque de caxias','2019-01-03', 1, 1),
+  (4, 'São Cristovão','2019-01-03', 1, 1); 
  -- --------------------------------------------------------
   --
   -- Estrutura da tabela `usuario`
@@ -71,19 +91,17 @@ drop DATABASE if EXISTS bd_pdv2;
     `ramal` int(100) NOT NULL,
     `email` varchar(255) NOT NULL,
     `senha` varchar(255) NOT NULL,
-    `situacao` int(2) NOT NULL	
-  );
+    `situacao` int(2) NOT NULL,
+
+    FOREIGN KEY (`id_unidade`) REFERENCES `unidade` (`id_u`)
+  );	
+  
   -- --------------------------------------------------------
   --
-  -- Estrutura da tabela `unidade`
+  -- Inserindo dados da tabela `usuario`
   --
-  CREATE TABLE IF NOT EXISTS `unidade` (
-  `id_u` int(255) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `descricao_u` varchar(50) NOT NULL,
-  `datacad` date NOT NULL,
-  `id_usuario` int,
-  `status_uni` int(2) NOT NULL    
-  );  
+  INSERT INTO `usuario` (`id`, `nome`, `sobrenome`, `matricula`, `id_unidade`,`telefone`,`ramal`,`email`,`senha`, `situacao`) VALUES
+  (1, 'emerson','oliveira', '059099',NULL,21213434,222,'emersonnnb@hotmail.com','e10adc3949ba59abbe56e057f20f883e', 0);
   -- --------------------------------------------------------
   --
   -- Estrutura da tabela `fornecedor`
@@ -95,36 +113,14 @@ drop DATABASE if EXISTS bd_pdv2;
   `usuariocad` varchar(100) NOT NULL,
   `status_for` int(2) NOT NULL
   );
+  -- --------------------------------------------------------
   --
   -- Inserindo dados da tabela `fornecedor`
   --
   INSERT INTO `fornecedor` (`id_f`, `descricao_f`) VALUES
   (1, 'Shopp. Matriz'),
   (2, 'Casa show'),
-  (3, 'C&C');
-   
-  -- --------------------------------------------------------
-  --
-  -- Inserindo a chave estrangeira tabela Usuario e Unidade
-  --
-  ALTER TABLE `usuario` ADD FOREIGN KEY (`id_unidade`) REFERENCES `unidade`(`id_u`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-  ALTER TABLE `unidade` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-  -- --------------------------------------------------------
-  --
-  -- Inserindo dados da tabela `usuario`
-  --
-  INSERT INTO `usuario` (`id`, `nome`, `sobrenome`, `matricula`, `id_unidade`,`telefone`,`ramal`,`email`,`senha`, `situacao`) VALUES
-  (1, 'emerson','oliveira', '059099',NULL,21213434,222,'emersonnnb@hotmail.com','e10adc3949ba59abbe56e057f20f883e', 0);
-
---
-  -- Inserindo dados da tabela `unidade`
-  --
-  INSERT INTO `unidade` (`id_u`, `descricao_u`,`datacad`,`id_usuario`,`status_uni`) VALUES
-  (1, 'Botafogo','2019-01-03', 1, 1),
-  (2, 'Barra','2019-01-03', 1, 1),
-  (3, 'Duque de caxias','2019-01-03', 1, 1),
-  (4, 'São Cristovão','2019-01-03', 1, 1);
-  
+  (3, 'C&C');  
   -- --------------------------------------------------------
   --
   -- Estrutura da tabela `permissoes`

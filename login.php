@@ -29,7 +29,7 @@
           <form action="" method="post" id="form-login" autocomplete="off">
             <fieldset class="clearfix">
               <p><span class="fa fa-user"></span>
-                <input type="text" name="cpf" Placeholder="CPF" required>
+                <input type="text" name="login" Placeholder="CPF" required>
               </p>
               <p><span class="fa fa-lock"></span>
                 <input type="password" name="senha" Placeholder="Senha" minlength="6" required>

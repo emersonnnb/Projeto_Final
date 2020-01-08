@@ -1,10 +1,10 @@
 <?php
 session_start();
 include('conexao.php');
-$cpf = $_POST['cpf'];
+$login = $_POST['login'];
 $senha = md5($_POST['senha']);
 
-$sql = mysqli_query ($conexao,"SELECT * FROM usuario WHERE cpf='$cpf' AND senha='$senha' AND situacao='0' LIMIT 1") or die (mysql_error());
+$sql = mysqli_query ($conexao,"SELECT * FROM usuario WHERE matricula='$login' AND senha='$senha' AND situacao='0' LIMIT 1") or die (mysqli_error($conexao));
 $dados_uu = mysqli_fetch_array($sql);
 
 	if(empty($dados_uu)){ echo '<div class="alert alert-danger">Usu�rio ou senha <strong>inv�lido.</strong></div>';}  //se $dados_uu for vazio mostrar o erro
