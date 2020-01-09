@@ -4,7 +4,8 @@ include('conexao.php');
 $login = $_POST['login'];
 $senha = md5($_POST['senha']);
 
-$sql = mysqli_query ($conexao,"SELECT * FROM usuario WHERE matricula='$login' AND senha='$senha' AND situacao='0' LIMIT 1") or die (mysqli_error($conexao));
+$res = "SELECT * FROM usuario WHERE matricula='$login' AND senha='$senha' AND situacao='0' ";
+$sql = mysqli_query ($conexao,$res) or die (mysqli_error($conexao));
 $dados_uu = mysqli_fetch_array($sql);
 
 	if(empty($dados_uu)){ echo '<div class="alert alert-danger">Usu�rio ou senha <strong>inv�lido.</strong></div>';}  //se $dados_uu for vazio mostrar o erro
@@ -20,10 +21,7 @@ $dados_uu = mysqli_fetch_array($sql);
 			$hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']); //pega nome da maquina
 		
 			//logs
-			$sql = mysqli_query($conexao,"INSERT INTO logs 
-			(usuario, tipo, tabela, descricao, datatime, pc, ip) VALUES 
-			('$usuario', 'Entrou', 'Usu�rio', 'Usu�rio entrou no sistema', NOW(), '$hostname', '$ip')") 
-			or die (mysql_error());
+			$sql = mysqli_query($conexao,"INSERT INTO logs(usuario, tipo, tabela, descricao, datatime, pc, ip) VALUES('$usuario', 'Entrou', 'Usuario', 'Usurio entrou no sistema', NOW(), '$hostname', '$ip')") or die ($conexao());
 			//logs
 			echo "<script>location.href='index.php';</script>";
 		}
