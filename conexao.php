@@ -1,5 +1,5 @@
 <?php
-$banco="bd_pdv2";
+$banco="bd_pdv";
 $usuario="root";
 $senha="";
 $hostname='localhost';

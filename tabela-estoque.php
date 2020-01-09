@@ -2,23 +2,23 @@
 session_start();
 include('conexao.php');
 include('funcoes.php');
-$sql = mysql_query("SELECT * FROM produtos") or die (mysql_error());
+$sql = mysqli_query($conexao,"SELECT * FROM produtos") or die (mysqli_error($conexao));
 echo'
 <table id="example" class="display" style="width:100%">
     <thead>
         <tr>
-            <th>Código barra</th>
+            <th>Cï¿½digo barra</th>
             <th>Nome</th>
             <th>Unidade</th>
-            <th>Preço compra</th>
-            <th>Preço venda</th>
-            <th>Est.Mínimo</th>
+            <th>Preï¿½o compra</th>
+            <th>Preï¿½o venda</th>
+            <th>Est.Mï¿½nimo</th>
             <th>Est.Atual</th>
             <th>Status</th>
         </tr>
     </thead>
     <tbody>';
-    while($dados_p = mysql_fetch_array($sql)){
+    while($dados_p = mysqli_fetch_array($sql)){
         echo'
         <tr onclick="alterarProduto('.$dados_p['id'].')">
             <td>'.$dados_p['codigobarra'].'</td>

@@ -4,16 +4,16 @@ session_start();
 include('conexao.php'); 
 include('funcoes.php');
 $iduser = $_SESSION['iduser'];
-$usuario = $_SESSION['nomeuser'];//pega usuario que está executando a ação
+$usuario = $_SESSION['nomeuser'];//pega usuario que estï¿½ executando a aï¿½ï¿½o
 $caixa = $_SESSION['caixa'];
 $ip = $_SERVER['REMOTE_ADDR']; // pegar ip da maquina
 $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']); //pega nome da maquina
 if(isset($_SESSION['iduser'])!=true){echo '<script>location.href="sair.php";</script>'; }
 //verificar se tem venda em aberto
 if(!isset($id_venda)){
-$sql_venda = mysql_query("SELECT * FROM vendas WHERE caixa_venda='$caixa' AND situacao='aberta'") or die (mysql_error());
-    if($rows = mysql_num_rows($sql_venda) != 0){
-        $dados_venda = mysql_fetch_array($sql_venda);
+$sql_venda = mysqli_query($conexao,"SELECT * FROM vendas WHERE caixa_venda='$caixa' AND situacao='aberta'") or die (mysqli_error($conexao));
+    if($rows = mysqli_num_rows($sql_venda) != 0){
+        $dados_venda = mysqli_fetch_array($sql_venda);
         $id_venda = $dados_venda['id_venda'];
     }else{
         $_SESSION['id_venda'] = date('dmYHms');
@@ -49,7 +49,7 @@ echo'
                             <thead>
                                 <tr class="table-active">
                                     <th scope="col">Item</th>
-                                    <th scope="col">Código</th>
+                                    <th scope="col">Cï¿½digo</th>
                                     <th scope="col">Produto</th>
                                     <th scope="col">Quant.</th>
                                     <th scope="col">Valor</th>
@@ -58,10 +58,10 @@ echo'
                             </thead>
                             <tbody>';
                                 @$id_venda;
-                                $sql = mysql_query("SELECT * FROM vendas WHERE id_venda=".$id_venda." AND caixa_venda='$caixa' AND situacao='aberta'") or die (mysql_error());
-                                if($rows = mysql_num_rows($sql) >= 1){
+                                $sql = mysqli_query($conexao,"SELECT * FROM vendas WHERE id_venda=".$id_venda." AND caixa_venda='$caixa' AND situacao='aberta'") or die (mysql_error());
+                                if($rows = mysqli_num_rows($sql) >= 1){
                                     @$item = 1; $total = 0;
-                                    while($vendas = mysql_fetch_array($sql)){
+                                    while($vendas = mysqli_fetch_array($sql)){
                                         echo'
                                             <tr>
                                                 <td>'.@$item.'</td>
@@ -86,14 +86,14 @@ echo'
                 <div class="row">
                     <form action="" method="post" id="codigoProduto" autocomplete="off">
                         <label class="col-lg-12"><input type="number" class="form-control" name="codigo"
-                        placeholder="Código de barra" style="font-size:25px; text-align:center; color:black; font-weight: bold;"/>
+                        placeholder="Cï¿½digo de barra" style="font-size:25px; text-align:center; color:black; font-weight: bold;"/>
                         </label>
                     </form>
                 </div>
                 <form action="insert-caixa-update-venda.php" method="post" style="font-size: 18px" autocomplete="off">
                     <input type="text" class="hidden" name="id_venda" value="'.@$id_venda.'"/>
                     <div class="form-group">
-                    <label class="control-label"><b>Valor cartão</b></label>
+                    <label class="control-label"><b>Valor cartï¿½o</b></label>
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -203,7 +203,7 @@ jQuery('#codigoProduto').submit(function(){
     return false;
 });
 
-//aqui tu adiciona quem pode alterar tua função mostratotal()
+//aqui tu adiciona quem pode alterar tua funï¿½ï¿½o mostratotal()
 jQuery('#valorCartao,#valorDinheiro').keyup(function(){ mostraTotal();});
 
 function mostraTotal(){
@@ -249,7 +249,7 @@ function formatReal( int ){
         if(tmp.indexOf(",") == 0) tmp = tmp.replace(",","0,");
     return (neg ? '-'+tmp : tmp);
 };
-//funções nas teclas
+//funï¿½ï¿½es nas teclas
 document.onkeyup=function(e){
     if(e.which == 121){window.location.href="sair.php";}
     if(e.which == 118){window.location.href="index.php";}

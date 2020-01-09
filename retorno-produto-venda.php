@@ -3,13 +3,13 @@ session_start();
 include('conexao.php');
 include('funcoes.php');
 $iduser = $_SESSION['iduser'];
-$usuario = $_SESSION['nomeuser'];//pega usuario que está executando a ação
+$usuario = $_SESSION['nomeuser'];//pega usuario que estï¿½ executando a aï¿½ï¿½o
 $ip = $_SERVER['REMOTE_ADDR']; // pegar ip da maquina
 $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']); //pega nome da maquina
 
 $codigo = $_POST['codigo'];
-$sql = mysql_query("SELECT * FROM produtos WHERE codigobarra='$codigo' AND status='1'") or die (mysql_error());
-if($rows = mysql_num_rows($sql) >= 1){
+$sql = mysqli_query($conexao,"SELECT * FROM produtos WHERE codigobarra='$codigo' AND status='1'") or die (mysqli_error($conexao));
+if($rows = mysql1_num_rows($sql) >= 1){
 $dados_pp = mysql_fetch_array($sql);
     echo'
         <input type="text" class="hidden" name="codigobarra" value="'.$dados_pp['codigobarra'].'"/>

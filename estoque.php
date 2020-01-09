@@ -1,4 +1,6 @@
-<?php include('topo.php');
+<?php 
+include('topo.php');
+include('conexao.php');
 echo'
     
     <div class="container">
@@ -29,7 +31,7 @@ echo'
         <form action="" method="post" id="form-addproduto">
         <div class="modal-body">
             <div class="row">
-                <label class="col-lg-4">Código de barra
+                <label class="col-lg-4">Cï¿½digo de barra
                     <input type="number" class="form-control" name="codigobarra" required/>
                 </label>
                 <label class="col-lg-6">Nome
@@ -39,18 +41,18 @@ echo'
                 <label class="col-lg-3">Unidade
                 <select type="text" class="form-control" name="unidade" required>
                     <option value="">selecione</option>';
-                    $sql_u = mysql_query("SELECT * FROM unidade ORDER BY nome_u ASC") or die (mysql_error());
-                    while($dados_u = mysql_fetch_array($sql_u)){echo'<option value="'.$dados_u['id_u'].'">'.$dados_u['nome_u'].'</option>';}
+                    $sql_u = mysqli_query($conexao,"SELECT * FROM unidade ORDER BY nome_u ASC") or die (mysqli_error($conexao));
+                    while($dados_u = mysqli_fetch_array($sql_u)){echo'<option value="'.$dados_u['id_u'].'">'.$dados_u['nome_u'].'</option>';}
                     echo'
                 </select>
                 </label>
-                <label class="col-lg-2">Preço compra
+                <label class="col-lg-2">Preï¿½o compra
                     <input type="text" class="form-control real" name="precocompra"/>
                 </label>
-                <label class="col-lg-2">Preço venda
+                <label class="col-lg-2">Preï¿½o venda
                     <input type="text" class="form-control real" name="precovenda" required/>
                 </label>
-                <label class="col-lg-2">Est.mínimo
+                <label class="col-lg-2">Est.mï¿½nimo
                     <input type="text" class="form-control" name="estoqueminimo"/>
                 </label>
                 <label class="col-lg-2">Est.atual
@@ -99,7 +101,7 @@ echo'
 ';
 include('rodape.php');?>
 <script>
-//função tabela
+//funï¿½ï¿½o tabela
 jQuery(document).ready(function(){tabelaEstoque();});
 //exibir tabela
 function tabelaEstoque(){
@@ -126,7 +128,7 @@ jQuery('#form-addproduto').submit(function(){
     });
     return false;
 });
-//função retorno produto
+//funï¿½ï¿½o retorno produto
 function alterarProduto(id){
     jQuery('#modal-altproduto').modal('show');
     jQuery.get('retorno-produto.php',{id:id},function(data){
