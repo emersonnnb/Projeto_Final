@@ -159,6 +159,7 @@ echo'
 <a id="imprimirCupom" data-fancybox data-type="iframe" data-src="imprimir-comprovante.php?id='.@$_GET['imprimir'].'" target="_blank" class="hidden btn btn-primary btn-block"><i class="fa fa-2x fa-print"></i> Imprimir</a>
 
 <!-- modal-addproduto-->
+
 <div class="modal" id="modal-addprodutovenda" tabindex="-1">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
