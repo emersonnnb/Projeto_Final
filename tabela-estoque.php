@@ -7,12 +7,12 @@ echo'
 <table id="example" class="display" style="width:100%">
     <thead>
         <tr>
-            <th>Cï¿½digo barra</th>
+            <th>Código barra</th>
             <th>Nome</th>
             <th>Unidade</th>
-            <th>Preï¿½o compra</th>
-            <th>Preï¿½o venda</th>
-            <th>Est.Mï¿½nimo</th>
+            <th>Preço compra</th>
+            <th>Preço venda</th>
+            <th>Est.Mínimo</th>
             <th>Est.Atual</th>
             <th>Status</th>
         </tr>
