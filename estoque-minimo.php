@@ -1,10 +1,10 @@
 <?php include('topo.php');
-$sql = mysql_query("SELECT * FROM produtos WHERE estoqueatual <= estoqueminimo") or die (mysql_error());
+$sql = mysqli_query($conexao ,"SELECT * FROM produtos WHERE estoqueatual <= estoqueminimo") or die (mysql_error($conexao));
 echo'
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <h3>Produtos com estoque mínimo</h3>
+                <h3>Produtos com estoque mï¿½nimo</h3>
             </div>
             <div class="col-lg-6" align="right">
                 <a href="index.php" class="btn btn-primary" style="margin:5px">Voltar</a>
@@ -14,14 +14,14 @@ echo'
             <table class="table table-hover">
                 <thead>
                     <tr class="table-active">
-                        <th scope="col">Código</th>
+                        <th scope="col">Cï¿½digo</th>
                         <th scope="col">Nome</th>
-                        <th scope="col">Est.Mínimo</th>
+                        <th scope="col">Est.Mï¿½nimo</th>
                         <th scope="col">Est.Atual</th>
                     </tr>
                 </thead>
                 <tbody>';
-                while($dados = mysql_fetch_array($sql)){echo'
+                while($dados = mysqli_fetch_array($sql)){echo'
                     <tr>
                         <td>'.$dados['codigo'].'</td>
                         <td>'.$dados['nome'].'</td>

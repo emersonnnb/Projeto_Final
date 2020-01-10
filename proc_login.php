@@ -4,7 +4,7 @@ include('conexao.php');
 $login = $_POST['login'];
 $senha = md5($_POST['senha']);
 
-$res = "SELECT * FROM usuario WHERE matricula='$login' AND senha='$senha' AND situacao='0' ";
+$res = "SELECT * FROM usuario WHERE cpf='$login' AND senha='$senha' AND situacao='0' ";
 $sql = mysqli_query ($conexao,$res) or die (mysqli_error($conexao));
 $dados_uu = mysqli_fetch_array($sql);
 

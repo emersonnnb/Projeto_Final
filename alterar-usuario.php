@@ -20,7 +20,7 @@ echo'
             <input type="text" class="form-control" name="nome" value="'.$dados['nome'].'"/>
         </label>
         <label class="col-lg-2">CPF (login)
-            <input type="text" class="form-control" name="cpf" value="'.$dados['matricula'].'"/>
+            <input type="text" class="form-control" name="cpf" value="'.$dados['cpf'].'"/>
         </label>
         <label class="col-lg-2">Caixa N�
             <input type="number" class="form-control" name="caixa" value="'.$dados['caixa'].'"/>

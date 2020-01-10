@@ -36,28 +36,36 @@ drop DATABASE if EXISTS bd_pdv;
     `ip` varchar(100) NOT NULL
   );
 
-  -- --------------------------------------------------------
-  --
-  -- Estrutura da tabela `produtos`
-  --
-  CREATE TABLE IF NOT EXISTS `produtos` (
-    `id` int(255) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `descricao` varchar(100) NOT NULL,
-    `fornecedor` varchar(100) NOT NULL,
-    `unidade` varchar(100) NOT NULL,
-    `em_Uso` int(10) NOT NULL,
-    `em_Reparo` int(10) NOT NULL,
-    `observacao` varchar(255) NOT NULL,  
-    `datacad` date NOT NULL,
-    `usuariocad` varchar(100) NOT NULL,
-    `status_prod` int(2) NOT NULL,
-    `codigobarra` varchar(50) NOT NULL
-  );
-  --
-  -- Inserindo dados da tabela `Produtos`
-  --
-  INSERT INTO `produtos` (`id`,`descricao`,`fornecedor`,`unidade`,`em_Uso`,`em_Reparo`,`observacao`,`datacad`,`usuariocad`,`status_prod`) VALUES
-  (1,'Mesa','C&C','Barra',5,15,'teste de observacao','2019-11-17','emerson',1  );
+  -CREATE TABLE IF NOT EXISTS `produtos` (
+`id` int(255) NOT NULL,
+  `codigo` int(255) NOT NULL,
+  `codigobarra` varchar(255) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `unidade` int(255) NOT NULL,
+  `precocompra` decimal(10,2) NOT NULL,
+  `precovenda` decimal(10,2) NOT NULL,
+  `estoqueminimo` decimal(10,2) NOT NULL,
+  `estoqueatual` decimal(10,2) NOT NULL,
+  `vencimento1` date NOT NULL,
+  `vencimento2` date NOT NULL,
+  `vencimento3` date NOT NULL,
+  `datacad` date NOT NULL,
+  `usuariocad` varchar(100) NOT NULL,
+  `status` int(2) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `produtos`
+--
+
+INSERT INTO `produtos` (`id`, `codigo`, `codigobarra`, `nome`, `unidade`, `precocompra`, `precovenda`, `estoqueminimo`, `estoqueatual`, `vencimento1`, `vencimento2`, `vencimento3`, `datacad`, `usuariocad`, `status`) VALUES
+(3, 45345, '123456789', 'Cerveja Skol', 3, '1.50', '2.50', '10.00', '90.00', '0000-00-00', '0000-00-00', '0000-00-00', '2019-11-17', 'Augusto Ara?jo', 1),
+(5, 245, '111', 'Feijão preto', 1, '2.50', '4.50', '10.00', '40.00', '2019-12-01', '2019-11-21', '0000-00-00', '2019-11-17', 'Augusto Ara?jo', 1),
+(6, 222, '123', 'Pimenta cominho', 3, '1.00', '1.50', '5.00', '0.00', '0000-00-00', '0000-00-00', '0000-00-00', '2019-11-17', 'Augusto Araújo', 1),
+(7, 0, '123456', 'Cheiro verde', 3, '1.00', '1.50', '2.00', '0.00', '0000-00-00', '0000-00-00', '0000-00-00', '2019-11-17', 'Augusto Araújo', 1),
+(8, 6767, '0', 'Óleo', 3, '2.00', '5.00', '10.00', '60.00', '2019-11-06', '0000-00-00', '0000-00-00', '2019-11-17', 'Augusto Araújo', 0),
+(9, 676767, '7896572021610', 'Charque', 1, '2.30', '3.00', '20.00', '0.00', '2019-11-14', '2019-11-13', '0000-00-00', '2019-11-17', 'Augusto Araújo', 1);
+
   -- --------------------------------------------------------
   --
   -- Estrutura da tabela `unidade`

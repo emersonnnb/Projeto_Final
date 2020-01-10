@@ -1,16 +1,16 @@
 <?php include('topo.php');
 $hoje = date('Y-m-d');
-$sql = mysql_query("SELECT produtos.id,codigo,nome,vencimento1,vencimento2,vencimento3,
+$sql = mysqli_query($conexao,"SELECT produtos.id,codigo,nome,vencimento1,vencimento2,vencimento3,
 DATEDIFF(vencimento1,'$hoje') AS ven1,
 DATEDIFF(vencimento2,'$hoje') AS ven2,
 DATEDIFF(vencimento3,'$hoje') AS ven3 
-FROM produtos") or die (mysql_error());
+FROM produtos") or die (mysql_error($conexao));
 
 echo'
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <h4>Produtos com vencimentos próximos</h4>
+                <h4>Produtos com vencimentos prï¿½ximos</h4>
             </div>
             <div class="col-lg-6" align="right">
                 <a href="index.php" class="btn btn-primary" style="margin:5px">Voltar</a>
@@ -20,7 +20,7 @@ echo'
             <table class="table table-hover">
                 <thead>
                     <tr class="table-active">
-                        <th scope="col">Código</th>
+                        <th scope="col">Cï¿½digo</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Vencimento1</th>
                         <th>Dias</th>
@@ -31,7 +31,7 @@ echo'
                     </tr>
                 </thead>
                 <tbody>';
-                while($dados = mysql_fetch_array($sql)){echo'
+                while($dados = mysqli_fetch_array($sql)){echo'
                     <tr>
                         <td>'.$dados['codigo'].'</td>
                         <td>'.$dados['nome'].'</td>

@@ -24,7 +24,7 @@ echo'
                 while($dados = mysqli_fetch_array($sql)){echo'
                     <tr onclick="alterarUsuario('.$dados['id'].')">
                         <td>'.$dados['nome'].'</td>
-                        <td>'.$dados['matricula'].'</td>
+                        <td>'.$dados['cpf'].'</td>
                         <td>';if($dados['situacao'] == 0){echo 'Liberado';}else{echo'Bloqueado';}echo'</td>
                     </tr>';}
                     echo'
