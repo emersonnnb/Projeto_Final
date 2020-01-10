@@ -16,7 +16,7 @@ echo'
                     <label class="col-lg-3">
                         <select type="text" class="form-control" name="produto">
                         <option value="">selecione</option>';
-                            $sql_p = mysqli_query($conexao,"SELECT * FROM produtos") or die (mysql_error());
+                            $sql_p = mysqli_query($conexao,"SELECT * FROM produtos") or die (mysql_error($conexao));
                             while($dados_p = mysqli_fetch_array($sql_p)){echo'<option value="'.$dados_p['codigobarra'].'">'.$dados_p['nome'].'</option>';} 
                             echo'
                         </select>
