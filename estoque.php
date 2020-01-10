@@ -19,6 +19,7 @@ echo'
     </div>
 
 <!-- modal-addproduto-->
+
 <div class="modal" id="modal-addproduto" tabindex="-1">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -71,16 +72,16 @@ echo'
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
         </div>
         </form>
         </div>
     </div>
 </div>
-<!-- modal-addproduto-->
 
 <!-- modal-altproduto-->
+
 <div class="modal" id="modal-altproduto" tabindex="-1">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -96,12 +97,11 @@ echo'
         </div>
     </div>
 </div>
-<!-- modal-altproduto-->
 
 ';
 include('rodape.php');?>
 <script>
-//funï¿½ï¿½o tabela
+//função tabela
 jQuery(document).ready(function(){tabelaEstoque();});
 //exibir tabela
 function tabelaEstoque(){
@@ -128,7 +128,7 @@ jQuery('#form-addproduto').submit(function(){
     });
     return false;
 });
-//funï¿½ï¿½o retorno produto
+//função retorno produto
 function alterarProduto(id){
     jQuery('#modal-altproduto').modal('show');
     jQuery.get('retorno-produto.php',{id:id},function(data){

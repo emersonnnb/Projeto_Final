@@ -21,23 +21,23 @@ $vencimento3 = $_POST['vencimento3'];
 @$id = $_POST['id'];
  
 if($id == ''){
-    mysql_query("INSERT INTO produtos
+    mysqli_query($conexao,"INSERT INTO produtos
     (codigobarra,nome,unidade,precocompra,precovenda,estoqueminimo,estoqueatual,
     vencimento1,vencimento2,vencimento3,datacad,usuariocad) 
     VALUES ('$codigobarra','$nome','$unidade','$precocompra','$precovenda',
     '$estoqueminimo','$estoqueatual','$vencimento1','$vencimento2','$vencimento3',NOW(),'$usuario')
-    ") or die (mysql_error());
+    ") or die (mysqli_error($conexao));
 
     //logs
-    $sql = mysql_query("INSERT INTO logs 
+    $sql = mysqli_query($conexao,"INSERT INTO logs 
     (usuario, tipo, tabela, descricao, datatime, pc, ip) VALUES 
     ('$usuario', 'Cadastrou', 'Produto', 'Usu�rio cadastrou $nome', NOW(), '$hostname', '$ip')") 
-    or die (mysql_error());
+    or die (mysqli_error($conexao));
     //logs
 
     echo alertsucesso();
 }else{
-    mysql_query("UPDATE produtos SET
+    mysqli_query($conexao,"UPDATE produtos SET
     codigobarra='$codigobarra',
     nome='$nome',
     unidade='$unidade',
@@ -49,13 +49,13 @@ if($id == ''){
     vencimento2='$vencimento2',
     vencimento3='$vencimento3',
     status='$status'
-    WHERE id='$id'") or die (mysql_error());
+    WHERE id='$id'") or die (mysqli_error($conexao));
 
     //logs
-    $sql = mysql_query("INSERT INTO logs 
+    $sql = mysqli_query($conexao,"INSERT INTO logs 
     (usuario, tipo, tabela, descricao, datatime, pc, ip) VALUES 
     ('$usuario', 'Alterou', 'Produto', 'Usu�rio alterou produto: $id, $nome', NOW(), '$hostname', '$ip')") 
-    or die (mysql_error());
+    or die (mysql_error($conexao));
     //logs
 
     echo alertatualizacao();

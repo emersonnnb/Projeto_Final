@@ -63,8 +63,9 @@ echo'
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    <button type="submit" class="btn btn-success" >Salvar</button>
+    <button type="button" class="btn btn-danger">Excluir</button>
+    <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
 </div>';
 ?>
 <style>

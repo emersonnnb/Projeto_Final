@@ -9,8 +9,8 @@ $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']); //pega nome da maquina
 
 $codigo = $_POST['codigo'];
 $sql = mysqli_query($conexao,"SELECT * FROM produtos WHERE codigobarra='$codigo' AND status='1'") or die (mysqli_error($conexao));
-if($rows = mysql1_num_rows($sql) >= 1){
-$dados_pp = mysql_fetch_array($sql);
+if($rows = mysqli_num_rows($sql) >= 1){
+$dados_pp = mysqli_fetch_array($sql);
     echo'
         <input type="text" class="hidden" name="codigobarra" value="'.$dados_pp['codigobarra'].'"/>
         <label class="col-lg-12">Nome

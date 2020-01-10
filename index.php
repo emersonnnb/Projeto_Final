@@ -6,7 +6,7 @@ echo'
             <div class="row">';
             if(PermissaoCheck('estoque',$_SESSION['iduser'])=='checked'){echo'
                 <div class="col-lg-2">
-                    <a onclick="estoque()" class="btn btn-outline-info"><i class="fa fa-cubes fa-3x"></i><br>Estoque</a>
+                    <a onclick="estoque()" class="btn btn-outline-info"><i class="fa fa-cubes fa-3x"></i><br>Produtos</a>
                 </div>';}
                 if(PermissaoCheck('estoqueminimo',$_SESSION['iduser'])=='checked'){echo'
                 <div class="col-lg-2">
@@ -18,7 +18,7 @@ echo'
                 </div>';}
                 if(PermissaoCheck('vendas',$_SESSION['iduser'])=='checked'){echo'
                 <div class="col-lg-2">
-                    <a onclick="vendas()" class="btn btn-outline-info"><i class="fa fa-bar-chart fa-3x"></i><br>Vendas</a>
+                    <a onclick="vendas()" class="btn btn-outline-info"><i class="fa fa-bar-chart fa-3x"></i><br>Rel.Vendas</a>
                 </div>';}
                 if(PermissaoCheck('pdv',$_SESSION['iduser'])=='checked'){echo'
                 <div class="col-lg-2">
