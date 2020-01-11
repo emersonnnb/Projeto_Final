@@ -18,6 +18,7 @@ echo'
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="css/custom.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    
   <body oncontextmenu="return false">
     <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
       <div class="container">

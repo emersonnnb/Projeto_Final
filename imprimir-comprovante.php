@@ -27,6 +27,7 @@ echo '
 	$item = 1;
 	$total = 0;
 	while($dados = mysqli_fetch_array($sql)){
+	
 	echo'		
 		<tr>
 			<td>'.$item.'</td>

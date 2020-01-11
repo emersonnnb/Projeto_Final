@@ -36,9 +36,12 @@ echo'
 <body style="overflow: hidden; height:auto">
 <input type="text" class="hidden" id="idvenda" alt="'.@$id_venda.'" value="'.@$id_venda.'"/>
 <div class="main"><br>
+
 <div class="col-lg-12">
-  <h5 style="color:white; text-align:center;"><b>Caixa: '.$usuario.'&nbsp;&nbsp;<i class="fa fa-desktop text-warning"></i>&nbsp;&nbsp;<i class="fa fa-sitemap text-success"></i>
-  (F10->Sair / F7->Menu)</b></h5>
+  <h5 style="color:white; text-align:center;">
+  <b>Caixa: '.$usuario.'&nbsp;&nbsp;<i class="fa fa-desktop text-warning">
+  </i>&nbsp;&nbsp;<i class="fa fa-sitemap text-success"></i></b></h5>
+
   </div>
     <div class="jumbotron" style="margin: 1px; width: auto; height:600px;">
         <div class="row" style="margin-top: -30px;" >
@@ -49,7 +52,7 @@ echo'
                             <thead>
                                 <tr class="table-active">
                                     <th scope="col">Item</th>
-                                    <th scope="col">C�digo</th>
+                                    <th scope="col">Codigo</th>
                                     <th scope="col">Produto</th>
                                     <th scope="col">Quant.</th>
                                     <th scope="col">Valor</th>
@@ -81,31 +84,39 @@ echo'
                         </table>
                     </div>
                 </div>
+
             </div>
+
             <div class="col-lg-4" style="border: 1px solid green; padding:5px">
                 <div class="row">
+
                     <form action="" method="post" id="codigoProduto" autocomplete="off">
                         <label class="col-lg-12"><input type="number" class="form-control" name="codigo"
-                        placeholder="C�digo de barra" style="font-size:25px; text-align:center; color:black; font-weight: bold;"/>
+                        placeholder="Codigo de barra" style="font-size:25px; text-align:center; color:black; font-weight: bold;"/>
                         </label>
                     </form>
                 </div>
+
                 <form action="insert-caixa-update-venda.php" method="post" style="font-size: 18px" autocomplete="off">
                     <input type="text" class="hidden" name="id_venda" value="'.@$id_venda.'"/>
                     <div class="form-group">
-                    <label class="control-label"><b>Valor cart�o</b></label>
+                    <label class="control-label"><b>Valor cartao</b></label>
                     <div class="form-group">
+
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" >R$</span>
                             </div>
+
                             <input type="text" class="form-control real" id="valorCartao" name="valor_cartao" value="0"/>
                         </div>
                     </div>
                     </div>
+
                     <div class="form-group">
                     <label class="control-label"><b>Valor dinheiro</b></label>
                     <div class="form-group">
+
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">R$</span>
@@ -114,6 +125,7 @@ echo'
                         </div>
                     </div>
                     </div>
+
                     <div class="form-group">
                     <label class="control-label"><b>Valor recebido</b></label>
                     <div class="form-group">
@@ -125,6 +137,7 @@ echo'
                         </div>
                     </div>
                     </div>
+
                     <div class="form-group">
                     <label class="control-label"><b>Total compra</b></label>
                     <div class="form-group">
@@ -148,12 +161,18 @@ echo'
                         </div>
                     </div>
                     </div>
+
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Finalizar</button>
                 </form>
             </div>
         </div>
     </div>
+
+  <h5 style="color:white; text-align:center;">
+   (F10->Sair / F7->Menu / F6->Vencimento )</h5>
 </div>
+
+
 
 <!-- imprimir cupon -->
 <a id="imprimirCupom" data-fancybox data-type="iframe" data-src="imprimir-comprovante.php?id='.@$_GET['imprimir'].'" target="_blank" class="hidden btn btn-primary btn-block"><i class="fa fa-2x fa-print"></i> Imprimir</a>
@@ -182,6 +201,8 @@ echo'
         </div>
     </div>
 </div>
+
+
 <!-- modal-addproduto-->';
 ob_end_flush();?>
 <script src="js/jquery.min.js"></script>
