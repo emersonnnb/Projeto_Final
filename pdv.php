@@ -86,7 +86,7 @@ echo'
                 <div class="row">
                     <form action="" method="post" id="codigoProduto" autocomplete="off">
                         <label class="col-lg-12"><input type="number" class="form-control" name="codigo"
-                        placeholder="Cï¿½digo de barra" style="font-size:25px; text-align:center; color:black; font-weight: bold;"/>
+                        placeholder="Código de barra" style="font-size:25px; text-align:center; color:black; font-weight: bold;"/>
                         </label>
                     </form>
                 </div>
@@ -159,6 +159,7 @@ echo'
 <a id="imprimirCupom" data-fancybox data-type="iframe" data-src="imprimir-comprovante.php?id='.@$_GET['imprimir'].'" target="_blank" class="hidden btn btn-primary btn-block"><i class="fa fa-2x fa-print"></i> Imprimir</a>
 
 <!-- modal-addproduto-->
+
 <div class="modal" id="modal-addprodutovenda" tabindex="-1">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
@@ -249,7 +250,7 @@ function formatReal( int ){
         if(tmp.indexOf(",") == 0) tmp = tmp.replace(",","0,");
     return (neg ? '-'+tmp : tmp);
 };
-//funï¿½ï¿½es nas teclas
+//função nas teclas
 document.onkeyup=function(e){
     if(e.which == 121){window.location.href="sair.php";}
     if(e.which == 118){window.location.href="index.php";}

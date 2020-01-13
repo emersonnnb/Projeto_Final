@@ -1,13 +1,13 @@
 <?php include('topo.php');
 $id = $_GET['id'];
-$sql = mysqli_query($conexao,"SELECT * FROM usuario WHERE id='$id'") or die (mysqli_error());
+$sql = mysqli_query($conexao,"SELECT * FROM usuario WHERE id='$id'") or die (mysqli_error($conexao));
 $dados = mysqli_fetch_array($sql);
 
 echo'
 <div class="container">
     <div class="row">
         <div class="col-lg-6">
-            <h4>Usuï¿½rios</h4>
+            <h4>Usuários</h4>
         </div>
         <div class="col-lg-6" align="right">
             <a href="index.php" class="btn btn-primary" style="margin:5px">Voltar</a>

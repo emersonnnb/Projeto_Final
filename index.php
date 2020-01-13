@@ -35,8 +35,3 @@ echo'
 ';
 include('rodape.php');?>
 
-<script>
-//function teste(id){
-//jQuery.get('teste.php',{id:id},function(data){ jQuery('#teste').show().fadeOut(999).html(data); });
-//};
-</script>

@@ -31,15 +31,15 @@ echo'
         </div>
         <form action="" method="post" id="form-addproduto">
         <div class="modal-body">
-            <div class="row">
-                <label class="col-lg-4">Cï¿½digo de barra
-                    <input type="number" class="form-control" name="codigobarra" required/>
+            <div class="row"></div>
+                <label class="col-lg-3">Código do produto
+                    <input type="number" class="form-control" name="codigo" required/>
                 </label>
-                <label class="col-lg-6">Nome
-                    <input type="text" class="form-control" name="nome" required/>
+                <label class="col-lg-8">Nome do produto
+                    <input type="text" class="form-control" name="nome" maxlength="30" required/>
                 </label>
                 <div class="row"></div>
-                <label class="col-lg-3">Unidade
+                <label class="col-lg-3">Unidade Medida
                 <select type="text" class="form-control" name="unidade" required>
                     <option value="">selecione</option>';
                     $sql_u = mysqli_query($conexao,"SELECT * FROM unidade ORDER BY nome_u ASC") or die (mysqli_error($conexao));
@@ -47,28 +47,22 @@ echo'
                     echo'
                 </select>
                 </label>
-                <label class="col-lg-2">Preï¿½o compra
+                <label class="col-lg-2">Preço custo
                     <input type="text" class="form-control real" name="precocompra"/>
                 </label>
-                <label class="col-lg-2">Preï¿½o venda
+                <label class="col-lg-2">Preço venda
                     <input type="text" class="form-control real" name="precovenda" required/>
                 </label>
-                <label class="col-lg-2">Est.mï¿½nimo
+                <label class="col-lg-2">Est.mínimo
                     <input type="text" class="form-control" name="estoqueminimo"/>
                 </label>
                 <label class="col-lg-2">Est.atual
                     <input type="text" class="form-control" name="estoqueatual"/>
                 </label>
                 <div class="row"></div>
-                <label class="col-lg-3">Vencimento 1
-                    <input type="date" class="form-control" name="vencimento1"/>
-                </label>
-                <label class="col-lg-3">Vencimento 2
-                    <input type="date" class="form-control" name="vencimento2"/>
-                </label>
-                <label class="col-lg-3">Vencimento 3
-                    <input type="date" class="form-control" name="vencimento3"/>
-                </label>
+                <label class="col-lg-4">Código de barra
+                <input type="number" class="form-control" name="codigobarra" required/>
+            </label>
             </div>
         </div>
         <div class="modal-footer">
