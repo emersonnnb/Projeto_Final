@@ -18,7 +18,7 @@ echo'
                 </div>';}
                 if(PermissaoCheck('vendas',$_SESSION['iduser'])=='checked'){echo'
                 <div class="col-lg-2">
-                    <a onclick="vendas()" class="btn btn-outline-info"><i class="fa fa-bar-chart fa-3x"></i><br>Rel.Vendas</a>
+                    <a onclick="vendas()" class="btn btn-outline-info"><i class="fa fa-bar-chart fa-3x"></i><br>Relatorios</a>
                 </div>';}
                 if(PermissaoCheck('pdv',$_SESSION['iduser'])=='checked'){echo'
                 <div class="col-lg-2">
