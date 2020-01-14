@@ -3,7 +3,9 @@ $id = $_SESSION['iduser'];
 echo'
 <div class="container" style="height:100%;">
         <div class="page-header" id="banner" style="text-align:center">
+        
             <div class="row">';
+
             if(PermissaoCheck('estoque',$_SESSION['iduser'])=='checked'){echo'
                 <div class="col-lg-2">
                     <a onclick="estoque()" class="btn btn-outline-info"><i class="fa fa-cubes fa-3x"></i><br>Produtos</a>

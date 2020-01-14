@@ -1,8 +1,7 @@
-<?php
+<?php 
+include('topo.php');
 ob_start();
-session_start();
 include('conexao.php'); 
-include('funcoes.php');
 $iduser = $_SESSION['iduser'];
 $usuario = $_SESSION['nomeuser'];//pega usuario que est� executando a a��o
 $caixa = $_SESSION['caixa'];
@@ -33,23 +32,30 @@ echo'
   <link rel="stylesheet" href="fancybox/dist/jquery.fancybox.css"/> 
 
 </head>
+
 <body style="overflow: hidden; height:auto">
+
 <input type="text" class="hidden" id="idvenda" alt="'.@$id_venda.'" value="'.@$id_venda.'"/>
+
 <div class="main"><br>
 
 <div class="col-lg-12">
-  <h5 style="color:white; text-align:center;">
-  <b>Caixa: '.$usuario.'&nbsp;&nbsp;<i class="fa fa-desktop text-warning">
-  </i>&nbsp;&nbsp;<i class="fa fa-sitemap text-success"></i></b></h5>
-
   </div>
+
     <div class="jumbotron" style="margin: 1px; width: auto; height:600px;">
+
         <div class="row" style="margin-top: -30px;" >
+
             <div class="col-lg-8" style="border: 1px solid red; padding:5px; height:550px; overflow-y:auto; overflow-x:hidden">
+
                 <div class="row">
+
                     <div class="col-lg-12" style="font-size: 16px; text-align:left;">
+
                         <table class="table table-hover">
+
                             <thead>
+
                                 <tr class="table-active">
                                     <th scope="col">Item</th>
                                     <th scope="col">Codigo</th>
@@ -60,6 +66,7 @@ echo'
                                 </tr>
                             </thead>
                             <tbody>';
+
                                 @$id_venda;
                                 $sql = mysqli_query($conexao,"SELECT * FROM vendas WHERE id_venda=".$id_venda." AND caixa_venda='$caixa' AND situacao='aberta'") or die (mysql_error());
                                 if($rows = mysqli_num_rows($sql) >= 1){
@@ -168,10 +175,12 @@ echo'
         </div>
     </div>
 
-  <h5 style="color:white; text-align:center;">
+  <h5 style="color:black; text-align:center;">
+ 
+  <i class="fa fa-desktop text-warning">
+  </i>&nbsp;&nbsp;<i class="fa fa-sitemap text-success"></i>
    (F10->Sair / F7->Menu / F6->Vencimento )</h5>
 </div>
-
 
 
 <!-- imprimir cupon -->
@@ -201,7 +210,7 @@ echo'
         </div>
     </div>
 </div>
-
+</div>
 
 <!-- modal-addproduto-->';
 ob_end_flush();?>

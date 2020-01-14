@@ -11,8 +11,7 @@ if(mysqli_num_rows($sql)>=1)
 else{
     mysqli_query($conexao,"insert into permissoes (id_usuario,item,valor) VALUES ('$id','$item','ativo') ");}
 };
-
-//fun��o verifica se existem libera��o apra acesso ao menu
+    //fun��o verifica se existem libera��o apra acesso ao menu
 function PermissaoCheck($item,$id){
 include('conexao.php'); 
 $query = "select * from permissoes where id_usuario='".$id."' and item='".$item."' and valor='ativo' ";	
@@ -154,4 +153,6 @@ function mesesPassados($dataInicial,$dataFinal){
     //retora os m�s passados
     return "{$intervalo->m}";
 };
+
+
 ?>
