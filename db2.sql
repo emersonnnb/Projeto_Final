@@ -77,7 +77,9 @@ create table usuario (
  
  foreign key (id_pdv) references  pdv (idPdv)
 );
-dfbfdrgbsgfsfgd
+
+
+
 - Vendas (id_ven, codigo_pro, nome_produto, quantidade_pro, preco_venda_pro, desconto, acrescimo, valor total, data_venda, num_pdv, status_ven, usuario_cad)
 	Chave estrangeiras = nome_produto(produtos) / num_pdv(pdv)
 
