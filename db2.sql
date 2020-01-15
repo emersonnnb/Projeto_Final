@@ -1,41 +1,15 @@
-
---
 -- Database: `bd_pdv2`
---
+
 drop DATABASE if EXISTS bd_pdv2;
-CREATE DATABASE IF NOT EXISTS `bd_pdv2` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+
+CREATE DATABASE IF NOT EXISTS `bd_pdv2`;
+
 USE `bd_pdv2`;
 
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `categoria`
---
-
-DROP TABLE IF EXISTS `categoria`;
-CREATE TABLE IF NOT EXISTS `categoria` (
-  `idCategoria` int(25) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) NOT NULL,
-  PRIMARY KEY (`idCategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `categoria`
---
-
-INSERT INTO `categoria` (`idCategoria`, `nome`) VALUES
-(1, 'Massas'),
-(2, 'Cereias');
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `empresa`
---
 
-DROP TABLE IF EXISTS `empresa`;
 CREATE TABLE IF NOT EXISTS `empresa` (
-  `id_empresa` int(1) NOT NULL,
+  `id_empresa` int(1) NOT NULL primary key,
   `nome_empresa` varchar(100) NOT NULL,
   `cpf_cnpj` varchar(20) NOT NULL,
   `endereco_empresa` varchar(255) NOT NULL,
@@ -43,101 +17,80 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `cidade_empresa` varchar(100) NOT NULL,
   `uf_empresa` varchar(2) NOT NULL,
   `contato_empresa` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `empresa`
---
-
+);
 INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `cpf_cnpj`, `endereco_empresa`, `bairro_empresa`, `cidade_empresa`, `uf_empresa`, `contato_empresa`) VALUES
-(1, 'AugustoAraujo.net', '69196222204', 'Av. Antonio picanço da silva, 2041', 'Novo Horizonte', 'Macapá', 'AP', '991161893');
+(1, 'AugustoAraujo.net', '69196222204', 'Av. Antonio pican�o da silva, 2041', 'Novo Horizonte', 'Macap�', 'AP', '991161893');
 
--- --------------------------------------------------------
+-- Estrutura da tabela `categoria`
 
---
+CREATE TABLE IF NOT EXISTS `categoria` (
+  `idCategoria` int(25) NOT NULL AUTO_INCREMENT primary key,
+  `nome` varchar(255) NOT NULL  
+);
+INSERT INTO `categoria` (`idCategoria`, `nome`) VALUES
+(1, 'Massas'),
+(2, 'Cereias');
+
+-- Estrutura da tabela `sub_categoria`
+
+CREATE TABLE IF NOT EXISTS `sub_categoria` (
+  `idSubcategoria` int(25) NOT NULL AUTO_INCREMENT primary key,
+  `id_categoria` int(11) DEFAULT NULL,
+  `nome` varchar(255) NOT NULL,
+
+foreign key  (id_categoria) references categoria (idCategoria)
+);
+INSERT INTO `sub_categoria` (`idSubcategoria`, `id_categoria`, `nome`) VALUES
+(1, 1, 'Macarr?o'),
+(2, 2, 'Arroz');
+
 -- Estrutura da tabela `forma_pagamento`
---
 
-DROP TABLE IF EXISTS `forma_pagamento`;
 CREATE TABLE IF NOT EXISTS `forma_pagamento` (
-  `idPagamento` int(25) NOT NULL AUTO_INCREMENT,
+  `idPagamento` int(25) NOT NULL AUTO_INCREMENT primary key,
   `descricao` varchar(255) NOT NULL,
   `dataCadastro` date NOT NULL,
-  `usuarioCad` int(1) NOT NULL,
-  PRIMARY KEY (`idPagamento`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `usuarioCad` int(1) NOT NULL  
+);
 
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `logs`
---
 
-DROP TABLE IF EXISTS `logs`;
 CREATE TABLE IF NOT EXISTS `logs` (
-  `idLogs` int(255) NOT NULL AUTO_INCREMENT,
+  `idLogs` int(255) NOT NULL AUTO_INCREMENT primary key,
   `nome_user` varchar(255) NOT NULL,
   `tipo` varchar(100) NOT NULL,
   `tabela` varchar(100) NOT NULL,
   `descricao` longtext NOT NULL,
   `datatime` datetime NOT NULL,
   `pc` varchar(100) NOT NULL,
-  `ip` varchar(100) NOT NULL,
-  PRIMARY KEY (`idLogs`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `logs`
---
-
+  `ip` varchar(100) NOT NULL
+);
 INSERT INTO `logs` (`idLogs`, `nome_user`, `tipo`, `tabela`, `descricao`, `datatime`, `pc`, `ip`) VALUES
-(1, '', 'Saiu', 'Usuï¿½rio', ' saiu do sistema', '2020-01-13 21:27:00', '37DE150590.senacrjedu.local', '::1'),
+(1, '', 'Saiu', 'Usu�rio', ' saiu do sistema', '2020-01-13 21:27:00', '37DE150590.senacrjedu.local', '::1'),
 (2, 'Emerson Oliveira', 'Entrou', 'Usuario', 'Usurio entrou no sistema', '2020-01-13 21:27:06', '37DE150590.senacrjedu.local', '::1'),
-(3, 'Emerson Oliveira', 'Saiu', 'Usuï¿½rio', 'Emerson Oliveira saiu do sistema', '2020-01-13 21:47:50', '37DE150590.senacrjedu.local', '::1');
+(3, 'Emerson Oliveira', 'Saiu', 'Usu�rio', 'Emerson Oliveira saiu do sistema', '2020-01-13 21:47:50', '37DE150590.senacrjedu.local', '::1');
 
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `pdv`
---
 
-DROP TABLE IF EXISTS `pdv`;
 CREATE TABLE IF NOT EXISTS `pdv` (
-  `idPdv` int(25) NOT NULL AUTO_INCREMENT,
+  `idPdv` int(25) NOT NULL AUTO_INCREMENT primary key,
   `nome` varchar(10) NOT NULL,
   `dataCad` date NOT NULL,
   `usuarioCad` varchar(50) DEFAULT NULL,
-  `statusPdv` int(1) NOT NULL,
-  PRIMARY KEY (`idPdv`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `pdv`
---
-
+  `statusPdv` int(1) NOT NULL
+);
 INSERT INTO `pdv` (`idPdv`, `nome`, `dataCad`, `usuarioCad`, `statusPdv`) VALUES
 (1, '01', '2020-01-13', NULL, 1),
 (2, '02', '2020-01-13', NULL, 1);
 
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `permissoes`
---
 
-DROP TABLE IF EXISTS `permissoes`;
 CREATE TABLE IF NOT EXISTS `permissoes` (
-  `idPermissao` int(25) NOT NULL AUTO_INCREMENT,
+  `idPermissao` int(25) NOT NULL AUTO_INCREMENT primary key,
   `id_usuario` varchar(25) DEFAULT NULL,
   `tipo` varchar(255) NOT NULL,
-  `situacao` varchar(25) NOT NULL,
-  PRIMARY KEY (`idPermissao`),
-  KEY `id_usuario` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `permissoes`
---
+  `situacao` varchar(25) NOT NULL  
+);
 
 INSERT INTO `permissoes` (`idPermissao`, `id_usuario`, `tipo`, `situacao`) VALUES
 (1, 1, 'permissoes', 'ativo'),
@@ -149,13 +102,9 @@ INSERT INTO `permissoes` (`idPermissao`, `id_usuario`, `tipo`, `situacao`) VALUE
 (7, 1, 'estoque', 'ativo'),
 (8, 1, 'dados-empresa', 'ativo');
 
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `produto`
---
 
-DROP TABLE IF EXISTS `produto`;
+
 CREATE TABLE IF NOT EXISTS `produto` (
   `idProduto` int(25) NOT NULL AUTO_INCREMENT,
   `codigo` varchar(255) DEFAULT NULL,
@@ -184,28 +133,7 @@ INSERT INTO `produto` (`idProduto`, `codigo`, `nome`, `id_unidade`, `id_categori
 
 -- --------------------------------------------------------
 
---
--- Estrutura da tabela `sub_categoria`
---
 
-DROP TABLE IF EXISTS `sub_categoria`;
-CREATE TABLE IF NOT EXISTS `sub_categoria` (
-  `idSubcategoria` int(25) NOT NULL AUTO_INCREMENT,
-  `id_categoria` int(11) DEFAULT NULL,
-  `nome` varchar(255) NOT NULL,
-  PRIMARY KEY (`idSubcategoria`),
-  KEY `id_categoria` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `sub_categoria`
---
-
-INSERT INTO `sub_categoria` (`idSubcategoria`, `id_categoria`, `nome`) VALUES
-(1, 1, 'Macarr?o'),
-(2, 2, 'Arroz');
-
--- --------------------------------------------------------
 
 --
 -- Estrutura da tabela `unidade_medida`
