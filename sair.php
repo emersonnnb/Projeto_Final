@@ -10,9 +10,9 @@ $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']); //pega nome da maquina
 
 //logs
 $sql = mysqli_query($conexao,"INSERT INTO logs 
-(usuario, tipo, tabela, descricao, datatime, pc, ip) VALUES 
+(nome_user, tipo, tabela, descricao, datatime, pc, ip) VALUES 
 ('$usuario', 'Saiu', 'Usu�rio', '$usuario saiu do sistema', NOW(), '$hostname', '$ip')") 
-or die (mysql_error());
+or die (mysqli_error($conexao));
 //logs
 
 

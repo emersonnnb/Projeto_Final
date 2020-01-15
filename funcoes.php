@@ -4,7 +4,7 @@ include('conexao.php');
 //permissao atualzia��o //recebe informa��es vindas do array de permiss�o
 function Permissao($item,$id){
 include('conexao.php'); 
-$query = "select * from permissoes where id_usuario='".$id."' and item='".$item."'";
+$query = "select * from permissoes where id_usuario='".$id."' and tipo='".$item."'";
 $sql=mysqli_query($conexao,$query)	;
 if(mysqli_num_rows($sql)>=1)
     {mysqli_query($conexao,"update permissoes set valor='ativo' where id_usuario='".$id."' and item='".$item."' ");}
@@ -15,7 +15,7 @@ else{
 //fun��o verifica se existem libera��o apra acesso ao menu
 function PermissaoCheck($item,$id){
 include('conexao.php'); 
-$query = "select * from permissoes where id_usuario='".$id."' and item='".$item."' and valor='ativo' ";	
+$query = "select * from permissoes where id_usuario='".$id."' and tipo='".$item."' and siuacao='ativo' ";	
 $sql =	mysqli_query($conexao,$query);
 if(mysqli_num_rows($sql)>=1){ return 'checked';}
 };

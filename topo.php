@@ -5,7 +5,7 @@ include('conexao.php');
 include('funcoes.php');
 if(isset($_SESSION['iduser'])!=true){echo '<script>location.href="sair.php";</script>'; }
 
-$sql_empresa = mysqli_query($conexao,"SELECT * FROM empresa WHERE id_empresa=1") or die (mysql_error());
+$sql_empresa = mysqli_query($conexao,"SELECT * FROM empresa WHERE id_empresa=1") or die (mysqli_error($conexao));
 @$dados_emp = mysqli_fetch_array($sql_empresa);
 echo'
 <!DOCTYPE html>
