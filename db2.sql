@@ -2,6 +2,7 @@
 --
 -- Database: `bd_pdv2`
 --
+drop DATABASE if EXISTS bd_pdv2;
 CREATE DATABASE IF NOT EXISTS `bd_pdv2` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `bd_pdv2`;
 
@@ -127,7 +128,7 @@ INSERT INTO `pdv` (`idPdv`, `nome`, `dataCad`, `usuarioCad`, `statusPdv`) VALUES
 DROP TABLE IF EXISTS `permissoes`;
 CREATE TABLE IF NOT EXISTS `permissoes` (
   `idPermissao` int(25) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(25) DEFAULT NULL,
+  `id_usuario` varchar(25) DEFAULT NULL,
   `tipo` varchar(255) NOT NULL,
   `situacao` varchar(25) NOT NULL,
   PRIMARY KEY (`idPermissao`),
