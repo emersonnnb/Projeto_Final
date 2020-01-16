@@ -9,19 +9,19 @@ echo'
                     <label class="col-lg-2">Venda
                         <select type="text" class="form-control" name="venda">
                         <option value="">selecione</option>';
-                            $sql_p = mysqli_query($conexao,"SELECT * FROM vendas") or die (mysqli_error());
-                              while($dados_p = mysqli_fetch_array($sql_p)){echo'<option value="'.$dados_p['id_usuario'].'"></option>';} 
-                              echo'
-                                </select>
+                        $sql_p = mysqli_query($conexao,"SELECT * FROM vendas") or die (mysql_error());
+                        while($dados_p = mysqli_fetch_array($sql_p)){echo'<option value="'.$dados_p['nome_produto'].'">'.$dados_p['id_usuario'].'</option>';} 
+                        echo'
+                        </select>
                     </label>
                
                     <label class="col-lg-2">Produto
                         <select type="text" class="form-control" name="produto" required/>
                         <option value="">selecione</option>';
-                        $sql_p = mysqli_query($conexao,"SELECT * FROM vendas") or die (mysql_error());
-                        while($dados_v = mysqli_fetch_array($sql_p)){echo'<option value="'.$dados_v['nome_produto'].'"></option>';} 
-                                 
-                        echo'
+                        $sql_v = mysqli_query($conexao,"SELECT * FROM vendas  ORDER BY nome_produto ASC ") or die (mysqli_error($conexao));
+                            while($dados_v = mysqli_fetch_array($sql_v)){echo'<option value="'.$dados_v['id_usuario'].'">'.$dados_v['nome_produto'].'</option>';}                      
+                            echo'
+                       
                         </select>
                         
                     </label>
