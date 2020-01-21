@@ -4,7 +4,7 @@ session_start();
 include('conexao.php'); 
 include('funcoes.php');
 $iduser = $_SESSION['iduser'];
-$usuario = $_SESSION['nomeuser'];//pega usuario que está executando a ação
+$usuario = $_SESSION['nomeuser'];//pega usuario que estï¿½ executando a aï¿½ï¿½o
 $caixa = $_SESSION['caixa'];
 $ip = $_SERVER['REMOTE_ADDR']; // pegar ip da maquina
 $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']); //pega nome da maquina
@@ -20,6 +20,7 @@ $sql_venda = mysqli_query($conexao,"SELECT * FROM vendas WHERE caixa_venda='$cai
         $id_venda = $_SESSION['id_venda'];
     }
 };
+
 echo'
 <!DOCTYPE html>
 <html lang="pt">
@@ -38,7 +39,7 @@ echo'
 <div class="main"><br>
 <div class="col-lg-12">
   <h5 style="color:white; text-align:center;"><b>Caixa: '.$usuario.'&nbsp;&nbsp;<i class="fa fa-desktop text-warning"></i>&nbsp;&nbsp;<i class="fa fa-sitemap text-success"></i>
-  (F10->Sair / F7->Menu)</b></h5>
+  (F10->Sair / F7->Menu / F8->lista)</b></h5>
   </div>
     <div class="jumbotron" style="margin: 1px; width: auto; height:600px;">
         <div class="row" style="margin-top: -30px;" >
@@ -49,7 +50,7 @@ echo'
                             <thead>
                                 <tr class="table-active">
                                     <th scope="col">Item</th>
-                                    <th scope="col">Código</th>
+                                    <th scope="col">Cï¿½digo</th>
                                     <th scope="col">Produto</th>
                                     <th scope="col">Quant.</th>
                                     <th scope="col">Valor</th>
@@ -86,14 +87,14 @@ echo'
                 <div class="row">
                     <form action="" method="post" id="codigoProduto" autocomplete="off">
                         <label class="col-lg-12"><input type="number" class="form-control" name="codigo"
-                        placeholder="Código de barra" style="font-size:25px; text-align:center; color:black; font-weight: bold;"/>
+                        placeholder="Cï¿½digo de barra" style="font-size:25px; text-align:center; color:black; font-weight: bold;"/>
                         </label>
                     </form>
                 </div>
                 <form action="insert-caixa-update-venda.php" method="post" style="font-size: 18px" autocomplete="off">
                     <input type="text" class="hidden" name="id_venda" value="'.@$id_venda.'"/>
                     <div class="form-group">
-                    <label class="control-label"><b>Valor cartão</b></label>
+                    <label class="control-label"><b>Valor cartï¿½o</b></label>
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -155,6 +156,40 @@ echo'
     </div>
 </div>
 
+    
+
+<!-- Input do tipo hidden para disparar o evento  -->
+<input type="hidden" id="botaomodal"  data-toggle="modal" data-target="#exampleModal">
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal Exemplo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="page-header" id="banner" style="border: 1px solid black; padding: 10px;">
+            <div id="tabelaEstoque"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+
+
 <!-- imprimir cupon -->
 <a id="imprimirCupom" data-fancybox data-type="iframe" data-src="imprimir-comprovante.php?id='.@$_GET['imprimir'].'" target="_blank" class="hidden btn btn-primary btn-block"><i class="fa fa-2x fa-print"></i> Imprimir</a>
 
@@ -203,7 +238,43 @@ jQuery('#codigoProduto').submit(function(){
     return false;
 });
 
-//aqui tu adiciona quem pode alterar tua função mostratotal()
+//form-addproduto
+jQuery('#form-addproduto').submit(function(){
+    jQuery('#modal-addproduto').modal('hide');
+    jQuery.ajax({
+        type:'POST',
+        url:'insert-update-produto.php',
+        data:jQuery('#form-addproduto').serialize(),
+        success:function(data){
+            jQuery('#retorno').show().html(data);
+            //jQuery('#retorno').show().fadeOut(2000).html(data);
+            jQuery('#form-addproduto').each(function(){this.reset();});
+            tabelaEstoque();
+        }
+    });
+    return false;
+});
+//form-addproduto(teste)
+$(document).keyup(function(ev){
+  if(ev.which == 119) { //numero da tecla ALT 
+     $('#botaomodal').trigger('click')
+  }
+});
+//funï¿½ï¿½o tabela
+jQuery(document).ready(function(){tabelaEstoque();});
+//exibir tabela
+function tabelaEstoque(){
+    jQuery.ajax({
+        type:'POST',
+        url:'tabela-estoque.php',
+        data:'html',
+        success:function(data){jQuery('#tabelaEstoque').html(data);}
+    });
+    return false;
+};
+
+
+//aqui tu adiciona quem pode alterar tua funï¿½ï¿½o mostratotal()
 jQuery('#valorCartao,#valorDinheiro').keyup(function(){ mostraTotal();});
 
 function mostraTotal(){
@@ -227,6 +298,7 @@ function mostraTotal(){
     jQuery('#valorTroco').val(formatReal(valorTroco));
 };
 
+
 //aqui tu converte real em moeda
 function getMoney(str){ 
     if(str.match(/-/)){ return (parseInt( str.replace(/[\D]+/g,''))*-1); }else{ return parseInt( str.replace(/[\D]+/g,'') );}
@@ -249,10 +321,10 @@ function formatReal( int ){
         if(tmp.indexOf(",") == 0) tmp = tmp.replace(",","0,");
     return (neg ? '-'+tmp : tmp);
 };
-//funções nas teclas
+//funï¿½ï¿½es nas teclas
 document.onkeyup=function(e){
     if(e.which == 121){window.location.href="sair.php";}
-    if(e.which == 118){window.location.href="index.php";}
+    if(e.which == 118){window.location.href="index.php";}  
   return false;
 };
 //imprimir cupom de venda
