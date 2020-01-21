@@ -1,20 +1,20 @@
 <?php include('topo.php');
 $id = $_GET['id'];
-$sql = mysqli_query($conexao,"SELECT * FROM usuario WHERE id='$id'") or die (mysqli_error($conexao));
+$sql = mysqli_query($conexao,"SELECT * FROM usuario WHERE idUsuario='$id'") or die (mysqli_error($conexao));
 $dados = mysqli_fetch_array($sql);
 
 echo'
 <div class="container">
     <div class="row">
         <div class="col-lg-6">
-            <h4>Usuários</h4>
+            <h4>Usuï¿½rios</h4>
         </div>
         <div class="col-lg-6" align="right">
             <a href="index.php" class="btn btn-primary" style="margin:5px">Voltar</a>
         </div>
     </div>
     <form action="" method="post" id="form-altusuario">
-    <input type="text" class="hidden" name="id" value="'.$dados['id'].'"/>
+    <input type="text" class="hidden" name="id" value="'.$dados['idUsuario'].'"/>
     <div class="page-header" id="banner" style="border: 1px solid black; padding: 10px;">
         <label class="col-lg-3">Nome
             <input type="text" class="form-control" name="nome" value="'.$dados['nome'].'"/>
@@ -22,7 +22,7 @@ echo'
         <label class="col-lg-2">CPF (login)
             <input type="text" class="form-control" name="cpf" value="'.$dados['cpf'].'"/>
         </label>
-        <label class="col-lg-2">Caixa N°
+        <label class="col-lg-2">Caixa Nï¿½
             <input type="number" class="form-control" name="caixa" value="'.$dados['caixa'].'"/>
         </label>
         <label class="col-lg-2">Status
@@ -41,20 +41,20 @@ echo'
 
     if(PermissaoCheck('permissoes',$_SESSION['iduser'])=='checked'){echo'
     <form action="" method="post" id="form-altpermissoes">
-    <input type="text" class="hidden" name="id" value="'.$dados['id'].'"/>
+    <input type="text" class="hidden" name="id" value="'.$dados['idUsuario'].'"/>
     <div class="row">
         <div class="col-lg-6">
-            <h4>Permissões</h4>
+            <h4>Permissï¿½es</h4>
         </div>
     </div>
     <div class="page-header" id="banner" style="border: 1px solid black; padding: 10px;">
         <label class="col-lg-2"><input type="checkbox" name="permissoes[]" value="estoque" '.PermissaoCheck('estoque',$id).'> Estoque</label>
-        <label class="col-lg-2"><input type="checkbox" name="permissoes[]" value="estoqueminimo" '.PermissaoCheck('estoqueminimo',$id).'> Est. Mínimo</label>
+        <label class="col-lg-2"><input type="checkbox" name="permissoes[]" value="estoqueminimo" '.PermissaoCheck('estoqueminimo',$id).'> Est. Mï¿½nimo</label>
         <label class="col-lg-2"><input type="checkbox" name="permissoes[]" value="vencimentos" '.PermissaoCheck('vencimentos',$id).'> Vencimentos</label>
         <label class="col-lg-2"><input type="checkbox" name="permissoes[]" value="vendas" '.PermissaoCheck('vendas',$id).'> Vendas</label>
         <label class="col-lg-2"><input type="checkbox" name="permissoes[]" value="pdv" '.PermissaoCheck('pdv',$id).'> PDV</label>
-        <label class="col-lg-2"><input type="checkbox" name="permissoes[]" value="usuarios" '.PermissaoCheck('usuarios',$id).'> Usuários</label>
-        <label class="col-lg-2"><input type="checkbox" name="permissoes[]" value="permissoes" '.PermissaoCheck('permissoes',$id).'> Permissões</label>
+        <label class="col-lg-2"><input type="checkbox" name="permissoes[]" value="usuarios" '.PermissaoCheck('usuarios',$id).'> Usuï¿½rios</label>
+        <label class="col-lg-2"><input type="checkbox" name="permissoes[]" value="permissoes" '.PermissaoCheck('permissoes',$id).'> Permissï¿½es</label>
         <label class="col-lg-2"><input type="checkbox" name="permissoes[]" value="dados-empresa" '.PermissaoCheck('dados-empresa',$id).'> Dados empresa</label>
         <label class="col-lg-2"><br><button type="submit" class="btn btn-warning">Salvar</button></label>
     </div>

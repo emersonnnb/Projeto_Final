@@ -7,7 +7,7 @@ USE bd_pdv;
 -- Estrutura da tabela `usuario`
 --
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `idUsuario` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `cpf` varchar(30) NOT NULL,
   `senha` varchar(255) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 -- Extraindo dados da tabela `usuario`
 --
-INSERT INTO `usuario` (`id`, `nome`, `cpf`, `senha`, `caixa`, `situacao`) VALUES
+INSERT INTO `usuario` (`idUsuario`, `nome`, `cpf`, `senha`, `caixa`, `situacao`) VALUES
 (1, 'Augusto Araujo', '69196222204', 'e10adc3949ba59abbe56e057f20f883e', 1, 0),
 (2, 'Emerson Oliveira', '059099', 'e10adc3949ba59abbe56e057f20f883e', 1, 0);
 -- --------------------------------------------------------
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `empresa` (
 -- Extraindo dados da tabela `empresa`
 --
 INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `cpf_cnpj`, `endereco_empresa`, `bairro_empresa`, `cidade_empresa`, `uf_empresa`, `contato_empresa`) VALUES
-(1, 'AugustoAraujo.net', '69196222204', 'Av. Antonio picanço da silva, 2041', 'Novo Horizonte', 'Macapá', 'AP', '991161893');
+(1, 'AugustoAraujo.net', '69196222204', 'Av. Antonio picanï¿½o da silva, 2041', 'Novo Horizonte', 'Macapï¿½', 'AP', '991161893');
 -- --------------------------------------------------------
 --
 -- Estrutura da tabela `logs`
@@ -206,7 +206,7 @@ INSERT INTO `logs` (`id`, `usuario`, `tipo`, `tabela`, `descricao`, `datatime`, 
 -- Estrutura da tabela `permissoes`
 --
 CREATE TABLE IF NOT EXISTS `permissoes` (
-  `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `idPermissao` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `id_usuario` int(255) NOT NULL,
   `item` varchar(50) NOT NULL,
   `valor` varchar(20) NOT NULL
@@ -214,7 +214,7 @@ CREATE TABLE IF NOT EXISTS `permissoes` (
 --
 -- Extraindo dados da tabela `permissoes`
 --
-INSERT INTO `permissoes` (`id`, `id_usuario`, `item`, `valor`) VALUES
+INSERT INTO `permissoes` (`idPermissao`, `id_usuario`, `item`, `valor`) VALUES
 (1, 1, 'permissoes', 'ativo'),
 (2, 1, 'usuarios', 'ativo'),
 (3, 1, 'pdv', 'ativo'),
@@ -260,17 +260,17 @@ CREATE TABLE IF NOT EXISTS `produtos` (
 INSERT INTO produtos
 (idProduto,nome,descricao,unidade,precocompra,precovenda,estoqueminimo,estoqueatual,codigobarra,vencimento1,vencimento2,datacad,usuariocad,status)
 VALUES
-(1,'Cerveja skol','cerveja skol lata',3,'5.50','10.00','50.00','90.00',null,'0000-00-00','0000-00-00', now(),'Emerson Oliveira',1),
-(2,'Agua mineral','Agua mineral 500ml',3,'5.50','10.00','50.00','90.00',null,'0000-00-00','0000-00-00', now(),'Emerson Oliveira',1),
+(1,'Cerveja skol','cerveja skol lata',3,'5.50','10.00','50.00','10.00',null,'0000-00-00','0000-00-00', now(),'Emerson Oliveira',1),
+(2,'Agua mineral','Agua mineral 500ml',3,'5.50','10.00','50.00','5.00',null,'0000-00-00','0000-00-00', now(),'Emerson Oliveira',1),
 (3,'Agua mineral','Agua mineral 1lt',3,'5.50','10.00','50.00','90.00',null,'0000-00-00','0000-00-00', now(),'Emerson Oliveira',1),
-(4,'Pão frances','Pão frances unidade',3,'5.50','10.00','50.00','90.00',null,'0000-00-00','0000-00-00', now(),'Emerson Oliveira',1),
+(4,'Pï¿½o frances','Pï¿½o frances unidade',3,'5.50','10.00','50.00','90.00',null,'0000-00-00','0000-00-00', now(),'Emerson Oliveira',1),
 (5,'Biscoito trakinas','biscoito trakinas morango',3,'5.50','10.00','50.00','90.00',null,'0000-00-00','0000-00-00', now(),'Emerson Oliveira',1),
 (6,'Escova dental','Escova dental oral-b',3,'5.50','10.00','50.00','90.00',null,'0000-00-00','0000-00-00', now(),'Emerson Oliveira',1),
 (7,'Pasta de dente','pasta de dente colgate',3,'5.50','10.00','50.00','90.00',null,'0000-00-00','0000-00-00', now(),'Emerson Oliveira',1),
 (8,'Monitor LG','Monitor lh 15plg',3,'5.50','10.00','50.00','90.00',null,'0000-00-00','0000-00-00', now(),'Emerson Oliveira',1),
-(9,'Ventilador Arno','Ventilador Arno 5 paletas',3,'5.50','10.00','50.00','90.00',null,'0000-00-00','0000-00-00', now(),'Emerson Oliveira',1),
+(9,'Ventilador Arno','Ventilador Arno 5 paletas',3,'5.50','10.00','50.00','1.00',null,'0000-00-00','0000-00-00', now(),'Emerson Oliveira',1),
 (10,'Arroz carreteiro','Arroz carreteiro 5KG',3,'5.50','10.00','50.00','90.00',null,'0000-00-00','0000-00-00', now(),'Emerson Oliveira',1),
-(11,'Feijão Máximo','Feijão Maximo 1KG',2,'9.50','15.00','10.00','90.00',null,'0000-00-00','0000-00-00', now(),'Emerson Oliveira',1);
+(11,'Feijï¿½o Mï¿½ximo','Feijï¿½o Maximo 1KG',2,'9.50','15.00','10.00','90.00',null,'0000-00-00','0000-00-00', now(),'Emerson Oliveira',1);
 -- --------------------------------------------------------
 --
 -- Estrutura da tabela `unidade`
@@ -331,3 +331,5 @@ INSERT INTO `vendas` (`id`, `id_venda`, `codigobarra`, `nome_produto`, `quantida
 (30, '02122019171250', '111', 'FeijÃ£o preto', '1.00', '4.50', '4.50', 1, '2019-12-02', 1, 'fechada');
 
 ALTER TABLE `caixa` CHANGE `id` `idProduto` INT(255) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `permissoes` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`idUsuario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `vendas` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`idUsuario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
