@@ -12,13 +12,13 @@ $cpf = $_POST['cpf'];
 $senha = md5(utf8_decode($_POST['senha']));
 $caixa = $_POST['caixa'];
 
-    mysql_query("INSERT INTO usuario (nome,cpf,senha,caixa) VALUES ('$nome','$cpf','$senha','$caixa')") or die (mysql_error());
+    mysqli_query($conexao,"INSERT INTO usuario (nome,cpf,senha,caixa) VALUES ('$nome','$cpf','$senha','$caixa')") or die (mysqli_error($conexao));
 
     //logs
-    $sql = mysql_query("INSERT INTO logs 
+    $sql = mysqli_query($conexao,"INSERT INTO logs 
     (usuario, tipo, tabela, descricao, datatime, pc, ip) VALUES 
     ('$usuario', 'Cadastrou', 'Usuário', 'Usuário cadastrou usuário novo $nome', NOW(), '$hostname', '$ip')") 
-    or die (mysql_error());
+    or die (mysqli_error($conexao));
     //logs
 
     echo alertsucesso();

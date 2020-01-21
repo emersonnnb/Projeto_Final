@@ -3,59 +3,57 @@ session_start();
 include('conexao.php');
 include('funcoes.php');
 $iduser = $_SESSION['iduser'];
-$usuario = $_SESSION['nomeuser'];//pega usuario que estï¿½ executando a aï¿½ï¿½o
+$usuario = $_SESSION['nomeuser'];//pega usuario que está executando a ação
 $ip = $_SERVER['REMOTE_ADDR']; // pegar ip da maquina
 $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']); //pega nome da maquina
 
-$codigobarra = utf8_decode($_POST['codigobarra']);
+@$codigo = utf8_decode($_POST['codigo']);
 $nome = utf8_decode($_POST['nome']);
+$descricao = utf8_decode($_POST['descricao']);
 $unidade = $_POST['unidade'];
 $precocompra = Moeda($_POST['precocompra']);
 $precovenda = Moeda($_POST['precovenda']);
 $estoqueminimo = $_POST['estoqueminimo'];
 $estoqueatual = $_POST['estoqueatual'];
+$codigobarra = utf8_decode($_POST['codigobarra']);
 $vencimento1 = $_POST['vencimento1'];
 $vencimento2 = $_POST['vencimento2'];
-$vencimento3 = $_POST['vencimento3'];
-@$status = $_POST['status'];
-@$id = $_POST['id'];
+$status = $_POST['status'];
+$id = $_POST['idProduto'];
  
 if($id == ''){
-    mysqli_query($conexao,"INSERT INTO produtos
-    (codigobarra,nome,unidade,precocompra,precovenda,estoqueminimo,estoqueatual,
-    vencimento1,vencimento2,vencimento3,datacad,usuariocad) 
-    VALUES ('$codigobarra','$nome','$unidade','$precocompra','$precovenda',
-    '$estoqueminimo','$estoqueatual','$vencimento1','$vencimento2','$vencimento3',NOW(),'$usuario')
-    ") or die (mysqli_error($conexao));
+    mysqli_query($conexao,"INSERT INTO produtos(codigo,nome,descricao,unidade,precocompra,precovenda,estoqueminimo,estoqueatual,codigobarra,vencimento1,vencimento2,datacad,usuariocad,status)
+    VALUES('$codigo','$nome','$descricao',$unidade,$precocompra,$precovenda,'$estoqueminimo','$estoqueatual','$codigobarra','$vencimento1','$vencimento2', now(),'$usuario',1)") 
+    or die (mysqli_error($conexao));
 
     //logs
     $sql = mysqli_query($conexao,"INSERT INTO logs 
     (usuario, tipo, tabela, descricao, datatime, pc, ip) VALUES 
-    ('$usuario', 'Cadastrou', 'Produto', 'Usuï¿½rio cadastrou $nome', NOW(), '$hostname', '$ip')") 
+    ('$usuario', 'Cadastrou', 'Usuário', 'Usuário cadastrou usuário novo $nome', NOW(), '$hostname', '$ip')") 
     or die (mysqli_error($conexao));
     //logs
 
     echo alertsucesso();
 }else{
     mysqli_query($conexao,"UPDATE produtos SET
-    codigobarra='$codigobarra',
     nome='$nome',
+    descricao='$descricao',
     unidade='$unidade',
     precocompra='$precocompra',
     precovenda='$precovenda',
     estoqueminimo='$estoqueminimo',
     estoqueatual='$estoqueatual',
+    codigobarra='$codigobarra',
     vencimento1='$vencimento1',
-    vencimento2='$vencimento2',
-    vencimento3='$vencimento3',
+    vencimento2='$vencimento2',    
     status='$status'
-    WHERE id='$id'") or die (mysqli_error($conexao));
+    WHERE idProduto='$id'") or die (mysqli_error($conexao));
 
     //logs
     $sql = mysqli_query($conexao,"INSERT INTO logs 
     (usuario, tipo, tabela, descricao, datatime, pc, ip) VALUES 
-    ('$usuario', 'Alterou', 'Produto', 'Usuï¿½rio alterou produto: $id, $nome', NOW(), '$hostname', '$ip')") 
-    or die (mysql_error($conexao));
+    ('$usuario', 'Alterou', 'Produto', 'Usuário alterou produto: $id, $nome', NOW(), '$hostname', '$ip')") 
+    or die (mysqli_error($conexao));
     //logs
 
     echo alertatualizacao();

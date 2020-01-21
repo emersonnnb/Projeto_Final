@@ -13,13 +13,13 @@ $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']); //pega nome da maquina
 @$situacao = $_POST['situacao'];
 @$caixa = $_POST['caixa'];
 
-mysqli_query($conexao,"UPDATE usuario SET nome='$nome',cpf='$cpf',caixa='$caixa',situacao='$situacao' WHERE id='$id'") or die (mysqli_error($conexao));
+mysql_query("UPDATE usuario SET nome='$nome',cpf='$cpf',caixa='$caixa',situacao='$situacao' WHERE id='$id'") or die (mysql_error());
 
 //logs
-mysqli_query($conexao,"INSERT INTO logs 
+mysql_query("INSERT INTO logs 
 (usuario, tipo, tabela, descricao, datatime, pc, ip) VALUES 
 ('$usuario', 'Alterou', 'Usuarios', 'Alterou $nome', NOW(), '$hostname', '$ip')") 
-or die (mysqli_error($conexao));
+or die (mysql_error());
 //logs
 
 echo alertatualizacao();

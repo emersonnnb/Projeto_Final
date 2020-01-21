@@ -16,18 +16,18 @@ $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']); //pega nome da maquina
  $valor_troco = Moeda($_POST['valor_troco']);
  $situacao = 'fechada';
 
-mysqli_query($conexao,"INSERT INTO caixa (id_caixa,id_venda,valor_cartao,valor_dinheiro,valor_recebido,valor_compra,valor_troco,
+mysql_query("INSERT INTO caixa (id_caixa,id_venda,valor_cartao,valor_dinheiro,valor_recebido,valor_compra,valor_troco,
 id_usuario,data_caixa,situacao) VALUES ('$caixa','$idvenda','$valor_cartao','$valor_dinheiro','$valor_recebido','$valor_compra',
-'$valor_troco','$iduser',NOW(),'$situacao')") or die (mysqli_error($conexao));
+'$valor_troco','$iduser',NOW(),'$situacao')") or die (mysql_error());
 
 /* fechar vendas */
-mysqli_query($conexao,"UPDATE vendas SET situacao='$situacao' WHERE id_venda='$idvenda'") or die (mysqli_error($conexao));
+mysql_query("UPDATE vendas SET situacao='$situacao' WHERE id_venda='$idvenda'") or die (mysql_error());
 
     //logs
-    $sql = mysqli_query($conexao,"INSERT INTO logs 
+    $sql = mysql_query("INSERT INTO logs 
     (usuario, tipo, tabela, descricao, datatime, pc, ip) VALUES 
     ('$usuario', 'Caixa', 'Fechou', 'Usuário fechou venda: $idvenda, valor total: $valor_compra', NOW(), '$hostname', '$ip')") 
-    or die (mysqli_error($conexao));
+    or die (mysql_error());
     //logs
 
     echo "<script>location.href='pdv.php?imprimir=".$idvenda."';</script>";	

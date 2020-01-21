@@ -8,16 +8,16 @@ echo'
                     <label class="col-lg-3">
                         <select type="text" class="form-control" name="usuario" required>
                         <option value="">selecione</option>';
-                            $sql_uu = mysqli_query($conexao,"SELECT * FROM usuario WHERE caixa != 0") or die (mysqli_error($conexao,));
-                            while($dados_uu = mysqli_fetch_array($sql_uu)){echo'<option value="'.$dados_uu['id'].'">'.$dados_uu['nome'].'</option>';} 
+                            $sql_uu = mysql_query("SELECT * FROM usuario WHERE caixa != 0") or die (mysql_error());
+                            while($dados_uu = mysql_fetch_array($sql_uu)){echo'<option value="'.$dados_uu['id'].'">'.$dados_uu['nome'].'</option>';} 
                             echo'
                         </select>
                     </label>
                     <label class="col-lg-3">
                         <select type="text" class="form-control" name="produto">
                         <option value="">selecione</option>';
-                            $sql_p = mysqli_query($conexao,"SELECT * FROM produtos") or die (mysql_error());
-                            while($dados_p = mysqli_fetch_array($sql_p)){echo'<option value="'.$dados_p['codigobarra'].'">'.$dados_p['nome'].'</option>';} 
+                            $sql_p = mysql_query("SELECT * FROM produtos") or die (mysql_error());
+                            while($dados_p = mysql_fetch_array($sql_p)){echo'<option value="'.$dados_p['codigobarra'].'">'.$dados_p['nome'].'</option>';} 
                             echo'
                         </select>
                     </label>

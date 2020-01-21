@@ -4,7 +4,7 @@ session_start();
 include('conexao.php'); 
 include('funcoes.php');
 $iduser = $_SESSION['iduser'];
-$usuario = $_SESSION['nomeuser'];//pega usuario que estï¿½ executando a aï¿½ï¿½o
+$usuario = $_SESSION['nomeuser'];//pega usuario que está executando a ação
 $caixa = $_SESSION['caixa'];
 $ip = $_SERVER['REMOTE_ADDR']; // pegar ip da maquina
 $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']); //pega nome da maquina
@@ -49,7 +49,7 @@ echo'
                             <thead>
                                 <tr class="table-active">
                                     <th scope="col">Item</th>
-                                    <th scope="col">Cï¿½digo</th>
+                                    <th scope="col">Código</th>
                                     <th scope="col">Produto</th>
                                     <th scope="col">Quant.</th>
                                     <th scope="col">Valor</th>
@@ -58,10 +58,10 @@ echo'
                             </thead>
                             <tbody>';
                                 @$id_venda;
-                                $sql = mysqli_query($conexao,"SELECT * FROM vendas WHERE id_venda=".$id_venda." AND caixa_venda='$caixa' AND situacao='aberta'") or die (mysql_error());
+                                $sql = mysqli_query($conexao,"SELECT * FROM vendas WHERE id_venda=".$id_venda." AND caixa_venda='$caixa' AND situacao='aberta'") or die (mysqli_error($conexao));
                                 if($rows = mysqli_num_rows($sql) >= 1){
                                     @$item = 1; $total = 0;
-                                    while($vendas = mysqli_fetch_array($sql)){
+                                    while($vendas = mysql_fetch_array($sql)){
                                         echo'
                                             <tr>
                                                 <td>'.@$item.'</td>
@@ -93,7 +93,7 @@ echo'
                 <form action="insert-caixa-update-venda.php" method="post" style="font-size: 18px" autocomplete="off">
                     <input type="text" class="hidden" name="id_venda" value="'.@$id_venda.'"/>
                     <div class="form-group">
-                    <label class="control-label"><b>Valor cartï¿½o</b></label>
+                    <label class="control-label"><b>Valor cartão</b></label>
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -159,7 +159,6 @@ echo'
 <a id="imprimirCupom" data-fancybox data-type="iframe" data-src="imprimir-comprovante.php?id='.@$_GET['imprimir'].'" target="_blank" class="hidden btn btn-primary btn-block"><i class="fa fa-2x fa-print"></i> Imprimir</a>
 
 <!-- modal-addproduto-->
-
 <div class="modal" id="modal-addprodutovenda" tabindex="-1">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
@@ -204,7 +203,7 @@ jQuery('#codigoProduto').submit(function(){
     return false;
 });
 
-//aqui tu adiciona quem pode alterar tua funï¿½ï¿½o mostratotal()
+//aqui tu adiciona quem pode alterar tua função mostratotal()
 jQuery('#valorCartao,#valorDinheiro').keyup(function(){ mostraTotal();});
 
 function mostraTotal(){
@@ -250,7 +249,7 @@ function formatReal( int ){
         if(tmp.indexOf(",") == 0) tmp = tmp.replace(",","0,");
     return (neg ? '-'+tmp : tmp);
 };
-//função nas teclas
+//funções nas teclas
 document.onkeyup=function(e){
     if(e.which == 121){window.location.href="sair.php";}
     if(e.which == 118){window.location.href="index.php";}

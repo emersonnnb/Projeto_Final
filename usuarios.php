@@ -1,14 +1,14 @@
 <?php include('topo.php');
-$sql = mysqli_query($conexao,"SELECT * FROM usuario ORDER BY nome ASC") or die (mysql_error());
+$sql = mysqli_query($conexao,"SELECT * FROM usuario ORDER BY nome ASC") or die (mysqli_error($conexao));
 echo'
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <h4>UsuÃ¡rios</h4>
+                <h4>Usuários</h4>
             </div>
             <div class="col-lg-6" align="right">
                 <a href="index.php" class="btn btn-primary" style="margin:5px">Voltar</a>
-                <a href="#" onclick="adicionarUsuario()"class="btn btn-primary" style="margin:5px"><i class="fa fa-plus"></i> Usuï¿½rio</a>
+                <a href="#" onclick="adicionarUsuario()"class="btn btn-primary" style="margin:5px"><i class="fa fa-plus"></i> Usuário</a>
             </div>
         </div>
         <div class="page-header" id="banner" style="border: 1px solid black; padding: 10px;">
@@ -38,7 +38,7 @@ echo'
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Cadastrar usuï¿½rio</h5>
+            <h5 class="modal-title">Cadastrar usuário</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">X</span>
             </button>
@@ -55,7 +55,7 @@ echo'
                 <label class="col-lg-12">Senha
                     <input type="password" class="form-control" name="senha" minlength="6" required/>
                 </label>
-                <label class="col-lg-12">Caixa Nï¿½
+                <label class="col-lg-12">Caixa N°
                     <input type="number" class="form-control" name="caixa"/>
                 </label>
             </div>

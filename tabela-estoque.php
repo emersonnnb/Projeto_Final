@@ -7,7 +7,7 @@ echo'
 <table id="example" class="display" style="width:100%">
     <thead>
         <tr>
-            <th>Código barra</th>
+            <th>Código</th>
             <th>Nome</th>
             <th>Unidade</th>
             <th>Preço compra</th>
@@ -20,8 +20,8 @@ echo'
     <tbody>';
     while($dados_p = mysqli_fetch_array($sql)){
         echo'
-        <tr onclick="alterarProduto('.$dados_p['id'].')">
-            <td>'.$dados_p['codigobarra'].'</td>
+        <tr onclick="alterarProduto('.$dados_p['idProduto'].')">
+            <td>'.$dados_p['idProduto'].'</td>
             <td>'.$dados_p['nome'].'</td>
             <td>'.$dados_p['unidade'].'</td>
             <td>R$ '.Real($dados_p['precocompra']).'</td>

@@ -1,6 +1,4 @@
-<?php 
-include('topo.php');
-include('conexao.php');
+<?php include('topo.php');
 echo'
     
     <div class="container">
@@ -31,15 +29,18 @@ echo'
         </div>
         <form action="" method="post" id="form-addproduto">
         <div class="modal-body">
-            <div class="row"></div>
-                <label class="col-lg-3">Código do produto
-                    <input type="number" class="form-control" name="codigo" required/>
+            <div class="row">
+                <label class="col-lg-2">Código
+                    <input type="text" class="form-control" name="codigo" required>
                 </label>
-                <label class="col-lg-8">Nome do produto
-                    <input type="text" class="form-control" name="nome" maxlength="30" required/>
+                <label class="col-lg-4">Nome
+                    <input type="text" class="form-control" name="nome" maxlength="25" required/>
+                </label>
+                <label class="col-lg-5">Descrição
+                    <input type="text" class="form-control" name="descricao" maxlength="50" required/>
                 </label>
                 <div class="row"></div>
-                <label class="col-lg-3">Unidade Medida
+                <label class="col-lg-3">Unidade
                 <select type="text" class="form-control" name="unidade" required>
                     <option value="">selecione</option>';
                     $sql_u = mysqli_query($conexao,"SELECT * FROM unidade ORDER BY nome_u ASC") or die (mysqli_error($conexao));
@@ -47,27 +48,33 @@ echo'
                     echo'
                 </select>
                 </label>
-                <label class="col-lg-2">Preço custo
-                    <input type="text" class="form-control real" name="precocompra"/>
+                <label class="col-lg-2">Preço compra
+                    <input type="text" class="form-control real" name="precocompra" required/>
                 </label>
                 <label class="col-lg-2">Preço venda
                     <input type="text" class="form-control real" name="precovenda" required/>
                 </label>
                 <label class="col-lg-2">Est.mínimo
-                    <input type="text" class="form-control" name="estoqueminimo"/>
+                    <input type="text" class="form-control" name="estoqueminimo" required/>
                 </label>
                 <label class="col-lg-2">Est.atual
-                    <input type="text" class="form-control" name="estoqueatual"/>
+                    <input type="text" class="form-control" name="estoqueatual" required/>
                 </label>
                 <div class="row"></div>
-                <label class="col-lg-4">Código de barra
-                <input type="number" class="form-control" name="codigobarra" required/>
-            </label>
+                <label class="col-lg-3">Código barra
+                    <input type="number" class="form-control" name="codigobarra"/>
+                </label>
+                <label class="col-lg-3">Vencimento 1
+                    <input type="date" class="form-control" name="vencimento1"/>
+                </label>
+                <label class="col-lg-3">Vencimento 2
+                    <input type="date" class="form-control" name="vencimento2"/>
+                </label>                
             </div>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-success">Salvar</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
         </div>
         </form>
         </div>
@@ -91,6 +98,7 @@ echo'
         </div>
     </div>
 </div>
+<!-- modal-altproduto-->
 
 ';
 include('rodape.php');?>
@@ -115,7 +123,8 @@ jQuery('#form-addproduto').submit(function(){
         url:'insert-update-produto.php',
         data:jQuery('#form-addproduto').serialize(),
         success:function(data){
-            jQuery('#retorno').show().fadeOut(2000).html(data);
+            jQuery('#retorno').show().html(data);
+            //jQuery('#retorno').show().fadeOut(2000).html(data);
             jQuery('#form-addproduto').each(function(){this.reset();});
             tabelaEstoque();
         }
@@ -123,9 +132,9 @@ jQuery('#form-addproduto').submit(function(){
     return false;
 });
 //função retorno produto
-function alterarProduto(id){
+function alterarProduto(idProduto){
     jQuery('#modal-altproduto').modal('show');
-    jQuery.get('retorno-produto.php',{id:id},function(data){
+    jQuery.get('retorno-produto.php',{idProduto:idProduto},function(data){
         jQuery('#retornoProduto').html(data);
     });
     return false;
@@ -139,7 +148,7 @@ jQuery('#form-altproduto').submit(function(){
         data:jQuery('#form-altproduto').serialize(),
         success:function(data){
             jQuery('#retorno').show().fadeOut(2000).html(data);
-            jQuery('#form-altprosuto').each(function(){this.reset();});
+            jQuery('#form-altproduto').each(function(){this.reset();});
             tabelaEstoque();
         }
     });

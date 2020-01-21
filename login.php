@@ -29,7 +29,7 @@
           <form action="" method="post" id="form-login" autocomplete="off">
             <fieldset class="clearfix">
               <p><span class="fa fa-user"></span>
-                <input type="text" name="login" Placeholder="Matricula" required>
+                <input type="text" name="cpf" Placeholder="CPF" required>
               </p>
               <p><span class="fa fa-lock"></span>
                 <input type="password" name="senha" Placeholder="Senha" minlength="6" required>
@@ -64,8 +64,7 @@ jQuery('#form-login').submit(function(){
     url:'proc_login.php',
     data:jQuery('#form-login').serialize(),
     success:function(data){
-      jQuery('#retorno').show().html(data);
-      //jQuery('#retorno').show().fadeOut(3000).html(data);
+      jQuery('#retorno').show().fadeOut(3000).html(data);
       jQuery('#form-login').each(function(){this.reset();});
     }
   });
