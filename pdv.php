@@ -50,7 +50,7 @@ echo'
                             <thead>
                                 <tr class="table-active">
                                     <th scope="col">Item</th>
-                                    <th scope="col">C�digo</th>
+                                    <th scope="col">Codigo</th>
                                     <th scope="col">Produto</th>
                                     <th scope="col">Quant.</th>
                                     <th scope="col">Valor</th>
@@ -62,7 +62,7 @@ echo'
                                 $sql = mysqli_query($conexao,"SELECT * FROM vendas WHERE id_venda=".$id_venda." AND caixa_venda='$caixa' AND situacao='aberta'") or die (mysqli_error($conexao));
                                 if($rows = mysqli_num_rows($sql) >= 1){
                                     @$item = 1; $total = 0;
-                                    while($vendas = mysql_fetch_array($sql)){
+                                    while($vendas = mysqli_fetch_array($sql)){
                                         echo'
                                             <tr>
                                                 <td>'.@$item.'</td>
@@ -87,14 +87,14 @@ echo'
                 <div class="row">
                     <form action="" method="post" id="codigoProduto" autocomplete="off">
                         <label class="col-lg-12"><input type="number" class="form-control" name="codigo"
-                        placeholder="C�digo de barra" style="font-size:25px; text-align:center; color:black; font-weight: bold;"/>
+                        placeholder="Codigo de barra" style="font-size:25px; text-align:center; color:black; font-weight: bold;"/>
                         </label>
                     </form>
                 </div>
                 <form action="insert-caixa-update-venda.php" method="post" style="font-size: 18px" autocomplete="off">
                     <input type="text" class="hidden" name="id_venda" value="'.@$id_venda.'"/>
                     <div class="form-group">
-                    <label class="control-label"><b>Valor cart�o</b></label>
+                    <label class="control-label"><b>Valor cartao</b></label>
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -162,10 +162,10 @@ echo'
 <input type="hidden" id="botaomodal"  data-toggle="modal" data-target="#exampleModal">
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal Exemplo</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Lista de Produtos</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -238,40 +238,25 @@ jQuery('#codigoProduto').submit(function(){
     return false;
 });
 
-//form-addproduto
-jQuery('#form-addproduto').submit(function(){
-    jQuery('#modal-addproduto').modal('hide');
-    jQuery.ajax({
-        type:'POST',
-        url:'insert-update-produto.php',
-        data:jQuery('#form-addproduto').serialize(),
-        success:function(data){
-            jQuery('#retorno').show().html(data);
-            //jQuery('#retorno').show().fadeOut(2000).html(data);
-            jQuery('#form-addproduto').each(function(){this.reset();});
-            tabelaEstoque();
-        }
+//modal lista
+    //form-addproduto
+    $(document).keyup(function(ev){
+    if(ev.which == 119) { //numero da tecla ALT 
+        $('#botaomodal').trigger('click')
+    }
     });
-    return false;
-});
-//form-addproduto(teste)
-$(document).keyup(function(ev){
-  if(ev.which == 119) { //numero da tecla ALT 
-     $('#botaomodal').trigger('click')
-  }
-});
-//fun��o tabela
-jQuery(document).ready(function(){tabelaEstoque();});
-//exibir tabela
-function tabelaEstoque(){
-    jQuery.ajax({
-        type:'POST',
-        url:'tabela-estoque.php',
-        data:'html',
-        success:function(data){jQuery('#tabelaEstoque').html(data);}
-    });
-    return false;
-};
+    //fun��o tabela
+    jQuery(document).ready(function(){tabelaEstoque();});
+    //exibir tabela
+    function tabelaEstoque(){
+        jQuery.ajax({
+            type:'POST',
+            url:'tabela-estoque.php',
+            data:'html',
+            success:function(data){jQuery('#tabelaEstoque').html(data);}
+        });
+        return false;
+    };
 
 
 //aqui tu adiciona quem pode alterar tua fun��o mostratotal()

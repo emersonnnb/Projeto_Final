@@ -7,14 +7,14 @@ $senha = md5($_POST['senha']);
 $sql = mysqli_query ($conexao,"SELECT * FROM usuario WHERE cpf='$cpf' AND senha='$senha' AND situacao='0' LIMIT 1") or die (mysqli_error($conexao));
 $dados_uu = mysqli_fetch_array($sql);
 
-	if(empty($dados_uu)){ echo '<div class="alert alert-danger">Usuário ou senha <strong>inválido.</strong></div>';}  //se $dados_uu for vazio mostrar o erro
+	if(empty($dados_uu)){ echo '<div class="alert alert-danger">Usuï¿½rio ou senha <strong>invï¿½lido.</strong></div>';}  //se $dados_uu for vazio mostrar o erro
 	else{
-			$_SESSION['iduser'] = $dados_uu['id'];
+			$_SESSION['iduser'] = $dados_uu['idUsuario'];
 			$_SESSION['nomeuser'] = $dados_uu['nome'];
 			$_SESSION['caixa'] = $dados_uu['caixa'];
 
 			$iduser = $_SESSION['iduser'];
-			$usuario = $_SESSION['nomeuser'];//pega usuario que está executando a ação
+			$usuario = $_SESSION['nomeuser'];//pega usuario que estï¿½ executando a aï¿½ï¿½o
 			$caixa = $_SESSION['caixa'];
 			$ip = $_SERVER['REMOTE_ADDR']; // pegar ip da maquina
 			$hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']); //pega nome da maquina
@@ -22,8 +22,8 @@ $dados_uu = mysqli_fetch_array($sql);
 			//logs
 			$sql = mysqli_query($conexao,"INSERT INTO logs 
 			(usuario, tipo, tabela, descricao, datatime, pc, ip) VALUES 
-			('$usuario', 'Entrou', 'Usuário', 'Usuário entrou no sistema', NOW(), '$hostname', '$ip')") 
-			or die (mysql_error());
+			('$usuario', 'Entrou', 'Usuï¿½rio', 'Usuï¿½rio entrou no sistema', NOW(), '$hostname', '$ip')") 
+			or die (mysqli_error($conexao));
 			//logs
 			echo "<script>location.href='index.php';</script>";
 		}
