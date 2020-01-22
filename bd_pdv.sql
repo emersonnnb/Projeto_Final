@@ -333,3 +333,4 @@ INSERT INTO `vendas` (`id`, `id_venda`, `codigobarra`, `nome_produto`, `quantida
 ALTER TABLE `caixa` CHANGE `id` `idProduto` INT(255) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `permissoes` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`idUsuario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE `vendas` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`idUsuario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `movcaixa` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`idUsuario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
