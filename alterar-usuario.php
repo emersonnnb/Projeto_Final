@@ -1,6 +1,6 @@
 <?php include('topo.php');
 $id = $_GET['id'];
-$sql = mysqli_query($conexao,"SELECT * FROM usuario WHERE id='$id'") or die (mysqli_error());
+$sql = mysqli_query($conexao,"SELECT * FROM usuario WHERE idUsuario='$id'") or die (mysqli_error($conexao));
 $dados = mysqli_fetch_array($sql);
 
 echo'
@@ -14,7 +14,7 @@ echo'
         </div>
     </div>
     <form action="" method="post" id="form-altusuario">
-    <input type="text" class="hidden" name="id" value="'.$dados['id'].'"/>
+    <input type="text" class="hidden" name="id" value="'.$dados['idUsuario'].'"/>
     <div class="page-header" id="banner" style="border: 1px solid black; padding: 10px;">
         <label class="col-lg-3">Nome
             <input type="text" class="form-control" name="nome" value="'.$dados['nome'].'"/>
@@ -41,7 +41,7 @@ echo'
 
     if(PermissaoCheck('permissoes',$_SESSION['iduser'])=='checked'){echo'
     <form action="" method="post" id="form-altpermissoes">
-    <input type="text" class="hidden" name="id" value="'.$dados['id'].'"/>
+    <input type="text" class="hidden" name="id" value="'.$dados['idUsuario'].'"/>
     <div class="row">
         <div class="col-lg-6">
             <h4>Permiss�es</h4>

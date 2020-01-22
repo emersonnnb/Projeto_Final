@@ -9,7 +9,7 @@ $codigobarra = $dados_venda['codigobarra'];
 $quantidade_venda =  $dados_venda['quantidade_produto'];
 
 //select no estoque atual
-$sql_e = mysqli_query($conexao,"SELECT * FROM produtos WHERE id='$codigobarra'") or die (mysqli_error($conexao));
+$sql_e = mysqli_query($conexao,"SELECT * FROM produtos WHERE codigobarra='$codigobarra'") or die (mysqli_error($conexao));
 $dados_e = mysqli_fetch_array($sql_e);
 $estoque_atual = $dados_e['estoqueatual'];
 

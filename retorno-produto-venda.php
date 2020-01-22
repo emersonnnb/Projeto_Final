@@ -8,7 +8,7 @@ $ip = $_SERVER['REMOTE_ADDR']; // pegar ip da maquina
 $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']); //pega nome da maquina
 
 $codigo = $_POST['codigo'];
-$sql = mysqli_query($conexao,"SELECT * FROM produtos WHERE codigobarra='$codigo' AND status='1'") or die (mysqli_error($conexao));
+$sql = mysqli_query($conexao,"SELECT * FROM produtos WHERE idProduto='$codigo' AND status='1'") or die (mysqli_error($conexao));
 if($rows = mysqli_num_rows($sql) >= 1){
 $dados_pp = mysqli_fetch_array($sql);
     echo'

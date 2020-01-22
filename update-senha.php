@@ -3,7 +3,7 @@ session_start();
 include('conexao.php');
 include('funcoes.php');
 $iduser = $_SESSION['iduser'];
-$usuario = $_SESSION['nomeuser'];//pega usuario que estï¿½ executando a aï¿½ï¿½o
+$usuario = $_SESSION['nomeuser'];//pega usuario que está executando a ação
 $ip = $_SERVER['REMOTE_ADDR']; // pegar ip da maquina
 $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']); //pega nome da maquina
 
@@ -11,13 +11,13 @@ $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']); //pega nome da maquina
 @$nome = utf8_decode($_POST['nome']);
 @$senha = md5(utf8_decode($_POST['senha']));
 
-mysqli_query($conexao,"UPDATE usuario SET senha='$senha' WHERE id='$id'") or die (mysqli_error($conexao,));
+mysql_query("UPDATE usuario SET senha='$senha' WHERE id='$id'") or die (mysql_error());
 
 //logs
-mysqli_query($conexao,"INSERT INTO logs 
+mysql_query("INSERT INTO logs 
 (usuario, tipo, tabela, descricao, datatime, pc, ip) VALUES 
-('$usuario', 'Alterou', 'Usuarios', 'Alterou senha do usuï¿½rio: $nome', NOW(), '$hostname', '$ip')") 
-or die (mysqli_error($conexao,));
+('$usuario', 'Alterou', 'Usuarios', 'Alterou senha do usuário: $nome', NOW(), '$hostname', '$ip')") 
+or die (mysql_error());
 //logs
 
 echo alertatualizacao();

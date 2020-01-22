@@ -4,20 +4,20 @@ session_start();
 include('conexao.php');
 include('funcoes.php');
 $iduser = $_SESSION['iduser'];
-$usuario = $_SESSION['nomeuser'];//pega usuario que estï¿½ executando a aï¿½ï¿½o
+$usuario = $_SESSION['nomeuser'];//pega usuario que está executando a ação
 $ip = $_SERVER['REMOTE_ADDR']; // pegar ip da maquina
 $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']); //pega nome da maquina
 
 //logs
 $sql = mysqli_query($conexao,"INSERT INTO logs 
 (usuario, tipo, tabela, descricao, datatime, pc, ip) VALUES 
-('$usuario', 'Saiu', 'Usuï¿½rio', '$usuario saiu do sistema', NOW(), '$hostname', '$ip')") 
-or die (mysql_error());
+('$usuario', 'Saiu', 'Usuário', '$usuario saiu do sistema', NOW(), '$hostname', '$ip')") 
+or die (mysqli_error($conexao));
 //logs
 
 
 session_unset();
-session_destroy(); //destroi sessï¿½o do usuï¿½rio
-ob_end_clean();// Jï¿½ podemos encerrar o buffer e limpar tudo que hï¿½ nele*/
+session_destroy(); //destroi sessão do usuário
+ob_end_clean();// Já podemos encerrar o buffer e limpar tudo que há nele*/
 echo "<script>location.href='login.php'</script>";
 ?>

@@ -69,7 +69,7 @@ echo'
                             <tbody>';
 
                                 @$id_venda;
-                                $sql = mysqli_query($conexao,"SELECT * FROM vendas WHERE id_venda=".$id_venda." AND caixa_venda='$caixa' AND situacao='aberta'") or die (mysql_error());
+                                $sql = mysqli_query($conexao,"SELECT * FROM vendas WHERE id_venda=".$id_venda." AND caixa_venda='$caixa' AND situacao='aberta'") or die (mysqli_error($conexao));
                                 if($rows = mysqli_num_rows($sql) >= 1){
                                     @$item = 1; $total = 0;
                                     while($vendas = mysqli_fetch_array($sql)){

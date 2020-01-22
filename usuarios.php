@@ -1,10 +1,10 @@
 <?php include('topo.php');
-$sql = mysqli_query($conexao,"SELECT * FROM usuario ORDER BY nome ASC") or die (mysql_error());
+$sql = mysqli_query($conexao,"SELECT * FROM usuario ORDER BY nome ASC") or die (mysqli_error($conexao));
 echo'
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <h4>Usuários</h4>
+                <h4>Usu�rios</h4>
             </div>
             <div class="col-lg-6" align="right">
                 <a href="index.php" class="btn btn-primary" style="margin:5px">Voltar</a>
@@ -22,7 +22,7 @@ echo'
                 </thead>
                 <tbody>';
                 while($dados = mysqli_fetch_array($sql)){echo'
-                    <tr onclick="alterarUsuario('.$dados['id'].')">
+                    <tr onclick="alterarUsuario('.$dados['idUsuario'].')">
                         <td>'.$dados['nome'].'</td>
                         <td>'.$dados['cpf'].'</td>
                         <td>';if($dados['situacao'] == 0){echo 'Liberado';}else{echo'Bloqueado';}echo'</td>

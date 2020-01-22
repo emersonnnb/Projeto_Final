@@ -1,21 +1,17 @@
 <?php
-include('conexao.php'); 
 
 //permissao atualzia��o //recebe informa��es vindas do array de permiss�o
 function Permissao($item,$id){
-include('conexao.php'); 
-$query = "select * from permissoes where id_usuario='".$id."' and item='".$item."'";
-$sql=mysqli_query($conexao,$query)	;
-if(mysqli_num_rows($sql)>=1)
-    {mysqli_query($conexao,"update permissoes set valor='ativo' where id_usuario='".$id."' and item='".$item."' ");}
-else{
-    mysqli_query($conexao,"insert into permissoes (id_usuario,item,valor) VALUES ('$id','$item','ativo') ");}
+global $conexao;
+$sql=mysqli_query($conexao,"select * from permissoes where id_usuario='".$id."' and item='".$item."' ");	
+if(mysqli_num_rows($sql)>=1){mysqli_query($conexao,"update permissoes set valor='ativo' where id_usuario='".$id."' and item='".$item."' ");}
+else{mysqli_query($conexao,"insert into permissoes (id_usuario,item,valor) VALUES ('$id','$item','ativo') ");}
 };
-    //fun��o verifica se existem libera��o apra acesso ao menu
+
+//fun��o verifica se existem libera��o apra acesso ao menu
 function PermissaoCheck($item,$id){
-include('conexao.php'); 
-$query = "select * from permissoes where id_usuario='".$id."' and item='".$item."' and valor='ativo' ";	
-$sql =	mysqli_query($conexao,$query);
+global $conexao;
+$sql=mysqli_query($conexao,"select * from permissoes where id_usuario='".$id."' and item='".$item."' and valor='ativo' ");	
 if(mysqli_num_rows($sql)>=1){ return 'checked';}
 };
 

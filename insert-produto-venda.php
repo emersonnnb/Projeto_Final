@@ -22,9 +22,9 @@ $situacao = 'aberta';
     mysqli_query($conexao,"INSERT INTO vendas (id_venda,codigobarra,nome_produto,quantidade_produto,
     valor_produto,valor_total_produto,id_usuario,data_venda,caixa_venda,situacao) 
     VALUES ('$id_venda','$codigobarra','$nome_produto','$quantidade','$precovenda',
-    '$valor_total_produto','$iduser',NOW(),'$caixa','$situacao')") or die (mysql_error());
+    '$valor_total_produto','$iduser',NOW(),'$caixa','$situacao')") or die (mysqli_error($conexao));
 
-    $sql_p = mysqli_query($conexao,"SELECT * FROM produtos WHERE codigobarra='$codigobarra'") or die (mysqli_error($conexao));
+    $sql_p = mysqli_query($conexao,"SELECT * FROM produtos WHERE idProduto='$codigobarra'") or die (mysqli_error($conexao));
     $dados_p = mysqli_fetch_array($sql_p);
     $resto = $dados_p['estoqueatual'] - $quantidade;
 
