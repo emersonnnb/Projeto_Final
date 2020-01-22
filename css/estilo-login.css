@@ -10,6 +10,12 @@
       height:calc(100vh);
       width:100%;
     }
+    div.main2{
+      background: #606468;
+      height:calc(100vh);
+      width:100%;
+
+    }
 
   [class*="fontawesome-"]:before {
     font-family: 'FontAwesome', sans-serif;

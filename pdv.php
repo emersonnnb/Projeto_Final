@@ -19,6 +19,7 @@ $sql_venda = mysqli_query($conexao,"SELECT * FROM vendas WHERE caixa_venda='$cai
         $id_venda = $_SESSION['id_venda'];
     }
 };
+
 echo'
 <!DOCTYPE html>
 <html lang="pt">
@@ -33,24 +34,24 @@ echo'
 
 </head>
 
-<body style="overflow: hidden; height:auto">
+<body style="background-color:#ecf0f1;overflow: hidden; height:auto">
 
 <input type="text" class="hidden" id="idvenda" alt="'.@$id_venda.'" value="'.@$id_venda.'"/>
 
-<div class="main"><br>
+<div class="main2" ><br>
 
-<div class="col-lg-12">
+<div class="col-lg-4">
   </div>
 
     <div class="jumbotron" style="margin: 1px; width: auto; height:600px;">
 
         <div class="row" style="margin-top: -30px;" >
 
-            <div class="col-lg-8" style="border: 1px solid red; padding:5px; height:550px; overflow-y:auto; overflow-x:hidden">
+            <div class="col-lg-4" style="border: 1px solid red; padding:5px; height:550px; overflow-y:auto; overflow-x:hidden">
 
                 <div class="row">
 
-                    <div class="col-lg-12" style="font-size: 16px; text-align:left;">
+                    <div class="col-lg-" style="font-size: 31px; text-align:height;">
 
                         <table class="table table-hover">
 
@@ -172,6 +173,7 @@ echo'
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Finalizar</button>
                 </form>
             </div>
+
         </div>
     </div>
 
@@ -179,7 +181,7 @@ echo'
  
   <i class="fa fa-desktop text-warning">
   </i>&nbsp;&nbsp;<i class="fa fa-sitemap text-success"></i>
-   (F10->Sair / F7->Menu / F6->Vencimento )</h5>
+   (F10->Sair / F7->Menu / F8->Lista )</h5>
 </div>
 
 
