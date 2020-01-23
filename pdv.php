@@ -31,41 +31,23 @@ echo'
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/estilo-login.css">
   <link rel="stylesheet" href="fancybox/dist/jquery.fancybox.css"/> 
-
 </head>
 
 <body style="background-color:#ecf0f1;overflow: hidden; height:auto">
-
 <input type="text" class="hidden" id="idvenda" alt="'.@$id_venda.'" value="'.@$id_venda.'"/>
 
-<div class="main2" ><br>
+<div class="main2" style="background-color:#ecf0f1" ><br>
 
 <div class="col-lg-4">
+
   </div>
-
     <div class="jumbotron" style="margin: 1px; width: auto; height:600px;">
-
         <div class="row" style="margin-top: -30px;" >
-
             <div class="col-lg-4" style="border: 1px solid red; padding:5px; height:550px; overflow-y:auto; overflow-x:hidden">
-
                 <div class="row">
-
                     <div class="col-lg-" style="font-size: 31px; text-align:height;">
-
                         <table class="table table-hover">
-
-                            <thead>
-
-                                <tr class="table-active">
-                                    <th scope="col">Item</th>
-                                    <th scope="col">Codigo</th>
-                                    <th scope="col">Produto</th>
-                                    <th scope="col">Quant.</th>
-                                    <th scope="col">Valor</th>
-                                    <th scope="col">#</th>
-                                </tr>
-                            </thead>
+                            <!-- css --!>
                             <tbody>';
 
                                 @$id_venda;
@@ -92,91 +74,13 @@ echo'
                         </table>
                     </div>
                 </div>
-
             </div>
-
             <div class="col-lg-4" style="border: 1px solid green; padding:5px">
                 <div class="row">
-
-                    <form action="" method="post" id="codigoProduto" autocomplete="off">
-                        <label class="col-lg-12"><input type="number" class="form-control" name="codigo"
-                        placeholder="Codigo de barra" style="font-size:25px; text-align:center; color:black; font-weight: bold;"/>
-                        </label>
-                    </form>
-                </div>
-
-                <form action="insert-caixa-update-venda.php" method="post" style="font-size: 18px" autocomplete="off">
-                    <input type="text" class="hidden" name="id_venda" value="'.@$id_venda.'"/>
-                    <div class="form-group">
-                    <label class="control-label"><b>Valor cartao</b></label>
-                    <div class="form-group">
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" >R$</span>
-                            </div>
-
-                            <input type="text" class="form-control real" id="valorCartao" name="valor_cartao" value="0"/>
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="form-group">
-                    <label class="control-label"><b>Valor dinheiro</b></label>
-                    <div class="form-group">
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">R$</span>
-                            </div>
-                            <input type="text" class="form-control real" id="valorDinheiro" name="valor_dinheiro" value="0"/>
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="form-group">
-                    <label class="control-label"><b>Valor recebido</b></label>
-                    <div class="form-group">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">R$</span>
-                            </div>
-                            <input type="text" class="form-control" id="valorRecebido"  name="valor_recebido" value="0" required/>
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="form-group">
-                    <label class="control-label"><b>Total compra</b></label>
-                    <div class="form-group">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">R$</span>
-                            </div>
-                            <input type="text" class="form-control" id="valorCompra" name="valor_compra" value="'.Real(@$total).'" readonly/>
-                        </div>
-                    </div>
-                    </div>
-                    
-                    <div class="form-group">
-                    <label class="control-label"><b>Troco</b></label>
-                    <div class="form-group">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">R$</span>
-                            </div>
-                            <input type="text" class="form-control" id="valorTroco" name="valor_troco" readonly>
-                        </div>
-                    </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Finalizar</button>
-                </form>
-            </div>
-
-        </div>
+              </div>
+              
+              <!-- css1 --!>
     </div>
-
   <h5 style="color:black; text-align:center;">
  
   <i class="fa fa-desktop text-warning">
@@ -184,12 +88,9 @@ echo'
    (F10->Sair / F7->Menu / F8->Lista )</h5>
 </div>
 
-
 <!-- imprimir cupon -->
 <a id="imprimirCupom" data-fancybox data-type="iframe" data-src="imprimir-comprovante.php?id='.@$_GET['imprimir'].'" target="_blank" class="hidden btn btn-primary btn-block"><i class="fa fa-2x fa-print"></i> Imprimir</a>
-
 <!-- modal-addproduto-->
-
 <div class="modal" id="modal-addprodutovenda" tabindex="-1">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
@@ -213,7 +114,6 @@ echo'
     </div>
 </div>
 </div>
-
 <!-- modal-addproduto-->';
 ob_end_flush();?>
 <script src="js/jquery.min.js"></script>

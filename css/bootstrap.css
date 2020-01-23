@@ -24,7 +24,7 @@
   --teal: #20c997;
   --cyan: #3498DB;
   --white: #fff;
-  --gray: #95a5a6;
+  --jumbotron: #95a5a6;
   --gray-dark: #343a40;
   --primary: #2C3E50;
   --secondary: #95a5a6;
@@ -67,7 +67,7 @@ body {
   font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color:  #ecf0f1
   text-align: left;
   background-color: #fff;
 }

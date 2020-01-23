@@ -10,8 +10,9 @@
       height:calc(100vh);
       width:100%;
     }
+    
     div.main2{
-      background: #606468;
+      background:#ecf0f1;
       height:calc(100vh);
       width:100%;
 
@@ -30,7 +31,7 @@
 
 body {
    
-    color: #606468;
+    color: #ecf0f1;
   font: 87.5%/1.5em 'Open Sans', sans-serif;
   margin: 0;
 }
