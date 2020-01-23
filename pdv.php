@@ -87,7 +87,7 @@ echo'
                 <div class="row">
                     <form action="" method="post" id="codigoProduto" autocomplete="off">
                         <label class="col-lg-12"><input type="number" class="form-control" name="codigo"
-                        placeholder="Codigo de barra" style="font-size:25px; text-align:center; color:black; font-weight: bold;"/>
+                        placeholder="Codigo do produto" style="font-size:25px; text-align:center; color:black; font-weight: bold;"/>
                         </label>
                     </form>
                 </div>

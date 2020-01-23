@@ -22,7 +22,7 @@ jQuery('.cpf').mask('999.999.999-99').change(function() {
     if ((cpf.charAt(9) != a[9]) || (cpf.charAt(10) != a[10]) || cpf.match(expReg)) retorno = false;
     //return this.optional(element) || retorno; 
     if (retorno == false) {
-        alert('CPF Inválido!');
+        alert('CPF Invï¿½lido!');
         jQuery(this).val('');
         jQuery(this).focus();
     }
@@ -40,12 +40,12 @@ jQuery('.numeroprocesso').mask('9999999-99.9999.9.99.9999');
 jQuery('.real').maskMoney({symbol:"R$",decimal:",",thousands:"."});
 
 //estqoue
-function estoque(){
-  window.location.href='estoque.php';  
+function produto(){
+  window.location.href='produto.php';  
 };
 //estoque minimo
-function estoqueMinimo(){
-    window.location.href='estoque-minimo.php';
+function estoque(){
+    window.location.href='estoque.php';
 };
 //vencimentos
 function vencimentos(){
@@ -63,7 +63,7 @@ function pdv(){
 function usuarios(){
     window.location.href='usuarios.php';
 };
-//alterar usuário
+//alterar usuï¿½rio
 function alterarUsuario(id){
     window.location.href='alterar-usuario.php?id='+id;
 };

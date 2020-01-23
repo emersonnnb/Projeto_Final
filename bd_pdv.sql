@@ -22,48 +22,31 @@ INSERT INTO `usuario` (`idUsuario`, `nome`, `cpf`, `senha`, `caixa`, `situacao`)
 (2, 'Emerson Oliveira', '059099', 'e10adc3949ba59abbe56e057f20f883e', 1, 0);
 -- --------------------------------------------------------
 --
--- Estrutura da tabela `caixa`
+-- Estrutura da tabela `movcaixa`
 --
-CREATE TABLE IF NOT EXISTS `caixa` (
-   `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `id_caixa` varchar(255) NOT NULL,
-  `id_venda` int(255) NOT NULL,
-  `valor_cartao` decimal(10,2) NOT NULL,
-  `valor_dinheiro` decimal(10,2) NOT NULL,
-  `valor_recebido` decimal(10,2) NOT NULL,
-  `valor_compra` decimal(10,2) NOT NULL,
-  `valor_troco` decimal(10,2) NOT NULL,
+CREATE TABLE IF NOT EXISTS `movcaixa` (
+  `idMov` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `id_produto` int(255),
+  `idCaixa` varchar(255) NOT NULL,
+  `idVenda` int(255) NOT NULL,
+  `valorCartao` decimal(10,2) NOT NULL,
+  `valorDinheiro` decimal(10,2) NOT NULL,
+  `valorRecebido` decimal(10,2) NOT NULL,
+  `valorCompra` decimal(10,2) NOT NULL,
+  `valorTroco` decimal(10,2) NOT NULL,
   `id_usuario` int(255) NOT NULL,
-  `data_caixa` datetime NOT NULL,
+  `dataMov` datetime NOT NULL,
   `situacao` varchar(20) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
 --
 -- Extraindo dados da tabela `caixa`
 --
-INSERT INTO `caixa` (`id`, `id_caixa`, `id_venda`, `valor_cartao`, `valor_dinheiro`, `valor_recebido`, `valor_compra`, `valor_troco`, `id_usuario`, `data_caixa`, `situacao`) VALUES
-(15, '1', 2147483647, '0.00', '4.50', '4.50', '4.50', '0.00', 1, '2019-12-02 17:20:24', 'fechada'),
-(16, '1', 2147483647, '0.00', '4.50', '4.50', '4.50', '0.00', 1, '2019-12-02 17:39:15', 'fechada'),
-(17, '1', 2147483647, '0.00', '4.50', '4.50', '4.50', '0.00', 1, '2019-12-02 17:40:05', 'fechada'),
-(18, '1', 2147483647, '0.00', '1.50', '1.50', '1.50', '0.00', 1, '2019-12-02 17:41:36', 'fechada'),
-(19, '1', 2147483647, '0.00', '1.50', '1.50', '1.50', '0.00', 1, '2019-12-02 17:42:31', 'fechada'),
-(20, '1', 2147483647, '0.00', '4.50', '4.50', '4.50', '0.00', 1, '2019-12-05 12:06:23', 'fechada'),
-(21, '1', 2147483647, '0.00', '4.50', '4.50', '4.50', '0.00', 1, '2019-12-05 12:08:10', 'fechada'),
-(22, '1', 2147483647, '0.00', '4.50', '4.50', '4.50', '0.00', 1, '2019-12-05 12:08:29', 'fechada'),
-(23, '1', 2147483647, '0.00', '4.50', '4.50', '4.50', '0.00', 1, '2019-12-05 14:13:01', 'fechada'),
-(24, '1', 2147483647, '0.00', '1.50', '1.50', '1.50', '0.00', 1, '2019-12-05 14:30:43', 'fechada'),
-(25, '1', 2147483647, '0.00', '4.50', '4.50', '4.50', '0.00', 1, '2019-12-05 14:44:09', 'fechada'),
-(26, '1', 2147483647, '0.00', '9.00', '9.00', '9.00', '0.00', 1, '2019-12-05 14:44:57', 'fechada'),
-(27, '1', 2147483647, '0.00', '4.50', '4.50', '4.50', '0.00', 1, '2019-12-05 14:48:31', 'fechada'),
-(28, '1', 2147483647, '0.00', '4.50', '4.50', '4.50', '0.00', 1, '2019-12-05 15:16:43', 'fechada'),
-(29, '1', 2147483647, '0.00', '4.50', '4.50', '4.50', '0.00', 1, '2019-12-05 15:23:21', 'fechada'),
-(30, '1', 2147483647, '0.00', '4.50', '4.50', '4.50', '0.00', 1, '2019-12-05 15:26:05', 'fechada'),
-(31, '1', 2147483647, '0.00', '4.50', '4.50', '4.50', '0.00', 1, '2019-12-05 16:23:21', 'fechada'),
-(32, '1', 2147483647, '4.50', '0.00', '4.50', '4.50', '0.00', 1, '2019-12-05 16:31:43', 'fechada'),
-(33, '1', 2147483647, '0.00', '9.00', '9.00', '9.00', '0.00', 1, '2019-12-05 16:33:16', 'fechada'),
-(34, '1', 2147483647, '0.00', '6.00', '6.00', '6.00', '0.00', 1, '2019-12-05 16:35:57', 'fechada'),
-(35, '1', 2147483647, '0.00', '9.00', '9.00', '9.00', '0.00', 1, '2019-12-05 17:29:17', 'fechada'),
-(36, '1', 2147483647, '0.00', '50.00', '50.00', '34.00', '16.00', 1, '2019-12-14 11:11:40', 'fechada'),
-(37, '1', 2147483647, '0.00', '20.00', '20.00', '18.00', '2.00', 1, '2019-12-20 19:23:22', 'fechada');
+INSERT INTO `movcaixa` (`idMov`, `id_produto`,`idCaixa`, `idVenda`, `valorCartao`, `valorDinheiro`, `valorRecebido`, `valorCompra`, `valorTroco`, `id_usuario`, `dataMov`, `situacao`) VALUES
+('1','1', '1', 2147483647, '0.00', '4.50', '4.50', '4.50', '0.00', 1, '2019-12-02 17:20:24', 'fechada'),
+('2','2', '1', 2147483647, '0.00', '4.50', '4.50', '4.50', '0.00', 1, '2019-12-02 17:39:15', 'fechada'),
+('3','3', '1', 2147483647, '0.00', '4.50', '4.50', '4.50', '0.00', 1, '2019-12-02 17:40:05', 'fechada'),
+('4','3', '1', 2147483647, '0.00', '1.50', '1.50', '1.50', '0.00', 1, '2019-12-02 17:41:36', 'fechada');
+
 -- --------------------------------------------------------
 --
 -- Estrutura da tabela `empresa`
@@ -150,57 +133,7 @@ INSERT INTO `logs` (`id`, `usuario`, `tipo`, `tabela`, `descricao`, `datatime`, 
 (47, 'Augusto Araújo', 'Entrou', 'Usuário', 'Usuário entrou no sistema', '2019-11-18 12:07:03', 'SUPORTE-DELL', '::1'),
 (48, 'Augusto Araújo', 'Entrou', 'Usuário', 'Usuário entrou no sistema', '2019-11-18 12:07:17', 'SUPORTE-DELL', '::1'),
 (49, '', 'Saiu', 'Usuário', ' saiu do sistema', '2019-11-18 12:07:35', 'SUPORTE-DELL', '::1'),
-(50, '', 'Saiu', 'Usuário', ' saiu do sistema', '2019-11-18 12:12:17', 'SUPORTE-DELL', '::1'),
-(51, 'Augusto Araújo', 'Entrou', 'Usuário', 'Usuário entrou no sistema', '2019-11-18 12:12:23', 'SUPORTE-DELL', '::1'),
-(52, '', 'Saiu', 'Usuário', ' saiu do sistema', '2019-11-18 12:18:22', 'SUPORTE-DELL', '::1'),
-(53, 'Augusto Araújo', 'Entrou', 'Usuário', 'Usuário entrou no sistema', '2019-11-18 12:18:29', 'SUPORTE-DELL', '::1'),
-(54, '', 'Saiu', 'Usuário', ' saiu do sistema', '2019-11-18 12:19:02', 'SUPORTE-DELL', '::1'),
-(55, '', 'Saiu', 'Usuário', ' saiu do sistema', '2019-11-18 12:20:27', 'SUPORTE-DELL', '::1'),
-(56, 'Augusto Araújo', 'Entrou', 'Usuário', 'Usuário entrou no sistema', '2019-11-18 12:20:33', 'SUPORTE-DELL', '::1'),
-(57, 'Augusto Araújo', 'Saiu', 'Usuário', 'Augusto Araújo saiu do sistema', '2019-11-18 12:20:42', 'SUPORTE-DELL', '::1'),
-(58, 'Augusto Araújo', 'Entrou', 'Usuário', 'Usuário entrou no sistema', '2019-11-18 12:20:49', 'SUPORTE-DELL', '::1'),
-(59, '', 'Saiu', 'Usuário', ' saiu do sistema', '2019-11-18 12:21:14', 'SUPORTE-DELL', '::1'),
-(60, 'Augusto Araújo', 'Entrou', 'Usuário', 'Usuário entrou no sistema', '2019-11-18 12:21:21', 'SUPORTE-DELL', '::1'),
-(61, '', 'Saiu', 'Usuário', ' saiu do sistema', '2019-11-18 12:23:18', 'SUPORTE-DELL', '::1'),
-(62, 'Augusto Araújo', 'Entrou', 'Usuário', 'Usuário entrou no sistema', '2019-11-18 12:23:25', 'SUPORTE-DELL', '::1'),
-(63, '', 'Saiu', 'Usuário', ' saiu do sistema', '2019-11-18 12:35:19', 'SUPORTE-DELL', '::1'),
-(64, 'Augusto Araújo', 'Entrou', 'Usuário', 'Usuário entrou no sistema', '2019-11-18 12:35:26', 'SUPORTE-DELL', '::1'),
-(65, '', 'Saiu', 'Usuário', ' saiu do sistema', '2019-11-18 13:41:54', 'SUPORTE-DELL', '::1'),
-(66, 'Augusto Araújo', 'Entrou', 'Usuário', 'Usuário entrou no sistema', '2019-11-18 13:42:00', 'SUPORTE-DELL', '::1'),
-(67, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou Augusto Araújo1', '2019-11-18 14:17:57', 'SUPORTE-DELL', '::1'),
-(68, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou Augusto Araújo11', '2019-11-18 14:18:47', 'SUPORTE-DELL', '::1'),
-(69, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou Augusto Araújo111', '2019-11-18 14:19:17', 'SUPORTE-DELL', '::1'),
-(70, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou Augusto Araújo111', '2019-11-18 14:19:22', 'SUPORTE-DELL', '::1'),
-(71, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou Augusto Araújo111', '2019-11-18 14:19:27', 'SUPORTE-DELL', '::1'),
-(72, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou permissão do usuário 1', '2019-11-18 14:22:44', 'SUPORTE-DELL', '::1'),
-(73, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou permissão do usuário 1', '2019-11-18 14:23:04', 'SUPORTE-DELL', '::1'),
-(74, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou permissão do usuário 1', '2019-11-18 14:23:08', 'SUPORTE-DELL', '::1'),
-(75, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou permissão do usuário 1', '2019-11-18 14:23:10', 'SUPORTE-DELL', '::1'),
-(76, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou permissão do usuário 1', '2019-11-18 14:23:12', 'SUPORTE-DELL', '::1'),
-(77, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou permissão do usuário 1', '2019-11-18 14:23:14', 'SUPORTE-DELL', '::1'),
-(78, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou permissão do usuário 1', '2019-11-18 14:23:15', 'SUPORTE-DELL', '::1'),
-(79, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou Augusto Araújo111', '2019-11-18 14:24:04', 'SUPORTE-DELL', '::1'),
-(80, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou Augusto Araújo111', '2019-11-18 14:24:20', 'SUPORTE-DELL', '::1'),
-(81, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou permissão do usuário 1', '2019-11-18 14:24:22', 'SUPORTE-DELL', '::1'),
-(82, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou permissão do usuário 1', '2019-11-18 14:24:34', 'SUPORTE-DELL', '::1'),
-(83, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou permissão do usuário 1', '2019-11-18 14:24:43', 'SUPORTE-DELL', '::1'),
-(84, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou permissão do usuário 1', '2019-11-18 14:24:51', 'SUPORTE-DELL', '::1'),
-(85, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou permissão do usuário 1', '2019-11-18 14:24:57', 'SUPORTE-DELL', '::1'),
-(86, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou permissão do usuário 1', '2019-11-18 14:25:17', 'SUPORTE-DELL', '::1'),
-(87, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou Augusto Araújo111', '2019-11-18 14:29:14', 'SUPORTE-DELL', '::1'),
-(88, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou Augusto Araújo111', '2019-11-18 14:29:21', 'SUPORTE-DELL', '::1'),
-(89, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou Augusto Araújo111', '2019-11-18 14:29:42', 'SUPORTE-DELL', '::1'),
-(90, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou senha do usuário: ', '2019-11-18 14:42:32', 'SUPORTE-DELL', '::1'),
-(91, 'Augusto Araújo', 'Alterou', 'Usuarios', 'Alterou senha do usuário: $', '2019-11-18 14:44:22', 'SUPORTE-DELL', '::1'),
-(92, 'Augusto Araújo', 'Saiu', 'Usuário', 'Augusto Araújo saiu do sistema', '2019-11-18 14:44:40', 'SUPORTE-DELL', '::1'),
-(93, 'Augusto Araújo111', 'Entrou', 'Usuário', 'Usuário entrou no sistema', '2019-11-18 14:44:53', 'SUPORTE-DELL', '::1'),
-(94, 'Augusto Araújo111', 'Alterou', 'Usuarios', 'Alterou senha do usuário: Augusto Araújo111', '2019-11-18 14:45:00', 'SUPORTE-DELL', '::1'),
-(95, 'Augusto Araújo111', 'Alterou', 'Usuarios', 'Alterou senha do usuário: Augusto Araújo111', '2019-11-18 14:55:39', 'SUPORTE-DELL', '::1'),
-(96, 'Augusto Araújo111', 'Saiu', 'Usuário', 'Augusto Araújo111 saiu do sistema', '2019-11-18 14:55:42', 'SUPORTE-DELL', '::1'),
-(97, 'Augusto Araújo111', 'Entrou', 'Usuário', 'Usuário entrou no sistema', '2019-11-18 14:55:54', 'SUPORTE-DELL', '::1'),
-(98, 'Augusto Araújo111', 'Cadastrou', 'Usuário', 'Usuário cadastrou usuário novo ', '2019-11-18 15:18:24', 'SUPORTE-DELL', '::1'),
-(99, 'Augusto Araújo111', 'Cadastrou', 'Usuário', 'Usuário cadastrou usuário novo ', '2019-11-18 15:22:07', 'SUPORTE-DELL', '::1'),
-(100, 'Augusto Araújo', 'Cadastrou', 'Usuário', 'Usuário cadastrou usuário novo ', '2019-11-18 15:22:37', 'SUPORTE-DELL', '::1');
+(50, '', 'Saiu', 'Usuário', ' saiu do sistema', '2019-11-18 12:12:17', 'SUPORTE-DELL', '::1');
 -- --------------------------------------------------------
 --
 -- Estrutura da tabela `permissoes`
@@ -220,8 +153,8 @@ INSERT INTO `permissoes` (`idPermissao`, `id_usuario`, `item`, `valor`) VALUES
 (3, 1, 'pdv', 'ativo'),
 (4, 1, 'vendas', 'ativo'),
 (5, 1, 'vencimentos', 'ativo'),
-(6, 1, 'estoqueminimo', 'ativo'),
-(7, 1, 'estoque', 'ativo'),
+(6, 1, 'estoque', 'ativo'),
+(7, 1, 'produto', 'ativo'),
 (8, 1, 'pdv', 'ativo'),
 (9, 2, 'dados-empresa', 'ativo'),
 (10, 2, 'permissoes', 'ativo'),
@@ -229,8 +162,8 @@ INSERT INTO `permissoes` (`idPermissao`, `id_usuario`, `item`, `valor`) VALUES
 (12, 2, 'pdv', 'ativo'),
 (13, 2, 'vendas', 'ativo'),
 (14, 2, 'vencimentos', 'ativo'),
-(15, 2, 'estoqueminimo', 'ativo'),
-(16, 2, 'estoque', 'ativo'),
+(15, 2, 'estoque', 'ativo'),
+(16, 2, 'produto', 'ativo'),
 (17, 2, 'pdv', 'ativo'),
 (18, 2, 'dados-empresa', 'ativo');
 -- --------------------------------------------------------
@@ -330,7 +263,24 @@ INSERT INTO `vendas` (`id`, `id_venda`, `codigobarra`, `nome_produto`, `quantida
 (29, '02122019171211', '111', 'Feijão preto', '1.00', '4.50', '4.50', 1, '2019-12-02', 1, 'fechada'),
 (30, '02122019171250', '111', 'Feijão preto', '1.00', '4.50', '4.50', 1, '2019-12-02', 1, 'fechada');
 
-ALTER TABLE `caixa` CHANGE `id` `idProduto` INT(255) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `permissoes` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`idUsuario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE `vendas` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`idUsuario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE `movcaixa` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`idUsuario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- --------------------------------------------------------
+--
+-- Estrutura da tabela `estoque`
+--
+CREATE TABLE IF NOT EXISTS `estoque` (
+  `idestoque` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `id_produto` int(255) NOT NULL,
+  `saldo` varchar(50) NOT NULL,
+  `dataEntrada` datetime,
+  `dataSaida` datetime,
+  `id_usuario` int
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+ALTER TABLE `estoque` ADD FOREIGN KEY (`id_produto`) REFERENCES `produtos`(`idProduto`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `estoque` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`idUsuario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+INSERT INTO `estoque` (`idestoque`, `id_produto`, `saldo`, `dataEntrada`, `dataSaida`, `id_usuario`) VALUES (NULL, '1', '10', '2020-01-22 00:00:00', '2020-01-22 00:00:00', '2');
