@@ -22,7 +22,7 @@ VALUES ('$codigo','$caixa','$idvenda','$valor_cartao','$valor_dinheiro','$valor_
 '$valor_troco','$iduser',NOW(),'$situacao')") or die (mysqli_error($conexao));
 
 /* fechar vendas */
-mysql_query("UPDATE vendas SET situacao='$situacao' WHERE id_venda='$idvenda'") or die (mysql_error());
+mysqli_query($conexao,"UPDATE vendas SET situacao='$situacao' WHERE id_venda='$idvenda'") or die (mysql_error($conexao));
 
     //logs
     $sql = mysqli_query($conexao,"INSERT INTO logs 

@@ -195,7 +195,7 @@ echo'
 
 <!-- modal-addproduto-->
 <div class="modal" id="modal-addprodutovenda" tabindex="-1">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">Adicionar produto</h5>
@@ -326,3 +326,7 @@ jQuery('#imprimirCupom').fancybox({
     }
 });
 </script>
+
+<style>
+
+</style>

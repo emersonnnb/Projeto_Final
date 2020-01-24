@@ -1,9 +1,9 @@
 <?php 
 include('conexao.php');
 include('funcoes.php'); 
-$sql_emp = mysql_query("SELECT * FROM empresa WHERE id_empresa=1") or die (mysql_error());
-$dados_emp = mysql_fetch_array($sql_emp);
-$sql = mysql_query("SELECT * FROM vendas WHERE id_venda='".$_GET['id']."'") or die (mysql_error());
+$sql_emp = mysqli_query($conexao,"SELECT * FROM empresa WHERE id_empresa=1") or die (mysqli_error($conexao));
+$dados_emp = mysqli_fetch_array($sql_emp);
+$sql = mysqli_query($conexao,"SELECT * FROM vendas WHERE id_venda='".$_GET['id']."'") or die (mysqli_error($conexao));
 ?>
 <style>@media print{.no-print{ display:none;}}</style>
 <?php
@@ -16,7 +16,7 @@ echo '
 <table class="table table-hover text-center" style="font-size:10px; font-family:Arial, sans-serif;">
 	<thead>
 	<tr>
-		<th>Nº</th>
+		<th>N</th>
 		<th>Produto</th>
 		<th>Quant</th>
 		<th>Valor UND</th>
@@ -26,7 +26,7 @@ echo '
 	<tbody>';
 	$item = 1;
 	$total = 0;
-	while($dados = mysql_fetch_array($sql)){
+	while($dados = mysqli_fetch_array($sql)){
 	echo'		
 		<tr>
 			<td>'.$item.'</td>

@@ -7,13 +7,12 @@ echo'
 <table id="example" class="display" style="width:100%">
     <thead>
         <tr>
-        <th>Cod</th>
+        <th>Codigo</th>
         <th>Nome</th>
         <th>Unidade</th>
-        <th>Preço compra</th>
-        <th>Preço venda</th>
-        <th>Est.Minimo</th>
-        <th>Est.Atual</th>
+        <th>Pre�o venda</th>
+        <th>Estoque.Atual</th>
+        <th>Status</th>
         </tr>
     </thead>
     <tbody>';
@@ -23,11 +22,9 @@ echo'
         <td>'.$dados_p['idProduto'].'</td>
         <td>'.$dados_p['nome'].'</td>
         <td>'.$dados_p['unidade'].'</td>
-        <td>R$ '.Real($dados_p['precocompra']).'</td>
         <td>R$ '.Real($dados_p['precovenda']).'</td>
-        <td>'.$dados_p['estoqueminimo'].'</td>
         <td>'.$dados_p['estoqueatual'].'</td>
-        
+        <td>';if($dados_p['status'] == 0){echo 'Bloqueado';}else{echo'Liberado';}echo'</td>
         </tr>';}
         echo'
     </tbody>
