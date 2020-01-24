@@ -25,7 +25,7 @@ echo'
                 </div> ';}
                 if(PermissaoCheck('usuarios',$_SESSION['iduser'])=='checked'){echo'
                 <div class="col-lg-2">
-                    <a onclick="usuarios()" class="btn btn-outline-info"><i class="fa fa-user fa-3x"></i><br>Usu�rio</a>
+                    <a onclick="usuarios()" class="btn btn-outline-info"><i class="fa fa-user fa-3x"></i><br>Usua   rio</a>
                 </div>';}
                 echo'
             </div>

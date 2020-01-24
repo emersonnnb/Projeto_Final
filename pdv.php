@@ -241,7 +241,7 @@ jQuery('#codigoProduto').submit(function(){
 //modal lista
     //form-addproduto
     $(document).keyup(function(ev){
-    if(ev.which == 119) { //numero da tecla ALT 
+    if(ev.which == 119) { //numero da tecla F8
         $('#botaomodal').trigger('click')
     }
     });
@@ -251,7 +251,7 @@ jQuery('#codigoProduto').submit(function(){
     function tabelaEstoque(){
         jQuery.ajax({
             type:'POST',
-            url:'tabela-estoque.php',
+            url:'tabela-lista.php',
             data:'html',
             success:function(data){jQuery('#tabelaEstoque').html(data);}
         });
@@ -326,3 +326,7 @@ jQuery('#imprimirCupom').fancybox({
     }
 });
 </script>
+
+<style>
+
+</style>
