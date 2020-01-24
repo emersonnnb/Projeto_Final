@@ -1,5 +1,5 @@
 <?php
-ob_start();//inicia a gravação do buffer quando conlcuir o processamento do php ai a página é mostrada
+ob_start();//inicia a gravaï¿½ï¿½o do buffer quando conlcuir o processamento do php ai a pï¿½gina ï¿½ mostrada
 session_start();
 include('conexao.php'); 
 include('funcoes.php');
@@ -56,6 +56,7 @@ echo'
       <div class="col-lg-3 divRetorno" id="retorno"></div>
     </div>
     
+    
 <!-- modal-empresa-->
 <div class="modal" id="modal-empresa" tabindex="-1">
     <div class="modal-dialog modal-lg" role="document">
@@ -72,14 +73,7 @@ echo'
                 <label class="col-lg-6"><input type="text" class="form-control" name="nome_empresa" value="'.@$dados_emp['nome_empresa'].'" placeholder="Nome empresa"/></label>
 
                 <label class="col-lg-4"><input type="number" class="form-control" name="cpf_cnpj" value="'.@$dados_emp['cpf_cnpj'].'" placeholder="CPF ou CNPJ"/></label>
-<<<<<<< HEAD
-
-
                 <label class="col-lg-6"><input type="text" class="form-control" name="endereco_empresa" value="'.@$dados_emp['endereco_empresa'].'" placeholder="Rua e nï¿½mero"/></label>
-
-=======
-                <label class="col-lg-6"><input type="text" class="form-control" name="endereco_empresa" value="'.@$dados_emp['endereco_empresa'].'" placeholder="Rua e número"/></label>
->>>>>>> a95235e67f008749db6decc69b236112f4a2d96d
                 <label class="col-lg-4"><input type="text" class="form-control" name="bairro_empresa" value="'.@$dados_emp['bairro_empresa'].'"placeholder="Bairro"/></label>
                 <label class="col-lg-4"><input type="text" class="form-control" name="cidade_empresa" value="'.@$dados_emp['cidade_empresa'].'" placeholder="Cidade"/></label>
                 <label class="col-lg-2"><input type="text" class="form-control" name="uf_empresa" value="'.@$dados_emp['uf_empresa'].'" placeholder="UF"/></label>

@@ -1,6 +1,6 @@
 <?php
 
-//permissao atualzia��o //recebe informa��es vindas do array de permiss�o
+//permissao atualziaçao //recebe informaçaes vindas do array de permissao
 function Permissao($item,$id){
 global $conexao;
 $sql=mysqli_query($conexao,"select * from permissoes where id_usuario='".$id."' and item='".$item."' ");	
@@ -8,14 +8,14 @@ if(mysqli_num_rows($sql)>=1){mysqli_query($conexao,"update permissoes set valor=
 else{mysqli_query($conexao,"insert into permissoes (id_usuario,item,valor) VALUES ('$id','$item','ativo') ");}
 };
 
-//fun��o verifica se existem libera��o apra acesso ao menu
+//funçao verifica se existem liberaçao apra acesso ao menu
 function PermissaoCheck($item,$id){
 global $conexao;
 $sql=mysqli_query($conexao,"select * from permissoes where id_usuario='".$id."' and item='".$item."' and valor='ativo' ");	
 if(mysqli_num_rows($sql)>=1){ return 'checked';}
 };
 
-//fun��o limpa ponto e tra�o
+//funçao limpa ponto e traço
 function limpaCPF_CNPJ($valor){
 $valor = trim($valor);
 $valor = str_replace(".", "", $valor);
@@ -65,13 +65,13 @@ switch (date("m")) {
 function idadeCerta($nascimento){
     // Declara a data! :P
     $data = $nascimento;
-    // Separa em dia, m�s e ano
+    // Separa em dia, més e ano
     list($dia, $mes, $ano) = explode('-', $data);
-    // Descobre que dia � hoje e retorna a unix timestamp
+    // Descobre que dia é hoje e retorna a unix timestamp
     $hoje = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
     // Descobre a unix timestamp da data de nascimento do fulano
     $nascimento = mktime( 0, 0, 0, $mes, $dia, $ano);
-    // Depois apenas fazemos o c�lculo j� citado :)
+    // Depois apenas fazemos o calculo ja citado :)
     $idade = floor((((($hoje - $nascimento) / 60) / 60) / 24) / 365.25);
     return $idade;
 };

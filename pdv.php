@@ -1,3 +1,4 @@
+  
 <?php 
 include('topo.php');
 ob_start();
@@ -34,18 +35,22 @@ echo'
 </head>
 
 <body style="background-color:#ecf0f1;overflow: hidden; height:auto">
+
 <input type="text" class="hidden" id="idvenda" alt="'.@$id_venda.'" value="'.@$id_venda.'"/>
-
-<div class="main2" style="background-color:#ecf0f1" ><br>
-
+<div class="main" style="background-color:#ecf0f1" ><br>
 <div class="col-lg-4">
 
   </div>
     <div class="jumbotron" style="margin: 1px; width: auto; height:600px;">
+    
         <div class="row" style="margin-top: -30px;" >
+
             <div class="col-lg-4" style="border: 1px solid red; padding:5px; height:550px; overflow-y:auto; overflow-x:hidden">
+
                 <div class="row">
+
                     <div class="col-lg-" style="font-size: 31px; text-align:height;">
+
                         <table class="table table-hover">
                             <!-- css --!>
                             <tbody>';
@@ -87,6 +92,39 @@ echo'
   </i>&nbsp;&nbsp;<i class="fa fa-sitemap text-success"></i>
    (F10->Sair / F7->Menu / F8->Lista )</h5>
 </div>
+    
+
+<!-- Input do tipo hidden para disparar o evento  -->
+<input type="hidden" id="botaomodal"  data-toggle="modal" data-target="#exampleModal">
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Lista de Produtos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="page-header" id="banner" style="border: 1px solid black; padding: 10px;">
+            <div id="tabelaEstoque"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+
 
 <!-- imprimir cupon -->
 <a id="imprimirCupom" data-fancybox data-type="iframe" data-src="imprimir-comprovante.php?id='.@$_GET['imprimir'].'" target="_blank" class="hidden btn btn-primary btn-block"><i class="fa fa-2x fa-print"></i> Imprimir</a>
@@ -136,6 +174,27 @@ jQuery('#codigoProduto').submit(function(){
     return false;
 });
 
+//modal lista
+    //form-addproduto
+    $(document).keyup(function(ev){
+    if(ev.which == 119) { //numero da tecla ALT 
+        $('#botaomodal').trigger('click')
+    }
+    });
+    //fun��o tabela
+    jQuery(document).ready(function(){tabelaEstoque();});
+    //exibir tabela
+    function tabelaEstoque(){
+        jQuery.ajax({
+            type:'POST',
+            url:'tabela-estoque.php',
+            data:'html',
+            success:function(data){jQuery('#tabelaEstoque').html(data);}
+        });
+        return false;
+    };
+
+
 //aqui tu adiciona quem pode alterar tua fun��o mostratotal()
 jQuery('#valorCartao,#valorDinheiro').keyup(function(){ mostraTotal();});
 
@@ -159,6 +218,7 @@ function mostraTotal(){
     valorTroco = totalRecebido - getMoney(totalCompra);
     jQuery('#valorTroco').val(formatReal(valorTroco));
 };
+
 
 //aqui tu converte real em moeda
 function getMoney(str){ 
@@ -185,7 +245,7 @@ function formatReal( int ){
 //fun��es nas teclas
 document.onkeyup=function(e){
     if(e.which == 121){window.location.href="sair.php";}
-    if(e.which == 118){window.location.href="index.php";}
+    if(e.which == 118){window.location.href="index.php";}  
   return false;
 };
 //imprimir cupom de venda
