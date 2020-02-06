@@ -1,0 +1,132 @@
+.footer{
+    background-color: #000;
+    color: #BEBEBE;
+	width:100%;
+	bottom:0;
+	position:relativo;
+	clear:both;
+	margin-top:2em;
+	
+}
+
+.footer .row {
+    margin-bottom: 3em;
+}
+
+.footer .info{
+    text-align: justify; 
+    color: #9D9D9D;
+}
+
+.footer ul {
+    list-style-type: none;
+    padding-left: 0;
+    line-height: 1.7;
+	 color: #9D9D9D;
+}
+
+.footer h5 {
+    font-size: 18px;
+    color: #9D9D9D;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.footer .logo{
+    margin-top: 10px;
+}
+
+.footer .second-bar .logo a{
+     color: #9D9D9D;
+    font-size: 28px;
+    float: left;
+    font-weight: bold;
+    line-height: 68px;
+    margin: 0;
+    padding: 0;
+}
+
+.footer a {
+     color: #9D9D9D;
+    text-decoration: none;
+}
+
+.footer a:hover,
+.footer a:focus {
+    text-decoration: none;
+    color:#FFF;
+	background-color:#000;
+}
+
+.footer .second-bar {
+    text-align: center;
+    background-color: #000;
+    text-align: center;
+}
+
+.footer .second-bar a {
+    font-size: 22px;
+     color: #BEBEBE;
+    padding: 10px;
+    transition: 0.2s;
+    line-height: 68px;
+}
+
+.footer .second-bar a:hover {
+    text-decoration: none;
+}
+
+.footer .social-icons {
+    float:right;
+}
+
+
+.footer .facebook:hover {
+     color: #BEBEBE;
+}
+
+.footer .google:hover {
+     color: #BEBEBE;
+}
+
+.footer.twitter:hover {
+     color: #BEBEBE;
+}
+
+@media screen and (max-width: 767px) {
+    .footer {
+        text-align: center;
+    }
+
+    .footer.info{
+        text-align: center;
+    }
+}
+
+
+
+/* CSS used for positioning the footers at the bottom of the page. */
+/* You can remove this. */
+
+html{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    height: 100%;
+}
+
+.content{
+   flex: 1 0 auto;
+   -webkit-flex: 1 0 auto;
+   min-height: 200px;
+}
+
+.footer{
+   flex: 0 0 auto;
+   -webkit-flex: 0 0 auto;
+}
