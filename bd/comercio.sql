@@ -20,13 +20,9 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-DROP DATABASE IF EXISTS `comercio`;
+
 --
 DROP DATABASE IF EXISTS comercio;
-
-CREATE DATABASE comercio;
- 
-USE comercio;
 --
 CREATE DATABASE `comercio`;
 -- --------------------------------------------------------
@@ -36,7 +32,7 @@ use `comercio`;
 --
 
 CREATE TABLE `acesso_restrito` (
-  `pk_restrito` int(11) NOT NULL,
+  `id_restrito` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `telefone` varchar(255) NOT NULL,
@@ -48,8 +44,8 @@ CREATE TABLE `acesso_restrito` (
 -- Extraindo dados da tabela `acesso_restrito`
 --
 
-INSERT INTO `acesso_restrito` (`pk_restrito`, `nome`, `email`, `telefone`, `login`, `senha`) VALUES
-(1, 'Administrador', '(21) 0000-0000', 'admin@admin.com', 'admin', '123');
+INSERT INTO `acesso_restrito` (`id_restrito`, `nome`, `email`, `telefone`, `login`, `senha`) VALUES
+(1, 'Administrador', 'admin@admin.com', '(21)0000-0000', 'admin', '40bd001563085fc35165329ea1ff5c5ecbdbbeef');
 
 -- --------------------------------------------------------
 
@@ -58,7 +54,7 @@ INSERT INTO `acesso_restrito` (`pk_restrito`, `nome`, `email`, `telefone`, `logi
 --
 
 CREATE TABLE `cliente` (
-  `codcliente` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
   `nome` varchar(40) NOT NULL,
   `cpf` varchar(14) NOT NULL,
   `dtnasc` date NOT NULL,
@@ -80,7 +76,7 @@ CREATE TABLE `cliente` (
 -- Extraindo dados da tabela `cliente`
 --
 
-INSERT INTO `cliente` (`codcliente`, `nome`, `cpf`, `dtnasc`, `identidade`, `cep`, `endereco`, `numero`, `complemento`, `bairro`, `cidade`, `estado`, `email`, `senha`, `celular`, `imagem`) VALUES
+INSERT INTO `cliente` (`id_cliente`, `nome`, `cpf`, `dtnasc`, `identidade`, `cep`, `endereco`, `numero`, `complemento`, `bairro`, `cidade`, `estado`, `email`, `senha`, `celular`, `imagem`) VALUES
 (9, 'Maria', '2000-03-20', '0000-00-00', '1003240932', '20030-041', 'Rua Santa Luzia', '323', '2323', 'Centro', 'Rio de Janeiro', 'RJ', 'pedro@gmail.com', '123', '3424334', '359e26dfb685a25e7bcbfa744c5543f5.jpg'),
 (10, 'Marcos', '2000-02-10', '0000-00-00', '0-40-43-0', '21220310', 'Estrada Coronel Vieira', '33', '33', 'IrajÃÂ¡', 'Rio de Janeiro', 'RJ', 'marcos@gmail.com', '123', '123443', '1423f8d3adade1fe7ec05a1b21d7b211.jpg'),
 (11, 'Maria', '2000-02-20', '0000-00-00', '90909009', '21512340', 'Beco SÃÂ£o Pedro', '22', '22', 'Costa Barros', 'Rio de Janeiro', 'RJ', 'maria@gmail.com', '123', '323232', '5c4e10ec30e9cb0d58aa010cfe6b7873.jpg'),
@@ -94,12 +90,12 @@ INSERT INTO `cliente` (`codcliente`, `nome`, `cpf`, `dtnasc`, `identidade`, `cep
 --
 
 CREATE TABLE `pedido` (
-  `codpedido` int(11) NOT NULL,
+  `id_pedido` int(11) NOT NULL,
   `qtd` int(11) NOT NULL,
   `sub` float(10,2) NOT NULL,
   `total` float(10,2) NOT NULL,
-  `codcliente` int(11) NOT NULL,
-  `codproduto` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `id_produto` int(11) NOT NULL,
   `datacompra` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -107,7 +103,7 @@ CREATE TABLE `pedido` (
 -- Extraindo dados da tabela `pedido`
 --
 
-INSERT INTO `pedido` (`codpedido`, `qtd`, `sub`, `total`, `codcliente`, `codproduto`, `datacompra`) VALUES
+INSERT INTO `pedido` (`id_pedido`, `qtd`, `sub`, `total`, `id_cliente`, `id_produto`, `datacompra`) VALUES
 (1, 1, 199.00, 199.00, 9, 2, '2019-08-10'),
 (2, 1, 250.00, 449.00, 9, 3, '2019-08-10'),
 (3, 2, 500.00, 500.00, 9, 3, '2019-08-10'),
@@ -120,7 +116,7 @@ INSERT INTO `pedido` (`codpedido`, `qtd`, `sub`, `total`, `codcliente`, `codprod
 --
 
 CREATE TABLE `produto` (
-  `codproduto` int(11) NOT NULL,
+  `id_produto` int(11) NOT NULL,
   `descricao` varchar(150) NOT NULL,
   `categoria` varchar(100) NOT NULL,
   `preco` varchar(12) NOT NULL,
@@ -131,7 +127,7 @@ CREATE TABLE `produto` (
 -- Extraindo dados da tabela `produto`
 --
 
-INSERT INTO `produto` (`codproduto`, `descricao`, `categoria`, `preco`, `imagem`) VALUES
+INSERT INTO `produto` (`id_produto`, `descricao`, `categoria`, `preco`, `imagem`) VALUES
 (1, 'Kit para Arduino', 'Kits DidÃÂ¡ticos', '67', 'kitarduino.png'),
 (2, 'Kit Iniciante V8 para Arduino', 'Kits Didáticos', '199.00', 'kitiniciantev8.png'),
 (3, 'Kit Avancado V4 para Arduino', 'Kits Didáticos', '250.00', 'kitavancadov4.png'),
@@ -217,7 +213,7 @@ INSERT INTO `produto` (`codproduto`, `descricao`, `categoria`, `preco`, `imagem`
 --
 
 CREATE TABLE `usuario` (
-  `codusuario` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `celular` varchar(15) NOT NULL,
   `email` varchar(40) NOT NULL,
@@ -228,7 +224,7 @@ CREATE TABLE `usuario` (
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`codusuario`, `nome`, `celular`, `email`, `senha`) VALUES
+INSERT INTO `usuario` (`id_usuario`, `nome`, `celular`, `email`, `senha`) VALUES
 (1, 'Ana', '215905409590', 'ana@gmail.com', '123'),
 (2, 'Maria', '210949034390', 'maria@gmail.com', '123'),
 (3, 'JosÃÂ©', '2109493490', 'jose@gmail.com', '123'),
@@ -243,33 +239,33 @@ INSERT INTO `usuario` (`codusuario`, `nome`, `celular`, `email`, `senha`) VALUES
 -- Indexes for table `acesso_restrito`
 --
 ALTER TABLE `acesso_restrito`
-  ADD PRIMARY KEY (`pk_restrito`);
+  ADD PRIMARY KEY (`id_restrito`);
 
 --
 -- Indexes for table `cliente`
 --
 ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`codcliente`);
+  ADD PRIMARY KEY (`id_cliente`);
 
 --
 -- Indexes for table `pedido`
 --
 ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`codpedido`),
-  ADD KEY `codproduto` (`codproduto`),
-  ADD KEY `codcliente` (`codcliente`);
+  ADD PRIMARY KEY (`id_pedido`),
+  ADD KEY `codproduto` (`id_produto`),
+  ADD KEY `codcliente` (`id_cliente`);
 
 --
 -- Indexes for table `produto`
 --
 ALTER TABLE `produto`
-  ADD PRIMARY KEY (`codproduto`);
+  ADD PRIMARY KEY (`id_produto`);
 
 --
 -- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`codusuario`);
+  ADD PRIMARY KEY (`id_usuario`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -279,31 +275,31 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `acesso_restrito`
 --
 ALTER TABLE `acesso_restrito`
-  MODIFY `pk_restrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_restrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `codcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `codpedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `codproduto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `codusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -313,10 +309,11 @@ ALTER TABLE `usuario`
 -- Limitadores para a tabela `pedido`
 --
 ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`codproduto`) REFERENCES `produto` (`codproduto`),
-  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`codcliente`) REFERENCES `cliente` (`codcliente`);
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id_produto`),
+  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
