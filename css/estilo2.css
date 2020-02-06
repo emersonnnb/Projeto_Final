@@ -18,12 +18,12 @@
 .btn-danger:hover{
 
   /*background-color: rgba(221, 25, 25, 0.918) !important;*/
-  background-color: white !important;*
+  background-color: white !important;
   color: #ffffff;
 }
 
 .bg-light {
-    background: linear-gradient(to right, #c0c0c0 0%, #000000 100%);
+  background: linear-gradient(to right, #c0c0c0 0%, #000000 100%);
   color: #ffffff;
 }
 .navbar-light .navbar-nav .nav-link {
@@ -51,7 +51,7 @@ a.nav-link{
   padding: 8px;
 }
 #cartoes {
-  max-width: 20ch;
+  max-width: 25ch;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -82,9 +82,15 @@ object-fit: fill;
   }
 
 /*fim da pagina de alteração*/
+.header2{
+  margin: auto;
+  width: 100%;
+  bottom: 0;
+  position: fixed;
+}
 
 .footer{
-	background-color:#000000;
+	background: linear-gradient(to right, #c0c0c0 0%, #000000 100%);
 	color:#FFFFFF;
 }
 /* CSS Document */
