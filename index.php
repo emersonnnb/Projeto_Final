@@ -3,7 +3,7 @@
 <?php
 include('conexao.php');
 $sql = "select * from produto";
-$sql2 = "SELECT * FROM produto where preco <=200";
+$sql2 = "SELECT * FROM produto where preco <=100";
 $resultado2 = mysqli_query($conexao,$sql2);
 $resultado = mysqli_query($conexao,$sql);
 include 'header2.php';
@@ -93,35 +93,39 @@ include 'header2.php';
 </div>
 
 <section class="container row-fluid">
+<br>
    <div class="frase">
-    <h3>Produtos com descontos especiais abaixo de R$ 200,00</h3>
+    <h3>Produtos com descontos especiais abaixo de R$ 100,00</h3>
     <hr>
     <div class="row">
-        <?php
-         $i = 1;
-         do {
-          ($dados = mysqli_fetch_array($resultado2)); 
-           ?>
-    <div class="col-lg-2 container">
-        <div class="thumbnail">
-            <a href="produtop.php?codproduto=<?= $dados['codproduto']; ?>">
-			<img src="fotosprodutos/<?= $dados['imagem']; ?>"  alt="" class="img-fluid"></a>
-        </div>
-          <h5><?php echo $dados['descricao']; ?></h5>
-          <p><?php echo $dados['categoria']; ?></p>
-		<p><?php echo "R$ "; echo $dados['preco']; ?></p>
-    </div>
-                
-   <?php
-        $i++;
-     } while ($i<12);
-   ?>
+        <?php 
+        $i = 1;
+        do {
+            ($dados = mysqli_fetch_array($resultado2)); 
+		?>
+        <div class="col-sm-3">
+         <a href="produtop.php?codproduto=<?= $dados['codproduto']; ?>">
+            <div class="card"   >
+              <div class="card-body">
+                <img class="card-img-top" src="fotosprodutos/<?= $dados['imagem']; ?>" style="width:80%;" alt="Card image cap"> 
+               
+                <p id='cartoes' class="card-title"><b><?php echo $dados['descricao'] ?></b></p>
+                  <p class="card-text"><strong><?php echo $dados['categoria'] ?></strong></p>
+                  <h5><p class="cart-text">POR: R$ <?php echo $dados['preco'] ?></p></h5>
+                  <a href="carrinho.php?acao=add&codproduto=<?= $dados['codproduto']; ?>" id="botao" class="btn btn-danger" role="button" value="<?= $dados['codproduto']; ?>">Comprar</a>
 
-    </div>
+                </div>
+           </div></a>
+        </div>
+        <?php 
+         $i++;
+        } while ($i<9); ?>
+      </div>
    </div>
+   <br>
 </section>
 
 
-<?php include "footer.php";?>
+<?php include "include/footer.php";?>
 
 

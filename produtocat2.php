@@ -2,6 +2,7 @@
 include "header2.php";
 include "conexao.php";
 ?>
+<hr>
 <div class="container" style="width:100%;">
         <div class="row">
             <div class="col-sm-6 col-md-6">
@@ -15,7 +16,8 @@ include "conexao.php";
           </div>
 		      <button type="submit" class="btn btn-danger">Pesquisar</button>
 			  </form>
-			</div>
+      </div>
+      <hr>
 		<!--Imagens diretas do banco-->       
 <?php
 		// select * from nometabela retorna todos os produtos//
