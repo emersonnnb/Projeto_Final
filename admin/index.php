@@ -14,9 +14,9 @@
 
 <body>
     <div class="container tamanho-largura">
-        <h2 class="text-center">GAP-SISTEMAS</h2>
+        <h2 class="text-center">ACESSO RESTRITO</h2>
         <div class="d-flex justify-content-center">
-            <img src="img/cadeado.png" width="125px" height="125px" alt="">
+            <img src="img/restrito.png" width="125px" height="125px" alt="">
         </div>
         <form action="logar.php" method="POST">
             <div class="form-group">
@@ -30,9 +30,9 @@
                 <input class="form-control" type="password" name="senha" placeholder="Digite sua senha"
                     autocomplete="off" required />
             </div>
-            <button type="submit" class="btn btn-primary btn-lg btn-block ">Entrar</button>        
+            <button type="submit" class="btn btn-primary btn-lg btn-block " style="background-color: red; border:none">Entrar</button>        
         </form><br>
-        <a href="../index.php" class="btn btn-info btn-lg" role="button" aria-disabled="true">Home</a>
+        <a href="../index.php" class="btn btn-info btn-lg" style="background-color: black; border:none" role="button" aria-disabled="true">Home</a>
 
     </div>
 </body>
