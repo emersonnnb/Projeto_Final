@@ -59,6 +59,7 @@
           <li><a href="produtocat.php">Ferramentas</a></li>
           <li><a href="produtocat2.php">Novidades</a></li>
           <li><a href="produtocat3.php">Embarcados</a></li>
+          <li><a href="produtocat4.php">Moveis</a></li>
         </ul>
       </li>
 	  	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Cadastros <span class="caret"></span></a>
