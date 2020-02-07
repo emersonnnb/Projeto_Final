@@ -8,7 +8,7 @@ require('includes/header.php');
     <div class="list-group-item">
         <div class="d-flex">
             <div class="mr-auto p-2">
-                <h2 class="display-4 titulo">Cadastrar Usuário</h2>
+                <h2 class="display-4 titulo">Cadastrar</h2>
                 <hr>
             </div>
         </div>

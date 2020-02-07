@@ -27,8 +27,7 @@
 	           </div>
 	           <div class="col-md-2">
 	          
-	              <div class="navbar navbar-inverse" role="banner">
-				  
+	              <div class="navbar navbar-inverse" role="banner">				  
 	                  <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
 	                    <ul class="nav navbar-nav">
 	                      <li class="dropdown">
@@ -55,15 +54,13 @@
     <li class="submenu">
     
        
-	   Área do Cliente
-       
+	   Área do Cliente       
 	  
     					
 	
 	<li><a href="listacliente.php"><i class="icon-inbox"></i>Dados cliente </a></li>
 	<li><a href="finalizarcompra.php"><i class="icon-inbox"></i>Finalizar compra </a></li>
-	<li><a href="pedidos2.php"><i class="icon-inbox"></i>Meus Pedidos </a></li>
-	
+	<li><a href="pedidos2.php"><i class="icon-inbox"></i>Meus Pedidos </a></li>	
 	
 	</li>  
 					

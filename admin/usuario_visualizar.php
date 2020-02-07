@@ -11,8 +11,6 @@ if (isset($_GET['id'])) :
 endif;
 ?>
 
-?>
-<!-- Formulario de cadastro  -->
 <div class="content p-1">
     <div class="list-group-item">
         <div class="d-flex">

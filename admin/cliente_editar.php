@@ -1,182 +1,174 @@
 <?php
-$page = 'listar_cliente';
 session_start();
-require('includes/header.php');
+$page = 'listar_cliente';
+require('includes/header.php'); 
 include('conexao/conexao.php');
-
-if(isset($_GET['id_cliente']) && !empty($_GET['id_cliente'])):
-	    $id_cliente = $_REQUEST['cliente'];
-		$sql = "select * from cliente where id_cliente=$id_cliente";
-		$consulta = mysqli_query($conexao, $sql);
-		$dados = mysqli_fetch_array($consulta);
+if(isset($_GET['id'])):
+	$id = mysqli_escape_string($conexao, $_GET['id']);
+	$sql = "SELECT * FROM cliente WHERE id_cliente = '$id'";
+	$resultado = mysqli_query($conexao, $sql);
+	$dados = mysqli_fetch_array($resultado);
 endif;
-
-if (isset($_GET['alterar'])) {
-    // Recupera os dados dos campos
-    $nome = $_POST['nome'];
-	$email = $_POST['email'];
-	$cpf = $_POST['cpf'];
-	$rg = $_POST['rg'];
-	$nascimento = $_POST['nascimento'];
-	$celular = $_POST['celular'];
-	$senha = $_POST['senha'];
-	$cep = $_POST['cep'];
-	$endereco = $_POST['endereco'];
-	$numero = $_POST['numero'];
-	$complemento = $_POST['complemento'];
-	$bairro = $_POST['bairro'];
-	$cidade = $_POST['cidade'];
-	$estado = $_POST['estado'];
-	$imagem = $_FILES["imagem"];
-    // Se a foto estiver sido selecionada
-if (!empty($imagem["name"])) {
-    // Largura máxima em pixels
-    $largura = 95000;
-    // Altura máxima em pixels
-    $altura = 980000;
-    // Tamanho máximo do arquivo em bytes
-    $tamanho = 1000000000;
-    $error = array();
-    // Verifica se o arquivo é uma imagem
-    if(!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $imagem["type"])){
-        $error[1] = "Isso não é uma imagem válida.";
-        } 
-    // Pega as dimensões da imagem
-    $dimensoes = getimagesize($imagem["tmp_name"]);
-    // Verifica se a largura da imagem é maior que a largura permitida
-    if($dimensoes[0] > $largura) {
-        $error[2] = "A largura da imagem não deve ultrapassar ".$largura." pixels";
-    }
-    // Verifica se a altura da imagem é maior que a altura permitida
-    if($dimensoes[1] > $altura) {
-        $error[3] = "Altura da imagem não deve ultrapassar ".$altura." pixels";
-    }	
-    // Verifica se o tamanho da imagem é maior que o tamanho permitido
-    if($imagem["size"] > $tamanho) {
-            $error[4] = "A imagem deve ter no máximo ".$tamanho." bytes";
-    }
-    // Se não houver nenhum erro
-    if (count($error) == 0) {
-        // Pega extensão da imagem
-        preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i", $imagem["name"], $ext);
-        // Gera um nome único para a imagem
-        $nome_imagem = md5(uniqid(time())) . "." . $ext[1];
-        // Caminho de onde ficará a imagem
-        $caminho_imagem = "fotoscliente/" . $nome_imagem;
-        // Faz o upload da imagem para seu respectivo caminho
-        move_uploaded_file($imagem["tmp_name"], $caminho_imagem);
-        // Insere os dados no banco
-$sql = "UPDATE cliente SET nome = '$nome',email = '$email', cpf = '$cpf',rg = '$rg', nascimento = '$nascimento',celular = '$celular',  senha = '$senha', cep = '$cep', endereco = '$endereco', numero = '$numero', complemento = '$complemento', bairro = '$bairro', cidade = '$cidade',estado = '$estado', imagem = '$nome_imagem' WHERE id_cliente= $id_cliente'";
-
-
-        $consulta = mysqli_query($conexao, $sql);
-        // Se os dados forem inseridos com sucesso
-        if ($sql){
-                echo "
-            <script type=\"text/javascript\">
-                alert(\"Alterado com Sucesso.\");
-            </script>
-        ";
-        }
-    }
-    // Se houver mensagens de erro, exibe-as
-    if (count($error) != 0) {
-        foreach ($error as $erro) {
-            echo $erro . "<br />";
-        }
-    }
-    }
-}
 ?>
 
-<body>
-<div class="container">
-  <h2>Alterar  cliente</h2>
-  
-<form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET" enctype="multipart/form-data" name="alterar" >
-<div class="row">
-                <div class="form-group col">
-                    <label for="nome">Nome Completo</label>
-                    <input type="text" class="form-control" id="nome" name="nome" maxlength="10" placeholder="Insira seu nome">
-                </div>
-                <div class="form-group col">
-                    <label for="email">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="example@example.com.br">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-lg-3">
-                    <label for="cpf">CPF</label>
-                    <input type="text" class="form-control" id="cpf" name="cpf" placeholder="xxx.xxx.xxx-xx">
-                </div>
-                <div class="form-group col-lg-3">
-                    <label for="rg">RG</label>
-                    <input type="text" class="form-control" id="rg" name="rg" placeholder="xxxxxxxx-x">
-                </div>
-                <div class="form-group col">
-                    <label for="nascimento">Data de nascimento</label>
-                    <input type="date" class="form-control" id="nascimento" name="nascimento">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-lg-6">
-                    <label for="senha">Celular</label>
-                    <input type="text" class="form-control" id="celular" name="celular" placeholder="+00(00)00000-0000">
-                </div>
-                <div class="form-group col-lg-6">
-                    <label for="senha">Senha</label>
-                    <input type="password" class="form-control" id="senha" name="senha" placeholder="senha">
-                </div>
-            </div>
-            <br>
-            <h5>Endereço</h5>
-            <HR>
-            <div class="row">
-                <div class="form-group col-lg-6 col-6">
-                    <label for="cep">Buscar pelo Cep</label>
-                    <input type="text" class="form-control" id="cep" name="cep" placeholder="Insira o CEP">
-                    <button class="btn btn-primary mt-2" type="button" id="buscaCEP">Buscar</button>
-                </div>
-            </div>
+    <!-- Adicionando JQuery -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Adicionando Javascript -->
+<script type="text/javascript" >
 
-            <div class="row ml-1">
-                <div class="form-group col-lg-4 col-12">
-                    <label for="endereco">Endereço</label>
-                    <input type="text" class="form-control" id="endereco" name="endereco" size="82" readonly>
+$(document).ready(function() {
+
+    function limpa_formulário_cep() {
+        // Limpa valores do formulário de cep.
+        $("#rua").val("");
+        $("#bairro").val("");
+        $("#cidade").val("");
+        $("#uf").val("");
+        $("#ibge").val("");
+    }
+    
+    //Quando o campo cep perde o foco.
+    $("#cep").blur(function() {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = $(this).val().replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                $("#rua").val("...");
+                $("#bairro").val("...");
+                $("#cidade").val("...");
+                $("#uf").val("...");
+                $("#ibge").val("...");
+
+                //Consulta o webservice viacep.com.br/
+                $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                    if (!("erro" in dados)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#rua").val(dados.logradouro);
+                        $("#bairro").val(dados.bairro);
+                        $("#cidade").val(dados.localidade);
+                        $("#uf").val(dados.uf);
+                        $("#ibge").val(dados.ibge);
+                    } //end if.
+                    else {
+                        //CEP pesquisado não foi encontrado.
+                        limpa_formulário_cep();
+                        alert("CEP não encontrado.");
+                    }
+                });
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    });
+});
+</script>
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <h2 class="display-4 titulo">Editar cliente</h2>
+                <hr>
+            </div>
+        </div>
+        <h5><u>Dados Pessoais</u></h5><br>
+        <form action="cliente_update.php" method="POST" enctype="multipart/form-data"  name="cadastro">
+            <div class="row">
+                <div class="form-group col-12 col-md-3">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $dados['nome'];?>" required>
                 </div>
-                <div class="form-group col-lg-4">
+                <div class="form-group col-12 col-md-3">
+                    <label for="nascimento">Data de nascimento</label>
+                    <input type="date" class="form-control" id="nascimento" name="nascimento" value="<?php echo $dados['dtnasc'];?>">
+                </div>
+                <div class="form-group col-12 col-md-2">
+                    <label for="cpf">CPF</label>
+                    <input type="text" class="form-control" id="cpf" name="cpf" placeholder="xxx.xxx.xxx-xx" value="<?php echo $dados['cpf'];?>" required>
+                </div>
+                <div class="form-group col-12 col-md-2">
+                    <label for="rg">RG</label>
+                    <input type="text" class="form-control" id="rg" name="rg" placeholder="xxxxxxxx-x" value="<?php echo $dados['identidade'];?>" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-12 col-md-3">
+                    <label for="senha">Celular</label>
+                    <input type="text" class="form-control" id="celular" name="celular" placeholder="(00)00000-0000" value="<?php echo $dados['celular'];?>" required>
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label for="email">E-mail / Login</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="example@example.com.br" value="<?php echo $dados['email'];?>" required>
+                </div>
+                <div class="form-group col-12 col-md-3">
+                    <label for="senha">Senha</label>
+                    <input type="password" class="form-control" id="senha" name="senha" placeholder="senha" value="<?php echo $dados['senha'];?>" required>
+                </div>
+            </div>
+            <h5><u>Endereço</u></h5>
+            <HR class="">
+            <div class="row">
+                <div class="form-group col-3 col-md-3">
+                    <label for="cep">CEP</label>
+                    <input type="text" class="form-control" id="cep" name="cep" placeholder="Insira o CEP" value="<?php echo $dados['cep'];?>">
+                </div>               
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-3 col-12">
+                    <label for="endereco">Rua</label>
+                    <input type="text" class="form-control" id="rua" name="rua" size="82" readonly value="<?php echo $dados['endereco'];?>">
+                </div>
+                <div class="form-group col-lg-1">
                     <label for="numero">Numero</label>
-                    <input type="text" class="form-control" id="numero" name="numero" placeholder="Numero da casa">
+                    <input type="text" class="form-control" id="numero" name="numero" placeholder="Numero da casa" value="<?php echo $dados['numero'];?>" required>
                 </div>
                 <div class="form-group col-lg-4">
                     <label for="complemento">Complemento</label>
-                    <input type="text" class="form-control" id="complemento" name="complemento" placeholder="casa/apartamento/bloco">
+                    <input type="text" class="form-control" id="complemento" name="complemento" placeholder="casa/apartamento/bloco" value="<?php echo $dados['complemento'];?>" required>
                 </div>
             </div>
-            <div class="row ml-1">
+            <div class="row">
                 <div class="form-group col-lg-3">
                     <label for="bairro">Bairro</label>
-                    <input type="text" class="form-control" id="bairro" name="bairro" readonly>
+                    <input type="text" class="form-control" id="bairro" name="bairro" value="<?php echo $dados['bairro'];?>" readonly>
                 </div>
                 <div class="form-group col-lg-3">
                     <label for="cidade">Cidade</label>
-                    <input type="text" class="form-control" id="cidade" name="cidade" readonly>
+                    <input type="text" class="form-control" id="cidade" name="cidade" readonly value="<?php echo $dados['cidade'];?>" >
                 </div>
                 <div class="form-group col-lg-1">
                     <label for="uf">Estado/UF</label>
-                    <input type="text" class="form-control" id="uf" name="estado" readonly >
+                    <input type="text" class="form-control" id="uf" name="uf" readonly value="<?php echo $dados['estado'];?>">
                 </div>
-                <div class="form-group col-lg-5">
+                <div class="form-group col-lg-3">
                     <label for="imagem">Imagem:</label>
-                    <input type="file" class="form-control" id="imagem" placeholder="Imagem" name="imagem">
+                    <input type="file" class="form-control" id="imagem" placeholder="Imagem" name="imagem"  value="<?php echo $dados['imagem'];?>">
                 </div>
             </div>
-            <input type="submit" name="editar" class="btn btn-success" value="Atualizar">
-                <a class="btn btn-primary" href="usuario_list.php" role="button">Voltar</a>
 
-<input type="submit" name="alterar" class="btn btn-primary"value="Alterar"/>
-<button type="reset" class="btn-primary">Limpar</button>
-</form>
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" name="cadastrar" class="btn btn-success" value="Atualizar" />
+                <button type="reset" class="btn btn-danger">Limpar</button>
+            </div>
+        </form>        
+    </div>   
 </div>
-<script src="js/cep.js" type="text/javascript"></script>
+
 <?php require('includes/footer.php') ?>

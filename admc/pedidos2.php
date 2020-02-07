@@ -29,7 +29,7 @@
 	
 	include('conexao.php');
 	$codcliente = $_SESSION['cliente'];
-	$sql = "SELECT * FROM pedido INNER JOIN produto ON pedido.codproduto = produto.codproduto where codcliente = '$codcliente'";
+	$sql = "SELECT * FROM pedido INNER JOIN produto ON pedido.id_produto = produto.id_produto where id_cliente = '$codcliente'";
 	
 	
 	$executa = mysqli_query($conexao, $sql);

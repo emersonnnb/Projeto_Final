@@ -8,7 +8,7 @@ require('includes/header.php');
     <div class="list-group-item">
         <div class="d-flex">
             <div class="mr-auto p-2">
-                <h2 class="display-4 titulo">Dados do Cliente</h2>
+                <h2 class="display-4 titulo">Listar Clientes</h2>
                 <hr>
             </div>
         </div>
@@ -16,10 +16,10 @@ require('includes/header.php');
             <table class="table table-striped table-hover table-bordered ">
                 <thead>
                     <tr>
-						<th>CÓD</th>
-						<th >Nome</th>
-						<th >CPF</th>
-						<th>E-mail</th>
+                        
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th class="d-none d-lg-table-cell">E-mail</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -32,23 +32,18 @@ require('includes/header.php');
 
                     while ($array = mysqli_fetch_array($retorno, MYSQLI_ASSOC)) {
                         $id_cliente = $array['id_cliente'];
-						$nome = $array['nome'];
-						$cpf = $array['cpf'];
-						$email = $array['email'];
-                       
-                    ?>
-                        <tr>
-                            <td><?= $id_cliente ?></td>
-							<td><?= $nome ?></td>
-							<td><?= $cpf ?></td>
-							
-							<td><?= $email ?></td>
-                        
-							
+                        $nome = $array['nome'];
+                        $cpf = $array['cpf'];
+                        $email = $array['email'];
 
+                    ?>
+                        <tr>                            
+                            <td><?= $nome ?></td>
+                            <td><?= $cpf ?></td>
+                            <td class="d-none d-lg-table-cell"><?= $email ?></td>
                             <td class="text-center">
                                 <span class="d-none d-md-block">
-                                    <a href="cliente_visualizar.php?id=<?= $id_cliente ?>" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#visualizarRegistro">Visualizar</a>
+                                    <a href="cliente_visualizar.php?id=<?= $id_cliente ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
                                     <a href="cliente_editar.php?id=<?= $id_cliente ?>" class="btn btn-outline-warning btn-sm">Editar</a>
                                     <a href="cliente_apagar.php?id=<?= $id_cliente ?>" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target=" #apagarRegistro">Apagar</a>
                                 </span>
@@ -68,7 +63,7 @@ require('includes/header.php');
                     }
                     ?>
                 </tbody>
-                </table><br>
+            </table><br>
             <!--alert de atualizado com sucesso-->
             <?php
             if (isset($_SESSION['atualizacao_sucesso'])) :
@@ -81,16 +76,7 @@ require('includes/header.php');
             unset($_SESSION['atualizacao_sucesso']);
             ?>
             <!--alert de erro ao atualizar-->
-            <?php
-            if (isset($_SESSION['erro_atualizacao'])) :
-            ?>
-                <div class="alert alert-danger col-lg-2">
-                    <p>Erro ao atualizar!!</p>
-                </div>
-            <?php
-            endif;
-            unset($_SESSION['erro_atualizacao']);
-            ?>
+            
             <!--alert de apagado com sucesso-->
             <?php
             if (isset($_SESSION['apagado_sucesso'])) :
@@ -102,6 +88,17 @@ require('includes/header.php');
             endif;
             unset($_SESSION['apagado_sucesso']);
             ?>
+            <?php
+            if (isset($_SESSION['status_cadastro'])) :
+            ?>
+                <div class="alert alert-success">
+                    <p>Cliente cadastrado com sucesso!!</p>
+                </div>
+            <?php
+            endif;
+            unset($_SESSION['status_cadastro']);
+            ?>
+
         </div>
     </div>
 </div>
@@ -122,7 +119,7 @@ require('includes/header.php');
                 <form action="cliente_apagar.php" method="POST">
                     <input type="hidden" name="id" value="<?= $id_cliente ?>">
                     <button type="submit" name="btn-deletar" class="btn btn-danger">Sim</button>
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn btn-success">Cancelar</a>
+                    <a href="" class="modal-action modal-close waves-effect waves-green btn btn-success">Cancelar</a>
                 </form>
             </div>
         </div>

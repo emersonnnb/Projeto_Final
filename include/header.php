@@ -15,6 +15,9 @@
       margin-bottom: 0;
       border-radius: 0;
     }
+    .navbar .navbar-toggle {
+      color: white;
+    }
     
     /* Add a gray background color and some padding to the footer */
     footer {

@@ -14,7 +14,7 @@ include('conexao.php');?>
 <?php 
 $codcliente= $_SESSION['cliente'];
 $senha = $_SESSION['clientesenha'];
-$sql = "select * from cliente where codcliente=$codcliente and senha='$senha'";
+$sql = "select * from cliente where id_cliente=$codcliente and senha='$senha'";
 $resultado = mysqli_query($conexao, $sql);
 $total     = mysqli_num_rows($resultado);
  ?>

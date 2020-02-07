@@ -12,12 +12,10 @@
    if(!isset($_SESSION['clientebairro']));
    if(!isset($_SESSION['clientecidade']));
    if(!isset($_SESSION['clienteestado']));
-
    if(!isset($_SESSION['clientecelular']));
    if(!isset($_SESSION['clienteemail']));
    if(!isset($_SESSION['clientesenha']));
-   if(!isset($_SESSION['clienteimagem']));
-   
+   if(!isset($_SESSION['clienteimagem']));   
    if(!isset($_SESSION['carrinho']));  
    
 ?>
@@ -38,8 +36,7 @@
 						</div>
 		  				<div class="panel-body">
 						<p>A área permite controlar todas as informações que são armazenadas no banco de dados</p>
-						<p>O Administrador poderá alterar e fazer modificações em seu dados e verificar o que foi repassado pelos seus clientes.</p>
-									  			
+						<p>O Administrador poderá alterar e fazer modificações em seu dados e verificar o que foi repassado pelos seus clientes.</p>									  			
 		  				</div>
 		  			</div>
 		  		</div>		  		
