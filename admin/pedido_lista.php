@@ -1,19 +1,6 @@
 <?php
 $page = 'pedidos';
 include('includes/header.php');
-include_once 'conexao/conexao.php';
-
-$sql = "SELECT * FROM `pedido`";
-$retorno = mysqli_query($conexao, $sql);
-
-while ($array = mysqli_fetch_array($retorno, MYSQLI_ASSOC)) {
-    $id_pedido = $array['id_pedido'];
-    $qtd = $array['qtd'];
-    $sub = $array['sub'];
-    $total = $array['total'];
-    $id_cliente = $array['id_cliente'];
-    $id_produto = $array['id_produto'];
-    $datacompra = $array['datacompra'];
 ?>
 <!-- Listar usuarios -->
 <div class="content p-1">
@@ -28,22 +15,37 @@ while ($array = mysqli_fetch_array($retorno, MYSQLI_ASSOC)) {
                 <thead>
                     <tr>
                         <th>Código</th>
-                        <th>Nome</th>
-                        <th class="d-none d-lg-table-cell">Data</th>
+                        <th>Nome cliente</th>
+                        <th class="d-none d-lg-table-cell">Data da compra</th>
+                        <th>Produto</th>
                         <th>Sub Total</th>
-                        <th>Total</th>
-                        <th>Data compra</th>
+                        <th>Total</th>                        
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
+                <?php                   
+                    include_once 'conexao/conexao.php';
+
+                    $sql = "SELECT * FROM `pedido`";
+                    $retorno = mysqli_query($conexao, $sql);
+
+                    while ($array = mysqli_fetch_array($retorno, MYSQLI_ASSOC)) {
+                        $id_pedido = $array['id_pedido'];
+                        $qtd = $array['qtd'];
+                        $sub = $array['sub'];
+                        $total = $array['total'];
+                        $id_cliente = $array['id_cliente'];
+                        $id_produto = $array['id_produto'];
+                        $datacompra = $array['datacompra'];
+                    ?>
                     <tr>
-                        <th>teste</th>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>teste@teste.com.br</td>
-                        <td class="d-none d-lg-table-cell">21 99999-9999</td>
+                        <th><?= $id_pedido ?></th>
+                        <td><?= $id_cliente ?> </td>
+                        <td><?= $datacompra?> </td>
+                        <td><?= $id_produto ?> </td>
+                        <td><?= $sub ?> </td>
+                        <td><?= $total ?></td>                        
                         <td class="text-center">
                             <span class="d-none d-md-block">
                                 <a href="usuario_visualizar.php?id=<?= $id_usuario ?>" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#visualizarRegistro">Visualizar</a>
