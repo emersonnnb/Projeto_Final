@@ -7,7 +7,9 @@ include('includes/header.php');
     <div class="list-group-item">
         <div class="d-flex">
             <div class="mr-auto p-2">
-                <h2 class="display-4 titulo">Listar Pedidos</h2><hr>
+                <h2 class="display-4 titulo">Listar Pedidos
+                <a href="../admin/home.php" class="btn btn-info btn-lg" style="background-color: black; border:none" role="button" aria-disabled="true">Voltar</a>
+                </h2><hr>
             </div>
         </div>
         <div class="table-responsive">
