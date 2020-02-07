@@ -8,7 +8,7 @@
 	if(isset($_GET['acao'])){ 
         //ADICIONAR CARRINHO 
         if($_GET['acao'] == 'add'){ 
-            $codproduto = intval($_GET['codproduto']); 
+            $codproduto = intval($_GET['produto']); 
             if(!isset($_SESSION['carrinho'][$codproduto])){ 
                 $_SESSION['carrinho'][$codproduto] = 1; 
             } else { 
@@ -18,7 +18,7 @@
 		
 		//REMOVER
 		 if($_GET['acao'] == 'del'){ 
-            $codproduto = intval($_GET['codproduto']); 
+            $codproduto = intval($_GET['produto']); 
             if(isset($_SESSION['carrinho'][$codproduto])){ 
                 unset($_SESSION['carrinho'][$codproduto]); 
             } 
@@ -111,7 +111,7 @@
 					$total = 0;
 					foreach($_SESSION['carrinho'] as $codproduto => $qtd){
 						
-						$sql     = "SELECT * FROM produto WHERE codproduto = '$codproduto'";
+						$sql     = "SELECT * FROM produto WHERE id_produto = '$codproduto'";
 						$executa = mysqli_query($conexao, $sql) or die (mysqli_error());
 						$in      = mysqli_fetch_assoc($executa);
 						

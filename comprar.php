@@ -35,7 +35,7 @@
       <div class="row">
         <?php while ( $dados = mysqli_fetch_assoc($resultados) ) { ?>
         <div class="col-sm-3">
-         <a href="produtop.php?codproduto=<?= $dados['codproduto']; ?>">
+         <a href="produtop.php?id_produto=<?= $dados['id_produto']; ?>">
             <div class="card"   >
               <div class="card-body">
                 <img class="card-img-top" src="fotosprodutos/<?= $dados['imagem']; ?>" style="width:80%;" alt="Card image cap"> 
@@ -43,7 +43,7 @@
                 <p id='cartoes' class="card-title"><b><?php echo $dados['descricao'] ?></b></p>
                   <p class="card-text"><strong><?php echo $dados['categoria'] ?></strong></p>
                   <h5><p class="cart-text">POR: R$ <?php echo $dados['preco'] ?></p></h5>
-                  <a href="carrinho.php?acao=add&codproduto=<?= $dados['codproduto']; ?>" id="botao" class="btn btn-danger" role="button" value="<?= $dados['codproduto']; ?>">Comprar</a>
+                  <a href="carrinho.php?acao=add&id_produto=<?= $dados['id_produto']; ?>" id="botao" class="btn btn-danger" role="button" value="<?= $dados['id_produto']; ?>">Comprar</a>
 
                 </div>
            </div></a>
