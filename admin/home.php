@@ -23,14 +23,6 @@ $pedido ="SELECT COUNT(id_pedido) AS TOTAL FROM pedido";
 $result_pedido= mysqli_query($conexao,$pedido);
 $row_pedido= mysqli_fetch_assoc($result_pedido);
 $saldo_pedido=$row_pedido['TOTAL'];       
-
-
-
-
-//$produto ="SELECT COUNT(nome) AS TOTAL FROM produto";
-//$pedido ="SELECT COUNT(nome) AS TOTAL FROM pedido";
-
-
                             
 ?>
 
