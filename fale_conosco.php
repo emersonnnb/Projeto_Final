@@ -38,6 +38,8 @@ include "header2.php";
     </div>
 
     </form>
+    <br>
+    <button type="submit" class="btn btn-primary">Enviar</button>
 
     <br>
 </div>
