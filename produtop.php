@@ -29,4 +29,4 @@ $dados = mysqli_fetch_array($resultado);
 </div>
 </section>
 <hr>
-<?php include "footer.php";?>
+<?php include "include/footer2.php";?>
