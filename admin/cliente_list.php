@@ -1,4 +1,5 @@
 <?php
+session_start();
 $page = 'listar_cliente';
 require('includes/header.php');
 ?>
@@ -16,43 +17,38 @@ require('includes/header.php');
                 <thead>
                     <tr>
 						<th>CÓD</th>
-						<th >NOME</th>
+						<th >Nome</th>
 						<th >CPF</th>
-						<th >Nascimento</th>						
-						<th>Celular</th>
 						<th>E-mail</th>
-						<th>Imagem</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     <?php
                     include_once 'conexao/conexao.php';
-                    $sql = "SELECT id_cliente,nome,cpf,dtnasc,celular,email,imagem FROM `cliente`";
+                    $sql = "SELECT id_cliente,nome,cpf,email FROM `cliente`";
                     $retorno = mysqli_query($conexao, $sql);
 
                     while ($array = mysqli_fetch_array($retorno, MYSQLI_ASSOC)) {
                         $id_cliente = $array['id_cliente'];
 						$nome = $array['nome'];
 						$cpf = $array['cpf'];
-						$dtnasc = $array['dtnasc'];
-						$celular = $array['celular'];
 						$email = $array['email'];
-                        $imagem = $array['imagem'];
+                       
                     ?>
                         <tr>
                             <td><?= $id_cliente ?></td>
 							<td><?= $nome ?></td>
 							<td><?= $cpf ?></td>
-							<td><?= $dtnasc ?></td>
-                            <td class="d-none d-lg-table-cell"><?= $celular ?></td>
+							
 							<td><?= $email ?></td>
-                            <td><?= $imagem ?></td>
+                        
 							
 
                             <td class="text-center">
                                 <span class="d-none d-md-block">
-                                    <a href="cliente_visualiza.php?id=<?= $id_cliente ?>" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#visualizarRegistro">Visualizar</a>
+                                    <a href="cliente_visualizar.php?id=<?= $id_cliente ?>" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#visualizarRegistro">Visualizar</a>
                                     <a href="cliente_editar.php?id=<?= $id_cliente ?>" class="btn btn-outline-warning btn-sm">Editar</a>
                                     <a href="cliente_apagar.php?id=<?= $id_cliente ?>" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target=" #apagarRegistro">Apagar</a>
                                 </span>
@@ -61,7 +57,7 @@ require('includes/header.php');
                                         Ações
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
-                                        <a class="dropdown-item" href="visualizar.php?id=<?= $id_cliente ?>" data-toggle="modal" data-target="#visualizarRegistro">Visualizar</a>
+                                        <a class="dropdown-item" href="cliente_visualizar.php?id=<?= $id_cliente ?>" data-toggle="modal" data-target="#visualizarRegistro">Visualizar</a>
                                         <a class="dropdown-item" href="cliente_editar.php?id=<?= $id_cliente ?>">Editar</a>
                                         <a class="dropdown-item" href="cliente_apagar.html" data-toggle="modal" data-target="#apagarRegistro">Apagar</a>
                                     </div>
@@ -72,7 +68,40 @@ require('includes/header.php');
                     }
                     ?>
                 </tbody>
-            </table>
+                </table><br>
+            <!--alert de atualizado com sucesso-->
+            <?php
+            if (isset($_SESSION['atualizacao_sucesso'])) :
+            ?>
+                <div class="alert alert-success col-lg-2">
+                    <p>Atualizado com sucesso!!</p>
+                </div>
+            <?php
+            endif;
+            unset($_SESSION['atualizacao_sucesso']);
+            ?>
+            <!--alert de erro ao atualizar-->
+            <?php
+            if (isset($_SESSION['erro_atualizacao'])) :
+            ?>
+                <div class="alert alert-danger col-lg-2">
+                    <p>Erro ao atualizar!!</p>
+                </div>
+            <?php
+            endif;
+            unset($_SESSION['erro_atualizacao']);
+            ?>
+            <!--alert de apagado com sucesso-->
+            <?php
+            if (isset($_SESSION['apagado_sucesso'])) :
+            ?>
+                <div class="alert alert-success col-lg-2">
+                    <p>Apagado com sucesso!!</p>
+                </div>
+            <?php
+            endif;
+            unset($_SESSION['apagado_sucesso']);
+            ?>
         </div>
     </div>
 </div>
@@ -87,11 +116,14 @@ require('includes/header.php');
                 </button>
             </div>
             <div class="modal-body">
-                Tem certeza que deseja excluiir o item selecionado?
+                Tem certeza que deseja excluir o cliente selecionado?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Não</button>
-                <a href="cliente_apagar.php?id="><button type="button" class="btn btn-danger">Sim</button></a>
+                <form action="cliente_apagar.php" method="POST">
+                    <input type="hidden" name="id" value="<?= $id_cliente ?>">
+                    <button type="submit" name="btn-deletar" class="btn btn-danger">Sim</button>
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn btn-success">Cancelar</a>
+                </form>
             </div>
         </div>
     </div>

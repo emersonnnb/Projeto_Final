@@ -1,4 +1,19 @@
-<!doctype html>
+<?php
+session_start();
+$page = 'listar_produto';
+require('includes/header.php');
+include('conexao/conexao.php');
+
+if (isset($_GET['id'])) :
+    $id = mysqli_escape_string($conexao, $_GET['id']);
+    $sql = "SELECT * FROM cliente WHERE id_cliente = '$id'";
+    $resultado = mysqli_query($conexao, $sql);
+    $dados = mysqli_fetch_array($resultado);
+endif;
+?>
+
+
+<!-- Formulario de cadastro  -->
 <html lang="en">
 
 <head>
@@ -18,7 +33,7 @@
         <br><br>
         <h5>Dados Pessoais</h5>
         <HR>
-        <form>
+        <form class="form-horizontal" action="cliente_cadastrar.php" method="POST" enctype="multipart/form-data" name="cadastro">
             <div class="row">
                 <div class="form-group col">
                     <label for="nome">Nome Completo</label>
@@ -97,6 +112,7 @@
                 </div>
             </div>
             
+            
         </form>
         <script src="js/cep.js" type="text/javascript"></script>
         </div>
@@ -110,3 +126,8 @@
 </body>
 
 </html>
+      
+    </div>
+    </div>
+
+    <?php require('includes/footer.php') ?>

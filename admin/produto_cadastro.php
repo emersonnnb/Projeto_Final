@@ -42,7 +42,7 @@ require('includes/header.php');
             </div>
         <?php
         endif;
-        unset($_SESSION['produtoo_existe']);
+        unset($_SESSION['produto_existe']);
         ?>
         <?php
         if (isset($_SESSION['status_cadastro'])) :

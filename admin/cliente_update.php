@@ -5,10 +5,14 @@ session_start();
 include('conexao/conexao.php');
 
 if(isset($_POST['editar'])):
-        $id = mysqli_escape_string($conexao, $_POST['id']);
-        $nome = $_POST['nome'];
+		$id = mysqli_escape_string($conexao, $_POST['id']);
+		$nome = $_POST['nome'];
+		$email = $_POST['email'];
 		$cpf = $_POST['cpf'];
-		$dtnasc = $_POST['dtnasc'];
+		$rg = $_POST['rg'];
+		$nascimento = $_POST['nascimento'];
+		$celular = $_POST['celular'];
+		$senha = $_POST['senha'];
 		$cep = $_POST['cep'];
 		$endereco = $_POST['endereco'];
 		$numero = $_POST['numero'];
@@ -16,9 +20,6 @@ if(isset($_POST['editar'])):
 		$bairro = $_POST['bairro'];
 		$cidade = $_POST['cidade'];
 		$estado = $_POST['estado'];
-		$celular = $_POST['celular'];
-		$email = $_POST['email'];
-		$senha = $_POST['senha'];
 		$imagem = $_FILES["imagem"];
     
 
