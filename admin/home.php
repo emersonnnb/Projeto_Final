@@ -4,6 +4,18 @@ $page = 'home';
 ?>
 
 <!-- Pagina Home  -->
+<?php
+    include_once 'conexao/conexao.php';
+    $sql = mysqli_query($conexao, "SELECT COUNT(*) AS comercio FROM usuario");
+    $row= mysqli_fetch_array($sql);
+    $saldo=$row['0'];
+    include_once 'conexao/conexao.php';
+    $sql = mysqli_query($conexao, "SELECT COUNT(*) AS comercio FROM produto");
+    $row= mysqli_fetch_array($sql);
+    $saldo=$row['0'];
+      
+                            
+?>
 
 <div class="content p-1">
     <div class="list-group-item">
@@ -19,6 +31,7 @@ $page = 'home';
                         <div class="card-body">
                             <i class="fas fa-users fa-3x"></i>
                             <h6 class="card-title">Usuários</h6>
+                            <h2 class="lead"><?php echo  $saldo ?></h2>
                         </div>
                     </div>
                     </a>
