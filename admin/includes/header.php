@@ -9,7 +9,7 @@ $menu = (isset($page)) ? $page : 'index';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>HomeShop</title>
+    <title>HomeShop-Restrito</title>
     <link rel="icon" href="img/logo.jpeg">
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -19,12 +19,13 @@ $menu = (isset($page)) ? $page : 'index';
 
 <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand navbar-dark bg-danger">
+    <nav class="navbar navbar-expand navbar-dark bg-danger" style="background: linear-gradient(to right, #c0c0c0 0%, #000000 100%);
+  color: #00000;">
         <a class="sidebar-toggle text-light mr-3">
             <span class="navbar-toggler-icon"></span>
         </a>
-        <div class="topo">
-            Home Shop <p>O que vocÃª precisa em 24 horas!</p>
+        <div class="topo" style="border: 0px; font-family:didot;font-size: 40px" >
+            Restrito
             </a>
         </div>
 
@@ -32,7 +33,7 @@ $menu = (isset($page)) ? $page : 'index';
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle menu-header" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
-                        <img class="rounded-circle" src="../img/icon.png" width="20" height="20"> &nbsp;<span class="d-none d-sm-inline"></span>
+                        <img class="rounded-circle" src="img/restrito.png" width="30" height="30"> &nbsp;<span class="d-none d-sm-inline"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#"><i class="fas fa-user"></i> Perfil</a>
