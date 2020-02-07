@@ -1,19 +1,36 @@
 <?php
 include('includes/header.php');
+include('conexao/conexao.php');
 $page = 'home';
-?>
 
-<!-- Pagina Home  -->
-<?php
-    include_once 'conexao/conexao.php';
-    $sql = mysqli_query($conexao, "SELECT COUNT(*) AS comercio FROM usuario");
-    $row= mysqli_fetch_array($sql);
-    $saldo=$row['0'];
-    include_once 'conexao/conexao.php';
-    $sql = mysqli_query($conexao, "SELECT COUNT(*) AS comercio FROM produto");
-    $row= mysqli_fetch_array($sql);
-    $saldo=$row['0'];
-      
+//contador de Usuarios
+$user ="SELECT COUNT(id_restrito) AS TOTAL FROM acesso_restrito";
+$result_user= mysqli_query($conexao,$user);
+$row_user= mysqli_fetch_assoc($result_user);
+$saldo_user=$row_user['TOTAL'];       
+// contador de cliente
+$cliente ="SELECT COUNT(id_cliente) AS TOTAL FROM cliente";
+$result_cliente= mysqli_query($conexao,$cliente);
+$row_cliente= mysqli_fetch_assoc($result_cliente);
+$saldo_cliente=$row_cliente['TOTAL'];       
+// contador de produto
+$produto ="SELECT COUNT(id_produto) AS TOTAL FROM produto";
+$result_produto= mysqli_query($conexao,$produto);
+$row_produto= mysqli_fetch_assoc($result_produto);
+$saldo_produto=$row_produto['TOTAL'];       
+// contador de cliente
+$pedido ="SELECT COUNT(id_pedido) AS TOTAL FROM pedido";
+$result_pedido= mysqli_query($conexao,$pedido);
+$row_pedido= mysqli_fetch_assoc($result_pedido);
+$saldo_pedido=$row_pedido['TOTAL'];       
+
+
+
+
+//$produto ="SELECT COUNT(nome) AS TOTAL FROM produto";
+//$pedido ="SELECT COUNT(nome) AS TOTAL FROM pedido";
+
+
                             
 ?>
 
@@ -31,7 +48,7 @@ $page = 'home';
                         <div class="card-body">
                             <i class="fas fa-users fa-3x"></i>
                             <h6 class="card-title">Usuários</h6>
-                            <h2 class="lead"><?php echo  $saldo ?></h2>
+                            <h2 class="lead"><?php echo  $saldo_user?></h2>
                         </div>
                     </div>
                     </a>
@@ -43,6 +60,7 @@ $page = 'home';
                     <div class="card-body">
                         <i class="fas fa-shopping-bag fa-3x"></i>
                         <h6 class="card-title">Clientes</h6>
+                        <h2 class="lead"><?php echo  $saldo_cliente?></h2>
                     </div>
                 </div>
             </div>
@@ -53,6 +71,7 @@ $page = 'home';
                         <div class="card-body">
                             <i class="fas fa-list-ul fa-3x"></i>
                             <h6 class="card-title ">Produtos</h6>
+                            <h2 class="lead"><?php echo  $saldo_produto?></h2>
                         </div>
                     </div>
                     </a>
@@ -64,6 +83,7 @@ $page = 'home';
                     <div class="card-body">
                         <i class="fas fa-truck fa-3x"></i>
                         <h6 class="card-title">Pedido</h6>
+                        <h2 class="lead"><?php echo  $saldo_pedido?></h2>
                     </div>
                     </div>
             </div>

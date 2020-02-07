@@ -1,6 +1,19 @@
 <?php
 $page = 'pedidos';
-require('includes/header.php');
+include('includes/header.php');
+include_once 'conexao/conexao.php';
+
+$sql = "SELECT * FROM `pedido`";
+$retorno = mysqli_query($conexao, $sql);
+
+while ($array = mysqli_fetch_array($retorno, MYSQLI_ASSOC)) {
+    $id_pedido = $array['id_pedido'];
+    $qtd = $array['qtd'];
+    $sub = $array['sub'];
+    $total = $array['total'];
+    $id_cliente = $array['id_cliente'];
+    $id_produto = $array['id_produto'];
+    $datacompra = $array['datacompra'];
 ?>
 <!-- Listar usuarios -->
 <div class="content p-1">
@@ -14,11 +27,11 @@ require('includes/header.php');
             <table class="table table-striped table-hover table-bordered ">
                 <thead>
                     <tr>
-                        <th>Cod. Pedido</th>
-                        <th>Qtd</th>
-                        <th class="d-none d-lg-table-cell">Sub Total</th>
-                        <th>Total</th>
+                        <th>Código</th>
                         <th>Nome</th>
+                        <th class="d-none d-lg-table-cell">Data</th>
+                        <th>Sub Total</th>
+                        <th>Total</th>
                         <th>Data compra</th>
                         <th>Ações</th>
                     </tr>
@@ -49,6 +62,9 @@ require('includes/header.php');
                             </div>
                         </td>
                     </tr>
+                    <?php
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
