@@ -17,6 +17,10 @@
       border-radius: 0;
     }
 
+    .navbar-toggler {
+      background-color: white;
+      border: blue;
+    }
     /*retirando cor do hiperlink comprar*/
     A:link {text-decoration:none; }
     A:visited {text-decoration:none;}

@@ -67,7 +67,7 @@ include 'header2.php';
         do {
             ($dados = mysqli_fetch_array($resultado)); 
 		?>
-        <div class="col-sm-3">
+        <div class="col-sm-4 col-md-3">
          <a href="produtop.php?codproduto=<?= $dados['codproduto']; ?>">
             <div class="card"   >
               <div class="card-body">
@@ -103,7 +103,7 @@ include 'header2.php';
         do {
             ($dados = mysqli_fetch_array($resultado2)); 
 		?>
-        <div class="col-sm-3">
+        <div class="col-sm-4 col-md-3">
          <a href="produtop.php?codproduto=<?= $dados['codproduto']; ?>">
             <div class="card"   >
               <div class="card-body">
