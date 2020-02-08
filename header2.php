@@ -72,6 +72,24 @@
           <a class="dropdown-item" href="produtocat2.php">Novidades</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="produtocat3.php">Embarcados</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="produtocat4.php">Moveis</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="produtocat5.php">Eletrodomesticos</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="produtocat6.php">Material Escolar</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="produtocat7.php">Smartphone</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="produtocat8.php">Calçados</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="produtocat9.php">Relógio</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="produtocat10.php">Eletro</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="produtocat11.php">Beleza</a>
+         
+          
         </div>
       </li>
 
