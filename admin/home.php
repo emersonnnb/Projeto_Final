@@ -34,7 +34,7 @@ $saldo_pedido=$row_pedido['TOTAL'];
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-3 col-sm-6 ">
                 <a href="../admin/usuario_list.php" style="text-decoration:none">
                     <div class="card text-white" style="background-color:#B22222">
                         <div class="card-body">

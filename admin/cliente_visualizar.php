@@ -33,11 +33,11 @@ endif;
             <div class="row">
                 <div class="form-group col-12 col-md-3">
                     <label for="cpf">CPF</label>
-                    <input type="text" class="form-control" id="cpf" name="cpf" readonly value="<?php echo $dados['cpf'];?>">
+                    <input type="text" class="form-control" id="cpf" name="cpf" readonly value="<?php echo preg_replace("/(\d{3}+)(\d{3}+)(\d{3}+)(\d{2}+)/", "$1.$2.$3-$4",$dados['cpf']);?>">
                 </div>
                 <div class="form-group col-12 col-md-3">
                     <label for="rg">RG</label>
-                    <input type="text" class="form-control" id="rg" name="rg" readonly value="<?php echo $dados['identidade'];?>">
+                    <input type="text" class="form-control" id="rg" name="rg" readonly value="<?php echo preg_replace("/(\d{2}+)(\d{3}+)(\d{3}+)(\d{1}+)/", "$1.$2.$3-$4",$dados['identidade']);?>">
                 </div>
                 <div class="form-group col-12 col-md-3">
                     <label for="nascimento">Data de nascimento</label>
@@ -45,7 +45,7 @@ endif;
                 </div>           
                 <div class="form-group col-12 col-md-3">
                     <label for="senha">Celular</label>
-                    <input type="text" class="form-control" id="celular" name="celular" readonly value="<?php echo $dados['celular'];?>">
+                    <input type="text" class="form-control" id="celular" name="celular" readonly value="<?php echo preg_replace("/(\d{2}+)(\d{5}+)(\d{4}+)/", "($1) $2-$3",$dados['celular']);?>">
                 </div>                
             </div>
             <br>
@@ -54,7 +54,7 @@ endif;
             <div class="row">
                 <div class="form-group col-lg-6 col-6">
                     <label for="cep">CEP</label>
-                    <input type="text" class="form-control" id="cep" name="cep"readonly value="<?php echo $dados['cep'];?>">
+                    <input type="text" class="form-control" id="cep" name="cep"readonly value="<?php echo preg_replace("/(\d{5}+)(\d{3}+)/", "$1-$2",$dados['cep']);?>">
                 </div>
             </div>
             <div class="row">

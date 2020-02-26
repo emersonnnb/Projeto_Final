@@ -12,7 +12,9 @@ $menu = (isset($page)) ? $page : 'index';
     <title>HomeShop-Restrito</title>
     <link rel="icon" href="img/logo.jpeg">
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
     <script defer src="js/fontawesome-all.min.js"></script>
     <link rel="stylesheet" href="css/dashboard.css">
 </head>

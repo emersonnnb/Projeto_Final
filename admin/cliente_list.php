@@ -3,6 +3,14 @@ session_start();
 $page = 'listar_cliente';
 require('includes/header.php');
 ?>
+<script type="text/javascript" >
+
+$(document).ready(function() {
+
+    $("#cpf").mask("000.000.000-00")
+
+</script>
+
 <!-- Listar clientes -->
 <div class="content p-1">
     <div class="list-group-item">
@@ -17,8 +25,7 @@ require('includes/header.php');
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered ">
                 <thead>
-                    <tr>
-                        
+                    <tr>                        
                         <th>Nome</th>
                         <th>CPF</th>
                         <th class="d-none d-lg-table-cell">E-mail</th>
@@ -34,8 +41,8 @@ require('includes/header.php');
 
                     while ($array = mysqli_fetch_array($retorno, MYSQLI_ASSOC)) {
                         $id_cliente = $array['id_cliente'];
-                        $nome = $array['nome'];
-                        $cpf = $array['cpf'];
+                        $nome = $array['nome'];                        
+                        $cpf = preg_replace("/(\d{3}+)(\d{3}+)(\d{3}+)(\d{2}+)/", "$1.$2.$3-$4", $array['cpf']);
                         $email = $array['email'];
 
                     ?>
@@ -54,7 +61,7 @@ require('includes/header.php');
                                         Ações
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
-                                        <a class="dropdown-item" href="cliente_visualizar.php?id=<?= $id_cliente ?>" data-toggle="modal" data-target="#visualizarRegistro">Visualizar</a>
+                                        <a class="dropdown-item" href="cliente_visualizar.php?id=<?= $id_cliente ?>">Visualizar</a>
                                         <a class="dropdown-item" href="cliente_editar.php?id=<?= $id_cliente ?>">Editar</a>
                                         <a class="dropdown-item" href="cliente_apagar.html" data-toggle="modal" data-target="#apagarRegistro">Apagar</a>
                                     </div>

@@ -3,13 +3,17 @@
 	session_start();	
 	include "conexao/conexao.php";
 
+	function limparDados($dado){
+		return preg_replace("/[^0-9]/", "", $dado);
+	 };
+
 	if (isset($_POST['cadastrar'])) {
 		// Recupera os dados dos campos
 		$nome = $_POST['nome'];
 		$nascimento = $_POST['nascimento'];
-		$cpf = $_POST['cpf'];
-		$rg = $_POST['rg'];
-		$celular = $_POST['celular'];
+		$cpf = limparDados($_POST['cpf']) ;
+		$rg = limparDados($_POST['rg']);
+		$celular = limparDados($_POST['celular']);
 		$email = $_POST['email'];
 		$senha = $_POST['senha'];
 		$cep = $_POST['cep'];
@@ -19,9 +23,10 @@
 		$bairro = $_POST['bairro'];
 		$cidade = $_POST['cidade'];
 		$estado = $_POST['uf'];
-		$imagem = $_FILES["imagem"];
+		$imagem = $_FILES["imagem"];	
+		 
 		// Se a foto estiver sido selecionada
-		if (!empty($imagem["name"])) {
+		if (!empty($imagem)) {
 			// Largura máxima em pixels
 			$largura = 95000;
 			// Altura máxima em pixels

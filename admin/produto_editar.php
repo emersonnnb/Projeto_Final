@@ -1,5 +1,5 @@
 <?php
-$page = 'listar_cliente';
+$page = 'listar_produto';
 session_start();
 require('includes/header.php');
 include('conexao/conexao.php');
@@ -79,9 +79,16 @@ $sql = "UPDATE cliente SET nome = '$nome',email = '$email', cpf = '$cpf',rg = '$
 }
 ?>
 
-<body>
-<div class="container">
-  <h2>Alterar  Produto</h2>
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <h2 class="display-4 titulo">Editar produto
+                <a href="../admin/home.php" class="btn btn-info btn-lg bg-dark">Voltar</a>
+                </h2>
+                <hr>
+            </div>
+        </div>
   
 <form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET" enctype="multipart/form-data" name="alterar" >
 <div class="form-group">

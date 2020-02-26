@@ -42,7 +42,7 @@ A:hover {
 
 .btn-danger:hover {
     /*background-color: rgba(221, 25, 25, 0.918) !important;*/
-    background-color: white !important;
+    background-color: rgb(195, 29, 29) !important;
     color: #ffffff;
 }
 
